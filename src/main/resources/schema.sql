@@ -61,14 +61,14 @@ CREATE TABLE Address
 (
  id            integer NOT NULL AUTO_INCREMENT ,
  street_number integer NULL ,
- city          integer NOT NULL ,
- street        integer NULL ,
- country       integer NOT NULL ,
+ city_id       integer NOT NULL ,
+ street_id     integer NULL ,
+ country_id    integer NOT NULL ,
 
  PRIMARY KEY (id),
- FOREIGN KEY (city) REFERENCES City (id),
- FOREIGN KEY (street) REFERENCES Street (id),
- FOREIGN KEY (country) REFERENCES Country (id)
+ FOREIGN KEY (city_id) REFERENCES City (id),
+ FOREIGN KEY (street_id) REFERENCES Street (id),
+ FOREIGN KEY (country_id) REFERENCES Country (id)
 );
 -- ************************************** `Offer`
 CREATE TABLE Offer
@@ -80,16 +80,16 @@ CREATE TABLE Offer
  area        double NULL ,
  description text NULL ,
  price       double NOT NULL ,
- drive_type  integer NULL ,
- plot_type   integer NULL ,
+ drive_type_id  integer NULL ,
+ plot_type_id   integer NULL ,
  fence       bit NULL ,
  building    bit NULL ,
- address      integer NOT NULL ,
+ address_id  integer NOT NULL ,
 
  PRIMARY KEY (id),
- FOREIGN KEY (address) REFERENCES Address (id),
- FOREIGN KEY (drive_type) REFERENCES DriveType (id),
- FOREIGN KEY (plot_type) REFERENCES PlotType (id)
+ FOREIGN KEY (address_id) REFERENCES Address (id),
+ FOREIGN KEY (drive_type_id) REFERENCES DriveType (id),
+ FOREIGN KEY (plot_type_id) REFERENCES PlotType (id)
 );
 -- ************************************** `offerSurrounding`
 CREATE TABLE OfferSurrounding

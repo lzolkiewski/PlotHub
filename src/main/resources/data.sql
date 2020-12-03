@@ -50,14 +50,14 @@ insert into DriveType
         ('asfaltowa'),
         ('utwardzana');
 insert into Address
-    (street_number, city, street, country)
+    (street_number, city_id, street_id, country_id)
     values
         (15, 1, 3, 1),
         (30, 1, 1 ,1),
         (45, 2, 2, 1),
         (60, 3, 3, 1);
 insert into Offer
-    (title, length, width, area, description, price, drive_type, plot_type, fence, building, address)
+    (title, length, width, area, description, price, drive_type_id, plot_type_id, fence, building, address_id)
     values
         ('Super oferta', 20, 20, 400, 'Budynek super świetny', 40000, 1, 1, 1, 1, 1),
         ('Nie ma lepszej', 15, 10, 150, 'No ładna działeczka na sprzedaż', 15000, 3, 1, 0, 0, 2),
