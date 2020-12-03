@@ -60,9 +60,9 @@ CREATE TABLE DriveType
 CREATE TABLE Address
 (
  id            integer NOT NULL AUTO_INCREMENT ,
- street_number integer NULL ,
+ street_number integer NOT NULL ,
  city_id       integer NOT NULL ,
- street_id     integer NULL ,
+ street_id     integer NOT NULL ,
  country_id    integer NOT NULL ,
 
  PRIMARY KEY (id),
@@ -77,13 +77,13 @@ CREATE TABLE Offer
  title       varchar(45) NOT NULL ,
  length      double NOT NULL ,
  width       double NOT NULL ,
- area        double NULL ,
- description text NULL ,
+ area        double NOT NULL ,
+ description text NOT NULL ,
  price       double NOT NULL ,
- drive_type_id  integer NULL ,
- plot_type_id   integer NULL ,
- fence       bit NULL ,
- building    bit NULL ,
+ drive_type_id  integer NOT NULL ,
+ plot_type_id   integer NOT NULL ,
+ fence       bit NOT NULL ,
+ building    bit NOT NULL ,
  address_id  integer NOT NULL ,
 
  PRIMARY KEY (id),
