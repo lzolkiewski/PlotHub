@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+layout:decorator="layout">
+  <head>
+    <title>Pomoc</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/help.css">
+  </head>
+  <body>
+    <section layout:fragment="content">
+      <div class="help-content">
+        
+        <!-- Konto -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4" style="margin: auto;" >
+                <div class="card mb-4 shadow-sm">
+                  <div class="conent text-center" style="margin: auto;">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-8 shadow-sm">
+                  <div class="conent text-center" style="margin: auto;">
+                    W celu wystawienia działki wymagane jest posiadanie <br> konta oraz bycie zalogowanym. <br> W celu rejestracji kliknij na link poniżej <br><br>
+                    <a class="btn btn-secondary" href="/login">Logowanie</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- pomoc z wyszukiwaniem -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card mb-8 shadow-sm">
+                <div class="conent text-center" style="margin: auto;">
+                  W celu przeszukiwania ofert na stronie należy kliknąć w <br> link Oferty na pasku nawigacji, na samej górze strony, <br> bądź na stronie głównej.
+                  <br> Możesz również kliknąć przycisk poniżej. <br><br>
+                  <a class="btn btn-secondary" href="/offers">Oferty</a>
+                </div>
+              </div>
+          </div>
+            <div class="col-md-4" style="margin: auto;" >
+              <div class="card mb-4 shadow-sm">
+                <div class="conent text-center" style="margin: auto;">
+                  <i class="fa fa-th-large" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Nawigowanie po stronie -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4" style="margin: auto;" >
+              <div class="card mb-4 shadow-sm">
+                <div class="conent text-center" style="margin: auto;">
+                  <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+              </div>
+          </div>
+            <div class="col-md-8">
+                <div class="card mb-8 shadow-sm">
+                  <div class="conent text-center" style="margin: auto;">
+                    Nawigacja związana z aplikacją znajduje się na stronie <br> głównej oraz pasku nawigacyjnym. <br> <br>
+                    Nawigacja dotycząca konta użytkownika dostępna jest <br> na koncie użytkownika po zalogowaniu. W tym celu <br> należy kliknąć na Konto na pasku nawigacji.
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

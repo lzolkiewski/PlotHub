@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+layout:decorator="layout">
+  <head>
+    <title>Login</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/newoffer.css">
+  </head>
+  <body>
+      
+    <section layout:fragment="content">
+      <!-- login / rejestracja -->
+      <div class="login-content">
+        <div class="card">
+          <div class="card-body">
+            <form style="padding-left: 10%;">
+<!-- tytuł -->
+              <div class="form-row form-inline">
+                  <div class="form-group col-md-2">
+                      <label for="inputTitle">Tytuł ogłoszenia</label>
+                  </div>
+                  <div class="form-group col-md-8">
+                      <input type="text" class="form-control" id="inputTitle" placeholder="Tytuł" style="width: 100%;">
+                  </div>
+              </div>
+              
+              <div class="form-row form-inline">
+<!-- rodzaj działki -->
+                  <div class="form-group col-md-2">
+                      <label for="plotPrice">Cena</label>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <input type="number" class="form-control" id="plotPrice" placeholder="zł" style="width: 100%;">
+                  </div>
+<!-- Powierzchnia -->
+                  <div class="form-group col-md-2">
+                      <label for="inputArea">Powierzchnia</label>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <input type="number" class="form-control" id="inputArea" placeholder="m2" style="width: 100%;">
+                  </div>
+              </div>
+
+              <div class="form-row form-inline">
+<!-- Długość działki -->
+                <div class="form-group col-md-2">
+                    <label for="plotLenght">Długość działki</label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="number" class="form-control" id="plotLenght" placeholder="m" style="width: 100%;">
+                </div>
+<!-- Szerokość działki -->
+                <div class="form-group col-md-2">
+                    <label for="plotWidth">Szerokość działki</label>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="number" class="form-control" id="plotWidth" placeholder="m" style="width: 100%;">
+                </div>
+              </div>
+
+              <div class="form-row form-inline">
+<!-- Rodzaj działki -->
+                <div class="form-group col-md-2">
+                    <label for="plotType">Rodzaj działki</label>
+                </div>
+                <div class="form-group col-md-3">
+                  <select class="form-control" id="plotType" style="width: 100%;">
+                    <option value="1">Budowlana</option>
+                    <option value="2">Leśna</option>
+                    <option value="3">Rolna</option>
+                    <option value="4">Rekreacyjna</option>
+                    <option value="5">Inwstycyjna</option>
+                  </select>
+                </div>
+<!-- Typ dojazdu -->
+                <div class="form-group col-md-2">
+                    <label for="plotDrive">Rodzaj dojazdu</label>
+                </div>
+                <div class="form-group col-md-3">
+                  <select class="form-control" id="plotDrive" style="width: 100%;">
+                    <option value="1">Asfaltowy</option>
+                    <option value="2">Gruntowy</option>
+                    <option value="3">Utwardzany</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row form-inline">
+<!-- Rodzaj otoczenia działki -->
+                <div class="form-group col-md-2">
+                    <label for="plotSurounding">Okolica działki</label>
+                </div>
+                <div class="form-group col-md-8">
+                  <select multiple class="form-control" id="exampleFormControlSelect2" style="width: 100%;">
+                    <option>Las</option>
+                    <option>Jezioro</option>
+                    <option>Osiedle mieszkaniowe</option>
+                    <option>Basen</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row form-inline">
+<!-- Budynek -->
+                <div class="form-group col-md-2">
+                    <label for="plotBuilding">Budynek na działce</label>
+                </div>
+                <div class="form-group col-md-3">
+                  <input class="form-check-input" type="checkbox" id="plotBuilding" value="1">
+                </div>
+<!-- Ogrodzenie -->
+                <div class="form-group col-md-2">
+                    <label for="plotFence">Ogrodzenie</label>
+                </div>
+                <div class="form-group col-md-3">
+                  <input class="form-check-input" type="checkbox" id="plotFence" value="1">
+                </div>
+              </div>
+
+<!-- opis -->
+              <div class="form-row form-inline">
+                <div class="form-group col-md-2">
+                    <label for="inputDesc">Opis</label>
+                </div>
+                <div class="form-group col-md-8">
+                    <textarea type="texta" class="form-control" id="inputDesc" placeholder="Opis" style="width: 100%; height: 100px;"></textarea>
+                </div>
+              </div>
+
+              <div class="form-row justify-content-center">
+                <a href="/account" class="btn btn-secondary mb-2" style="margin-right: 10px;">Anuluj</a>
+                <button type="submit" class="btn btn-success mb-2">Dodaj ofertę</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+.form-row{
+    padding-top: 10px;
+}
+.login-content{
+    min-height: 100vh;
+    padding-top: 5%;
+}
+.card{
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: rgb(37, 35, 35);
+}
+form{
+    padding-top: 50px;
+}

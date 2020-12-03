@@ -1,0 +1,19 @@
+a{
+    text-decoration: none;
+    color: rgb(168, 168, 168);
+}
+a:hover {
+    color: rgb(214, 214, 214);
+}
+
+.account-content{
+    height: 100vh;
+    padding-top: 10%;
+}
+.album{
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+.card{
+    background-color: rgb(37, 35, 35);
+}

@@ -1,0 +1,27 @@
+a{
+    text-decoration: none;
+    color: rgb(124, 124, 124);
+}
+a:hover {
+    color: rgb(199, 199, 199);
+}
+
+.welcome{
+    margin-bottom: 0;
+    min-height: 100vh;
+}
+
+.album{
+    background-color: #333;
+    padding-top: 40px;
+}
+
+.description{
+    padding-top: 20px;
+    background-color: #333;
+    padding-bottom: 20px;
+}
+.card{
+    background-color: rgb(37, 35, 35);
+    height: 115px;
+}

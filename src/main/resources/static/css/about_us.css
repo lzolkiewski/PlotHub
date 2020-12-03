@@ -1,0 +1,12 @@
+.about-us-content{
+    min-height: 100vh;
+    padding-top: 10%;
+}
+.head{
+    padding-bottom: 40px;
+}
+.jumbotron{
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #333;
+}

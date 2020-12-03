@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+layout:decorator="layout">
+  <head>
+    <title>Strona główna</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="../static/css/homepage_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+  </head>
+  <body>
+    
+    <section layout:fragment="content"> 
+      
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="welcome">
+        <div class="container">
+          <h1 class="display-3 d-flex justify-content-center" style="color: aliceblue; padding-top: 15%;"><strong>PlotHub</strong></h1>
+          <p class="d-flex justify-content-center" style="color: rgb(190, 193, 196);">Z nami kupisz swoją wymarzoną działkę.</p>
+        </div>
+      </div>
+     
+      <!-- links to some subsites -->
+      <div class="album">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <a href="/offers">
+                <div class="card mb-4 shadow-sm">
+                  <div style="margin: auto;">
+                    <i class="fa fa-th-large" style="color: rgb(184, 179, 179);"></i>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text text-center" style="color:rgb(180,180,180);"><strong>Oferty</strong></p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="/login">
+                <div class="card mb-4 shadow-sm">
+                  <div style="margin: auto;">
+                    <i class="fa fa-user" style="color: rgb(184, 179, 179);"></i>
+                  </div>
+                  <div class="card-body ">
+                    <p class="card-text text-center" style="color:rgb(180,180,180);"><strong>Konto</strong></p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-md-4">
+              <a href="/help">
+                <div class="card mb-4 shadow-sm">
+                  <div style="margin: auto;">
+                    <i class="fa fa-info-circle" style="color: rgb(181, 184, 179);"></i>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text text-center" style="color:rgb(180,180,180);"><strong>Pomoc</strong></p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- some break point -->
+      <!-- informacje o stronie -->
+      <div class="description">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <div style="margin: auto;">
+                    <i class="fa fa-info" style="color: rgb(179, 181, 184);"></i>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-8 shadow-sm">
+                  <div class="conent text-center" style="margin: auto;">
+                    Aplikacja internetowa wspomagajaca zakup działki. <br><br>
+                    <a href="/about_us">Dowiedz się więcej</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

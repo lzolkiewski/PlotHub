@@ -1,0 +1,21 @@
+a{
+    text-decoration: none;
+    color: rgb(182, 182, 182);
+}
+a:hover{
+    color: rgb(199, 199, 199);
+}
+
+.help-content{
+    min-height: 100vh;
+}
+
+.container{
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.card{
+    background-color: rgb(37, 35, 35);
+    height: 200px;  
+}

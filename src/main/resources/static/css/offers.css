@@ -1,0 +1,39 @@
+table{
+    border-style: hidden;
+}
+
+a{
+    color: rgb(180, 180, 180);
+}
+a:hover{
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.offers-content{
+    min-height: 90vh;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.offer{
+    width: 100%;
+    height: 150px;
+    background-color: #333;
+    border-radius: 25px;
+    margin-top: 10px;
+}
+.offer .offer-img{
+    padding: 10px;
+    width: 250px;
+}
+.offer .offer-title{
+    font-size: large;
+}
+.offer .offer-date{
+    font-size: small;
+    padding-left: 25px;
+}
+.offer .offer-price{
+    padding-right: 25px;
+}

@@ -1,0 +1,76 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+
+.fa-2x {
+  font-size: 2em;
+}
+.fa {
+  position: relative;
+  display: table-cell;
+  width: 60px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  font-size:20px;
+}
+
+/* navbar */
+.navbar{
+  background-color: rgba(51, 51, 51, 0.8);
+  font-size: 18px;
+}
+.navbar a{
+  text-decoration: none;
+  color: rgb(201, 201, 201);
+  margin-left: 10px;
+}
+.navbar a:hover{
+  color: aliceblue;
+  text-decoration: none;
+}
+.nav{
+  margin: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* main */
+.main-content{
+  background-color: rgba(51, 51, 51, 0.8);
+  color: rgb(214, 214, 214);
+}
+
+/* footer */
+footer{
+  background-color: rgba(51, 51, 51, 1);
+  color: rgb(255, 255, 255);
+  font-size: small;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #333;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  /* background: #333; */
+  background: #5b5c64;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#5b5c64, #7ca9c4);
+}
+
+body{
+  background-image: url("/images/application_images/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
