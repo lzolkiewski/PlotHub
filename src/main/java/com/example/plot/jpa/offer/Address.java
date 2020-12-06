@@ -9,7 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Address")
+@Table(name = "address")
 public class Address {
     @Id
     @GeneratedValue

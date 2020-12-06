@@ -3,7 +3,7 @@ package com.example.plot.jpa;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "OfferSurrounding")
+@Table(name = "offer_surrounding")
 public class OfferSurrounding {
     @Id
     @GeneratedValue

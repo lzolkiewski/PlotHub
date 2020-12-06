@@ -1,5 +1,5 @@
 -- ************************************** `city`
-CREATE TABLE City
+CREATE TABLE city
 (
  id   integer NOT NULL AUTO_INCREMENT ,
  name varchar(45) NOT NULL ,
@@ -7,7 +7,7 @@ CREATE TABLE City
  PRIMARY KEY (id)
 );
 -- ************************************** `street`
-CREATE TABLE Street
+CREATE TABLE street
 (
  id   integer NOT NULL AUTO_INCREMENT ,
  name varchar(45) NOT NULL ,
@@ -15,7 +15,7 @@ CREATE TABLE Street
  PRIMARY KEY (id)
 );
 -- ************************************** `country`
-CREATE TABLE Country
+CREATE TABLE country
 (
  id   integer NOT NULL AUTO_INCREMENT ,
  name varchar(45) NOT NULL ,
@@ -23,7 +23,7 @@ CREATE TABLE Country
  PRIMARY KEY (id)
 );
 -- ************************************** `plot_type`
-CREATE TABLE PlotType
+CREATE TABLE plot_type
 (
  id   integer NOT NULL AUTO_INCREMENT ,
  name varchar(45) NOT NULL ,
@@ -32,7 +32,7 @@ CREATE TABLE PlotType
 );
 
 -- ************************************** `surrounding`
-CREATE TABLE Surrounding
+CREATE TABLE surrounding
 (
  id   integer NOT NULL AUTO_INCREMENT ,
  name varchar(45) NOT NULL ,
@@ -40,7 +40,7 @@ CREATE TABLE Surrounding
  PRIMARY KEY (id)
 );
 -- ************************************** `User`
-CREATE TABLE User
+CREATE TABLE user
 (
  id       integer NOT NULL AUTO_INCREMENT ,
  password varchar(45) NOT NULL ,
@@ -49,7 +49,7 @@ CREATE TABLE User
  PRIMARY KEY (id)
 );
 -- ************************************** `drive_type`
-CREATE TABLE DriveType
+CREATE TABLE drive_type
 (
  id   integer NOT NULL AUTO_INCREMENT ,
  name varchar(45) NOT NULL ,
@@ -57,7 +57,7 @@ CREATE TABLE DriveType
  PRIMARY KEY (id)
 );
 -- ************************************** `address`
-CREATE TABLE Address
+CREATE TABLE address
 (
  id            integer NOT NULL AUTO_INCREMENT ,
  street_number integer NOT NULL ,
@@ -66,12 +66,12 @@ CREATE TABLE Address
  country_id    integer NOT NULL ,
 
  PRIMARY KEY (id),
- FOREIGN KEY (city_id) REFERENCES City (id),
- FOREIGN KEY (street_id) REFERENCES Street (id),
- FOREIGN KEY (country_id) REFERENCES Country (id)
+ FOREIGN KEY (city_id) REFERENCES city (id),
+ FOREIGN KEY (street_id) REFERENCES street (id),
+ FOREIGN KEY (country_id) REFERENCES country (id)
 );
 -- ************************************** `Offer`
-CREATE TABLE Offer
+CREATE TABLE offer
 (
  id          integer NOT NULL AUTO_INCREMENT ,
  title       varchar(45) NOT NULL ,
@@ -87,24 +87,24 @@ CREATE TABLE Offer
  address_id  integer NOT NULL ,
 
  PRIMARY KEY (id),
- FOREIGN KEY (address_id) REFERENCES Address (id),
- FOREIGN KEY (drive_type_id) REFERENCES DriveType (id),
- FOREIGN KEY (plot_type_id) REFERENCES PlotType (id)
+ FOREIGN KEY (address_id) REFERENCES address (id),
+ FOREIGN KEY (drive_type_id) REFERENCES drive_type (id),
+ FOREIGN KEY (plot_type_id) REFERENCES plot_type (id)
 );
 -- ************************************** `offerSurrounding`
-CREATE TABLE OfferSurrounding
+CREATE TABLE offer_surrounding
 (
  id             integer NOT NULL AUTO_INCREMENT ,
  offer_id       integer NOT NULL ,
  surrounding_id integer NOT NULL ,
 
  PRIMARY KEY (id),
- FOREIGN KEY (offer_id) REFERENCES Offer (id),
- FOREIGN KEY (surrounding_id) REFERENCES Surrounding (id)
+ FOREIGN KEY (offer_id) REFERENCES offer (id),
+ FOREIGN KEY (surrounding_id) REFERENCES surrounding (id)
 );
 
 -- ************************************** `userOffers`
-CREATE TABLE UserOffers
+CREATE TABLE user_offers
 (
  id       integer NOT NULL AUTO_INCREMENT ,
  user_id  integer NOT NULL ,
@@ -112,6 +112,6 @@ CREATE TABLE UserOffers
  date     date NOT NULL ,
 
  PRIMARY KEY (id),
- FOREIGN KEY (offer_id) REFERENCES Offer (id),
- FOREIGN KEY (user_id) REFERENCES User (id)
+ FOREIGN KEY (offer_id) REFERENCES offer (id),
+ FOREIGN KEY (user_id) REFERENCES user (id)
 );

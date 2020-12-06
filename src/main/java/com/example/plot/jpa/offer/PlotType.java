@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "PlotType")
+@Table(name = "plot_type")
 public class PlotType {
     @Id
     @GeneratedValue

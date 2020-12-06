@@ -18,24 +18,24 @@ layout:decorator="layout">
             <table class="table">
               <tbody>
                 <!-- do tr należy dodać th:each i w odpowiednich miejscahc th:text i th:href-->
-                <tr class="row-offer"><!-- tu należy dodać th:each -->
+                <tr class="row-offer" th:each = "offer : ${offers}"><!-- tu należy dodać th:each -->
                   <table class="offer">
                     <tbody>
                       <tr>
                         <td class="offer-img text-center" rowspan="2">
-                          <a href=""> <!-- tu należy dodać th:href -->
+                          <a th:href="|/offer/${offer.id}|"> <!-- tu należy dodać th:href -->
                             <img src="/images/offers_images/background.jpg" height="150px" width="250px" alt="offer's image" style="border-radius: 25px;"> <!-- tu należy dodać th:src -->
-                          </a> 
+                          </a>
                         </td>
                         <td class="text-center offer-title" colspan="2">
-                          <a href=""> <!-- tu należy dodać th:href -->
-                            Tytuł
+                          <a th:href="|/offer/${offer.id}|"> <!-- tu należy dodać th:href -->
+                            <span th:text = "${offer.title}"></span>
                           </a>
                         </td>
                       </tr>
                       <tr>
                         <td class="text-left offer-date">Data</td> <!-- tu należy dodać th:text -->
-                        <td class="text-right offer-price">Cena</td> <!-- tu należy dodać th:text -->
+                        <td class="text-right offer-price" th:text = "${offer.price}"></td> <!-- tu należy dodać th:text -->
                       </tr>
                     </tbody>
                   </table>

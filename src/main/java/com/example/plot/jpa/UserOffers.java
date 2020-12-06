@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name = "UserOffers")
+@Table(name = "user_offers")
 public class UserOffers {
     @Id
     @GeneratedValue

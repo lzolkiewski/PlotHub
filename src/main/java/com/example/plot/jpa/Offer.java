@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Offer")
+@Table(name = "offer")
 public class Offer {
     @Id
     @GeneratedValue
@@ -59,12 +59,12 @@ public class Offer {
     @JoinColumn(name = "drive_type_id", referencedColumnName = "id")
     @ManyToOne
     @NotNull
-    private DriveType drive_type;
+    private DriveType driveType;
 
     @JoinColumn(name = "plot_type_id", referencedColumnName = "id")
     @ManyToOne
     @NotNull
-    private PlotType plot_type;
+    private PlotType plotType;
 
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     @ManyToOne
@@ -146,20 +146,20 @@ public class Offer {
         this.building = building;
     }
 
-    public DriveType getDrive_type() {
-        return drive_type;
+    public DriveType getDriveType() {
+        return driveType;
     }
 
-    public void setDrive_type(DriveType drive_type) {
-        this.drive_type = drive_type;
+    public void setDriveType(DriveType driveType) {
+        this.driveType = driveType;
     }
 
-    public PlotType getPlot_type() {
-        return plot_type;
+    public PlotType getPlotType() {
+        return plotType;
     }
 
-    public void setPlot_type(PlotType plot_type) {
-        this.plot_type = plot_type;
+    public void setPlotType(PlotType plotType) {
+        this.plotType = plotType;
     }
 
     public Address getAddress() {

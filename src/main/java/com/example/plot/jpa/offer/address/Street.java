@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Street")
+@Table(name = "street")
 public class Street {
     @Id
     @GeneratedValue
