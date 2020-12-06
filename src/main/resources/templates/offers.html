@@ -14,6 +14,18 @@ layout:decorator="layout">
   </head>
   <body>
       <section layout:fragment="content">
+
+        <div id="offerSorter" class="panel panel-default">
+          <div class="panel-heading d-flex justify-content-center">Sortuj oferty</div>
+          <div class="panel-body d-flex justify-content-center">
+            <form action="/offers" method="GET" class="form-inline" th:object="${offerSorter}" id="offerSorterForm">
+              <a href="/offers?area=1" class="btn btn-info">Powierzchnia</a>
+              <a href="/offers?price=1" class="btn btn-info">Cena</a>
+              <a href="/offers?year=1" class="btn btn-info">Data dodania</a>
+            </form>
+          </div>
+        </div>
+
           <div class="offers-content">
             <table class="table">
               <tbody>

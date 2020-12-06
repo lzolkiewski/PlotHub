@@ -1,6 +1,8 @@
 package com.example.plot.controllers;
 
 import com.example.plot.jpa.Offer;
+import com.example.plot.management.OffersFilter;
+import com.example.plot.management.OffersSorter;
 import com.example.plot.services.OffersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +22,12 @@ public class NavbarController {
     }
 
     @RequestMapping("/offers")
-    public String offersMapping(Model model){
+    public String offersMapping(Model model, OffersFilter offersFilter, OffersSorter offersSorter){
         List<Offer> offers = offersService.getOffers();
+
+        if(offersSorter.getArea()!=null || offersSorter.getPrice()!=null){
+            offers = offersService.getOffersInOrder(offersSorter);
+        }
 
         model.addAttribute("offers", offers);
         
