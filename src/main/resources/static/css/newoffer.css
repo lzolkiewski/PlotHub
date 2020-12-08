@@ -1,3 +1,9 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .form-row{
     padding-top: 10px;
 }
@@ -9,6 +15,7 @@
     margin-left: 5%;
     margin-right: 5%;
     background-color: rgb(37, 35, 35);
+    border: 2px solid rgb(131, 131, 131);
 }
 form{
     padding-top: 50px;

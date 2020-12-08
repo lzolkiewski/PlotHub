@@ -22,10 +22,7 @@ public class OffersService {
 
     public List<Offer> getOffers(){
         String jpql = "select offer from Offer offer order by offer.id";
-
-        TypedQuery<Offer> query = entityManager.createQuery(jpql, Offer.class);
-
-        return query.getResultList();
+        return entityManager.createQuery(jpql, Offer.class).getResultList();
     }
 
     public Offer createOffer(Offer offer){

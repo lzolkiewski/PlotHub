@@ -10,8 +10,14 @@ a:hover{
     color: aliceblue;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .offers-content{
-    min-height: 90vh;
+    min-height: 100vh;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 40px;
@@ -22,7 +28,7 @@ a:hover{
     height: 150px;
     background-color: #333;
     border-radius: 25px;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .offer .offer-img{
     padding: 10px;
@@ -30,11 +36,9 @@ a:hover{
 }
 .offer .offer-title{
     font-size: large;
+    
 }
-.offer .offer-date{
-    font-size: small;
-    padding-left: 25px;
-}
-.offer .offer-price{
-    padding-right: 25px;
+.card{
+    background-color: #333;
+    border: 2px solid rgb(131, 131, 131);
 }

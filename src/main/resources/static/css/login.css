@@ -9,6 +9,7 @@
     margin-left: 10%;
     margin-right: 10%;
     background-color: rgb(37, 35, 35);
+    border: 2px solid rgb(131, 131, 131);
 }
 input{
     min-width: 300px;

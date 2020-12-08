@@ -60,7 +60,7 @@ insert into offer
     (title, length, width, area, description, price, drive_type_id, plot_type_id, fence, building, address_id)
     values
         ('Super oferta', 20, 20, 400, 'Budynek super świetny', 40000, 1, 1, 1, 1, 1),
-        ('Nie ma lepszej', 15, 10, 150, 'No ładna działeczka na sprzedaż', 15000, 3, 1, 0, 0, 2),
+        ('Nie ma lepszej', 15, 10, 1500, 'No ładna działeczka na sprzedaż', 15000, 3, 1, 0, 0, 2),
         ('Jedyna w swoim rodzaju', 50, 50, 2500, 'Duża i ładna', 250000, 3, 1, 0, 0, 3);
 insert into offer_surrounding
     (offer_id, surrounding_id)

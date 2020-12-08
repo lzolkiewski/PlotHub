@@ -18,4 +18,5 @@ a:hover{
 .card{
     background-color: rgb(37, 35, 35);
     height: 200px;  
+    border: 2px solid rgb(131, 131, 131);
 }

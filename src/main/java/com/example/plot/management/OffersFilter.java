@@ -1,55 +1,31 @@
 package com.example.plot.management;
 
 public class OffersFilter {
-    private Double area;
-    private Double length;
-    private Double width;
-    private Double price;
-    private Integer driveTypeId;
+    private Integer areaFrom;
+    private Integer areaTo;
+    private Integer priceFrom;
+    private Integer priceTo;
     private Integer plotTypeId;
-    private Boolean isFence;
-    private Boolean isBuilding;
-    private String countryId;
-    private String cityId;
+    private Integer surroundingId;
+    private Boolean fence;
+    private Boolean building;
+    private String country;
+    private String city;
 
-    public Double getArea() {
-        return area;
+    public Integer getAreaFrom() {
+        return areaFrom;
     }
 
-    public void setArea(Double area) {
-        this.area = area;
+    public void setAreaFrom(Integer areaFrom) {
+        this.areaFrom = areaFrom;
     }
 
-    public Double getLength() {
-        return length;
+    public Integer getPriceFrom() {
+        return priceFrom;
     }
 
-    public void setLength(Double length) {
-        this.length = length;
-    }
-
-    public Double getWidth() {
-        return width;
-    }
-
-    public void setWidth(Double width) {
-        this.width = width;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getDriveTypeId() {
-        return driveTypeId;
-    }
-
-    public void setDriveTypeId(Integer driveTypeId) {
-        this.driveTypeId = driveTypeId;
+    public void setPriceFrom(Integer priceFrom) {
+        this.priceFrom = priceFrom;
     }
 
     public Integer getPlotTypeId() {
@@ -60,35 +36,59 @@ public class OffersFilter {
         this.plotTypeId = plotTypeId;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public Boolean getFence() {
-        return isFence;
+        return fence;
     }
 
     public void setFence(Boolean fence) {
-        isFence = fence;
+        this.fence = fence;
     }
 
     public Boolean getBuilding() {
-        return isBuilding;
+        return building;
     }
 
     public void setBuilding(Boolean building) {
-        isBuilding = building;
+        this.building = building;
     }
 
-    public String getCountryId() {
-        return countryId;
+    public Integer getSurroundingId() {
+        return surroundingId;
     }
 
-    public void setCountryId(String countryId) {
-        this.countryId = countryId;
+    public void setSurroundingId(Integer surroundingId) {
+        this.surroundingId = surroundingId;
     }
 
-    public String getCityId() {
-        return cityId;
+    public Integer getAreaTo() {
+        return areaTo;
     }
 
-    public void setCityId(String cityId) {
-        this.cityId = cityId;
+    public void setAreaTo(Integer areaTo) {
+        this.areaTo = areaTo;
+    }
+
+    public Integer getPriceTo() {
+        return priceTo;
+    }
+
+    public void setPriceTo(Integer priceTo) {
+        this.priceTo = priceTo;
     }
 }
