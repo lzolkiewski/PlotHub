@@ -25,17 +25,17 @@ public class Offer {
     @Min(5)
     @NotNull
     @Column(name = "length")
-    private Double length;
+    private Integer length;
 
     @Min(5)
     @NotNull
     @Column(name = "width")
-    private Double width;
+    private Integer width;
 
     @Min(25)
     @NotNull
     @Column(name = "area")
-    private Double area;
+    private Integer area;
 
     @Lob
     @Size(max = 60000, min = 5)
@@ -46,7 +46,7 @@ public class Offer {
     @Column(name = "price")
     @Min(0)
     @NotNull
-    private Double price;
+    private Integer price;
 
     @Column(name = "fence")
     @NotNull
@@ -90,27 +90,27 @@ public class Offer {
         this.title = title;
     }
 
-    public Double getLength() {
+    public Integer getLength() {
         return length;
     }
 
-    public void setLength(Double length) {
+    public void setLength(Integer length) {
         this.length = length;
     }
 
-    public Double getWidth() {
+    public Integer getWidth() {
         return width;
     }
 
-    public void setWidth(Double width) {
+    public void setWidth(Integer width) {
         this.width = width;
     }
 
-    public Double getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(Double area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
@@ -122,11 +122,11 @@ public class Offer {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

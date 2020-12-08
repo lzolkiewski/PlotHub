@@ -1,5 +1,10 @@
 package com.example.plot.management;
 
+import com.example.plot.jpa.Offer;
+
+import javax.persistence.TypedQuery;
+import java.util.List;
+
 public class OffersFilter {
     private Integer areaFrom;
     private Integer areaTo;
@@ -91,4 +96,5 @@ public class OffersFilter {
     public void setPriceTo(Integer priceTo) {
         this.priceTo = priceTo;
     }
+
 }

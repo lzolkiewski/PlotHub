@@ -104,7 +104,8 @@ layout:decorator="layout">
                     </div>
 <!-- apply button -->
                     <div class="d-flex justify-content-center" style="margin: 10px;">
-                      <input type="submit" value="Szukaj" class="form-control" style="width: 100px;"/>
+                      <a href="/offers" class="btn btn-secondary" style="margin-right: 5px">Reset</a>
+                      <input type="submit" value="Szukaj" class="form-control btn-light" style="width: 100px;"/>
                     </div>
                   </form>
                 </div>
@@ -237,7 +238,8 @@ layout:decorator="layout">
                     </div>
 <!-- apply button -->
                     <div class="d-flex justify-content-center" style="margin: 10px;">
-                      <input type="submit" value="Szukaj" class="form-control" style="width: 100px;"/>
+                      <a href="/offers" class="btn btn-secondary" style="margin-right: 5px">Reset</a>
+                      <input type="submit" value="Szukaj" class="form-control btn-light" style="width: 100px;"/>
                     </div>
                   </form>
                 </div>
@@ -279,11 +281,11 @@ layout:decorator="layout">
                     </tr>
                     <tr>
                       <td class = "text-left" style="padding-left: 20px; width: 200px;">
-                        <span th:text = "${#numbers.formatDecimal(offer.area, 0, 'WHITESPACE', 2,'COMMA')}" ></span>
+                        <span th:text = "${#numbers.formatDecimal(offer.area, 0, 'WHITESPACE', 0,'COMMA')}" ></span> m2
                       </td>
                       <td class = "text-center" rowspan="2" th:text = "|${offer.address.city.name}, ${offer.address.country.name}|"></td> 
                       <td class = "text-right" style="padding-right: 20px; width: 200px;">
-                        <span th:text = "${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 2,'COMMA')}"></span> zł
+                        <span th:text = "${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 0,'COMMA')}"></span> zł
                       </td>
                     </tr>
                   </tbody>
