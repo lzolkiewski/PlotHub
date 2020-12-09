@@ -1,10 +1,14 @@
 package com.example.plot.management;
 
+import com.example.plot.PlotHub;
+
+import java.math.BigInteger;
+
 public class Planer {
 //    home section
     private Integer homeLength;
     private Integer homeWidth;
-//    garage section
+//    parking section
     private Integer parkingLength;
     private Integer parkingWidth;
     private Integer parkingSpots;
@@ -143,4 +147,63 @@ public class Planer {
     public void setGardenWidth(Integer gardenWidth) {
         this.gardenWidth = gardenWidth;
     }
+
+//    checking data
+    public Boolean checkTheNeedToFindCountry(){
+        return getCountry()!=null && getCountry().compareTo("")!=0;
+    }
+    public Boolean checkTheNeedToFindCity(){
+        return getCity()!=null && getCity().compareTo("")!=0;
+    }
+    public Boolean checkTheNeedToCalculateSurface() {
+        return ( getWell()!=null && getWell() ) || ( getGarbageLength()!=null && getGarbageWidth()!=null )
+                 || ( getSewage()!=null && getSewage() ) || ( getHomeLength()!=null && getHomeWidth()!=null )
+                 || ( getParkingLength()!=null && getParkingWidth()!=null )
+                 || ( getGardenLength()!=null && getGardenWidth()!=null);
+    }
+    //    checking whether there is the object
+    public Boolean isHome() {
+        return getHomeLength()!=null && getHomeWidth()!=null;
+    }
+    public Boolean isParking() {
+        return getParkingLength()!=null && getParkingWidth()!=null;
+    }
+    public Boolean isGarbage() { return getGarbageLength()!=null && getGarbageWidth()!=null; }
+    public Boolean isGarden() { return getGardenLength()!=null && getGardenWidth()!=null; }
+//    calculating the needed surface
+    public Integer calculateSurface(){
+        Integer surface = 0;
+
+        surface = calculateHomeSurface(surface);
+
+        return surface;
+    }
+//    single plot object's surface calculations
+    public Integer calculateHomeSurface(Integer surface) {
+        //        if user chosen only home then special condition can be applied
+        if ( !isGarbage() && !isGarden() && isParking() && getSewage() && getWell() && isHome() ){
+            if ( getHomeWidth()<= 10 ){
+//                exceptional distance of ~ 2 m on narrow plot where width is 16 at most
+                surface += ( getHomeWidth() + PlotHub.requirements.getHomeBorderDistEx() )
+                        * ( getHomeLength() + PlotHub.requirements.getHomeBorderDist() );
+
+                return surface;
+            } else {
+                return 0;
+            }
+        } else {
+//                here no longer exceptional distance is applied
+            surface += ( getHomeWidth() + PlotHub.requirements.getHomeBorderDist() )
+                    * ( getHomeLength() + PlotHub.requirements.getHomeBorderDist() );
+        }
+
+        return surface;
+    }
+    public Integer calculateGreenerySurface(Integer surface) {
+//        that is how much the greenery has to take place on the plot 25% of total surface
+//        75 / 25 is 3 so after dividing the needed surface by 3 and adding the result we should be left with
+//        total surface needed
+        return surface += surface / 3;
+    }
+
 }

@@ -1,6 +1,6 @@
 {
   "homeBorderDist": 4,
-  "homeBorderDistEx": 1.5,
+  "homeBorderDistEx": 2,
   
   "garageHomeDist": 7,
   "garagePositionWidth": 2.3,
@@ -15,6 +15,6 @@
   "wellSewageDist": 5,
 
   "sewageHomeDist": 15,
-  "sewageBorderDist":7.5
+  "sewageBorderDist":8
 
 }

@@ -97,4 +97,14 @@ public class OffersFilter {
         this.priceTo = priceTo;
     }
 
+    public Boolean checkTheNeedToFindCountry(){
+        return getCountry()!=null && getCountry().compareTo("")!=0;
+    }
+    public Boolean checkTheNeedToFindCity(){
+        return getCity()!=null && getCity().compareTo("")!=0;
+    }
+    public Boolean checkTheNeedToFindFence(){ return getFence()!=null && getFence(); }
+    public Boolean checkTheNeedToFindBuilding() {
+        return getBuilding()!=null && getBuilding();
+    }
 }

@@ -247,20 +247,20 @@ layout:decorator="layout">
             </div>
           </div>
 <!-- sorting / search toggle / planer toggle -->
-        <form action="/offers" method="GET" th:object="${offerSorter}" id="offerSorterForm">
-          <div class="d-flex bd-highlight mb-3">
-            <div class="mr-auto p-2 bd-highlight">
-              <a class="btn btn-secondary" data-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="collapseExample">Wyszukiwarka</a>
-              <a class="btn btn-secondary" data-toggle="collapse" href="#planer" role="button" aria-expanded="false" aria-controls="collapseExample">Planer</a>
+          <form action="/offers" method="GET" th:object="${offerSorter}" id="offerSorterForm">
+            <div class="d-flex bd-highlight mb-3">
+              <div class="mr-auto p-2 bd-highlight">
+                <a class="btn btn-secondary" data-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="collapseExample">Filtry</a>
+                <a class="btn btn-secondary" data-toggle="collapse" href="#planer" role="button" aria-expanded="false" aria-controls="collapseExample">Planer</a>
+              </div>
+              <div class="p-2 bd-highlight">
+                <a href="/offers?area=1" class="btn btn-secondary">Powierzchnia</a>
+              </div>
+              <div class="p-2 bd-highlight">
+                <a href="/offers?price=1" class="btn btn-secondary">Cena</a>
+              </div>
             </div>
-            <div class="p-2 bd-highlight">
-              <a href="/offers?area=1" class="btn btn-secondary">Powierzchnia</a>
-            </div>
-            <div class="p-2 bd-highlight">
-              <a href="/offers?price=1" class="btn btn-secondary">Cena</a>
-            </div>
-          </div>
-        </form>
+          </form>
 
 <!-- tabela ofert -->
           <table class="table">

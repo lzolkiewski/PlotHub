@@ -2,48 +2,48 @@ package com.example.plot.management;
 
 public class Requirements {
 //    home part
-    private Double homeBorderDist;
-    private Double homeBorderDistEx;
+    private Integer homeBorderDist;
+    private Integer homeBorderDistEx;
 //    garage part
-    private Double garageHomeDist;
+    private Integer garageHomeDist;
     private Double garagePositionWidth;
-    private Double garagePositionLength;
+    private Integer garagePositionLength;
 //    garbage part
-    private Double garbageBorderDist;
-    private Double garbageHomeDist;
-    private Double garbageSurface;
+    private Integer garbageBorderDist;
+    private Integer garbageHomeDist;
+    private Integer garbageSurface;
 //    well part
-    private Double wellSurface;
-    private Double wellBorderDist;
-    private Double wellSewageDist;
+    private Integer wellSurface;
+    private Integer wellBorderDist;
+    private Integer wellSewageDist;
 //    sewage part
-    private Double sewageBorderDist;
-    private Double sewageHomeDist;
+    private Integer sewageBorderDist;
+    private Integer sewageHomeDist;
 
     public Requirements() {
     }
 
-    public Double getHomeBorderDist() {
+    public Integer getHomeBorderDist() {
         return homeBorderDist;
     }
 
-    public void setHomeBorderDist(Double homeBorderDist) {
+    public void setHomeBorderDist(Integer homeBorderDist) {
         this.homeBorderDist = homeBorderDist;
     }
 
-    public Double getHomeBorderDistEx() {
+    public Integer getHomeBorderDistEx() {
         return homeBorderDistEx;
     }
 
-    public void setHomeBorderDistEx(Double homeBorderDistEx) {
+    public void setHomeBorderDistEx(Integer homeBorderDistEx) {
         this.homeBorderDistEx = homeBorderDistEx;
     }
 
-    public Double getGarageHomeDist() {
+    public Integer getGarageHomeDist() {
         return garageHomeDist;
     }
 
-    public void setGarageHomeDist(Double garageHomeDist) {
+    public void setGarageHomeDist(Integer garageHomeDist) {
         this.garageHomeDist = garageHomeDist;
     }
 
@@ -55,75 +55,75 @@ public class Requirements {
         this.garagePositionWidth = garagePositionWidth;
     }
 
-    public Double getGaragePositionLength() {
+    public Integer getGaragePositionLength() {
         return garagePositionLength;
     }
 
-    public void setGaragePositionLength(Double garagePositionLength) {
+    public void setGaragePositionLength(Integer garagePositionLength) {
         this.garagePositionLength = garagePositionLength;
     }
 
-    public Double getGarbageBorderDist() {
+    public Integer getGarbageBorderDist() {
         return garbageBorderDist;
     }
 
-    public void setGarbageBorderDist(Double garbageBorderDist) {
+    public void setGarbageBorderDist(Integer garbageBorderDist) {
         this.garbageBorderDist = garbageBorderDist;
     }
 
-    public Double getGarbageHomeDist() {
+    public Integer getGarbageHomeDist() {
         return garbageHomeDist;
     }
 
-    public void setGarbageHomeDist(Double garbageHomeDist) {
+    public void setGarbageHomeDist(Integer garbageHomeDist) {
         this.garbageHomeDist = garbageHomeDist;
     }
 
-    public Double getGarbageSurface() {
+    public Integer getGarbageSurface() {
         return garbageSurface;
     }
 
-    public void setGarbageSurface(Double garbageSurface) {
+    public void setGarbageSurface(Integer garbageSurface) {
         this.garbageSurface = garbageSurface;
     }
 
-    public Double getWellSurface() {
+    public Integer getWellSurface() {
         return wellSurface;
     }
 
-    public void setWellSurface(Double wellSurface) {
+    public void setWellSurface(Integer wellSurface) {
         this.wellSurface = wellSurface;
     }
 
-    public Double getWellBorderDist() {
+    public Integer getWellBorderDist() {
         return wellBorderDist;
     }
 
-    public void setWellBorderDist(Double wellBorderDist) {
+    public void setWellBorderDist(Integer wellBorderDist) {
         this.wellBorderDist = wellBorderDist;
     }
 
-    public Double getSewageBorderDist() {
+    public Integer getSewageBorderDist() {
         return sewageBorderDist;
     }
 
-    public void setSewageBorderDist(Double sewageBorderDist) {
+    public void setSewageBorderDist(Integer sewageBorderDist) {
         this.sewageBorderDist = sewageBorderDist;
     }
 
-    public Double getSewageHomeDist() {
+    public Integer getSewageHomeDist() {
         return sewageHomeDist;
     }
 
-    public void setSewageHomeDist(Double sewageHomeDist) {
+    public void setSewageHomeDist(Integer sewageHomeDist) {
         this.sewageHomeDist = sewageHomeDist;
     }
 
-    public Double getWellSewageDist() {
+    public Integer getWellSewageDist() {
         return wellSewageDist;
     }
 
-    public void setWellSewageDist(Double wellSewageDist) {
+    public void setWellSewageDist(Integer wellSewageDist) {
         this.wellSewageDist = wellSewageDist;
     }
 }

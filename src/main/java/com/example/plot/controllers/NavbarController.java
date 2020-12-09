@@ -28,12 +28,21 @@ public class NavbarController {
 
     @RequestMapping("/offers")
     public String offersMapping(Model model, OffersFilter offersFilter, OffersSorter offersSorter, Planer planer){
-        List<Offer> offers = offersService.getOffers(offersFilter);
-
+        List<Offer> offers;
+//        differentiate between offersFilter and planer
+        if ((offersFilter.getBuilding()!=null && offersFilter.getBuilding())
+                || (offersFilter.getFence()!=null && offersFilter.getFence())
+                || offersFilter.getAreaFrom()!=null || offersFilter.getAreaTo()!=null
+                || offersFilter.getPriceFrom()!=null || offersFilter.getPriceTo()!=null){
+            offers = offersService.getOffers(offersFilter);
+        }else {
+            offers = databaseService.getPlanerOffers(planer);
+        }
+//        sorting offers
         if(offersSorter.getArea()!=null || offersSorter.getPrice()!=null){
             offers = offersSorter.sortOffers(offers);
         }
-
+//        model all necessary attributes
         model.addAttribute("offers", offers);
         model.addAttribute("plotTypes", databaseService.getPlotTypes());
         model.addAttribute("surroundings", databaseService.getSurroundings());
