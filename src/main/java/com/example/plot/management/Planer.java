@@ -2,7 +2,6 @@ package com.example.plot.management;
 
 import com.example.plot.PlotHub;
 
-import java.math.BigInteger;
 
 public class Planer {
 //    home section
@@ -168,42 +167,159 @@ public class Planer {
     public Boolean isParking() {
         return getParkingLength()!=null && getParkingWidth()!=null;
     }
-    public Boolean isGarbage() { return getGarbageLength()!=null && getGarbageWidth()!=null; }
     public Boolean isGarden() { return getGardenLength()!=null && getGardenWidth()!=null; }
+
 //    calculating the needed surface
-    public Integer calculateSurface(){
-        Integer surface = 0;
-
-        surface = calculateHomeSurface(surface);
-
-        return surface;
+    //    swap values if length < width
+    public void swapLengthsWidths() {
+        Integer tmpLen=0;
+//        home
+        if ( isHome() && ( getHomeWidth() > getHomeLength() ) ) {
+            tmpLen = getHomeWidth();
+            setHomeWidth(getHomeLength());
+            setHomeLength(tmpLen);
+        }
+//        parking
+        if ( isParking() && ( getParkingWidth() > getParkingLength() ) ) {
+            tmpLen = getParkingWidth();
+            setParkingWidth(getParkingLength());
+            setParkingLength(tmpLen);
+        }
+//        garden
+        if ( isGarden() && ( getGardenWidth() > getGardenLength() ) ) {
+            tmpLen = getGardenWidth();
+            setGardenWidth(getGardenLength());
+            setGardenLength(tmpLen);
+        }
     }
-//    single plot object's surface calculations
-    public Integer calculateHomeSurface(Integer surface) {
-        //        if user chosen only home then special condition can be applied
-        if ( !isGarbage() && !isGarden() && isParking() && getSewage() && getWell() && isHome() ){
-            if ( getHomeWidth()<= 10 ){
-//                exceptional distance of ~ 2 m on narrow plot where width is 16 at most
-                surface += ( getHomeWidth() + PlotHub.requirements.getHomeBorderDistEx() )
-                        * ( getHomeLength() + PlotHub.requirements.getHomeBorderDist() );
-
-                return surface;
-            } else {
-                return 0;
+    //    get highest width
+    public Integer getHighestWidth() {
+        int maxWidth = 0;
+        if ( isHome() ) {
+            if ( getHomeWidth() <= 10 ){
+                maxWidth = Math.max( getHomeWidth() + PlotHub.requirements.getHomeBorderDist() + PlotHub.requirements.getHomeBorderDistEx(), maxWidth );
+            }else {
+                maxWidth = Math.max( getHomeWidth() + ( 2 * PlotHub.requirements.getHomeBorderDist() ), maxWidth );
             }
+        }
+        if ( isParking() ) {
+            maxWidth = Math.max( getParkingWidth(), maxWidth );
+        }
+        if ( getSewage() ) {
+            maxWidth = Math.max( 2 * PlotHub.requirements.getSewageBorderDist(), maxWidth );
+        }
+        if ( isGarden() ) {
+            maxWidth = Math.max( getGardenWidth(), maxWidth );
+        }
+//        also means that the maxWidth is at least larger then the demanded
+        if ( getWell() ) {
+            maxWidth = Math.max( ( 2 * PlotHub.requirements.getWellBorderDist() ) + PlotHub.requirements.getWellLength(), maxWidth );
+        }
+        return Math.max( PlotHub.requirements.getGarbageLength() + ( 2 * PlotHub.requirements.getGarbageBorderDist() ), maxWidth );
+
+    }
+    //    total calculation
+    public Integer calculateSurface() {
+        int surface = 0, totalLength = 0;
+
+        //        if user chose only home then special condition can be applied
+        if ( !isGarden() && !isParking() && !getSewage() && !getWell() && isHome() ){
+            surface = calculateHomeSurfaceWithGarbage();
+
         } else {
-//                here no longer exceptional distance is applied
-            surface += ( getHomeWidth() + PlotHub.requirements.getHomeBorderDist() )
-                    * ( getHomeLength() + PlotHub.requirements.getHomeBorderDist() );
+            swapLengthsWidths();
+            int sewageDist = PlotHub.requirements.getSewageHomeDist(),
+                garbageDist = PlotHub.requirements.getGarbageHomeDist();
+
+            if ( isHome() ) {
+                totalLength += getHomeLength() + PlotHub.requirements.getHomeBorderDist();
+            }
+            if ( isGarden() ) {
+                totalLength += getGardenLength();
+                sewageDist -= getGardenLength();
+                garbageDist -= getGardenLength();
+            }
+            if ( isParking() ) {
+//                if garden longer than the requirements there is no need to add home distance
+                if ( getGardenLength() < PlotHub.requirements.getGarageHomeDist() ) {
+                    totalLength += PlotHub.requirements.getGarageHomeDist() - getGardenLength();
+                    sewageDist -= PlotHub.requirements.getGarageHomeDist() - getGardenLength();
+                    garbageDist -= PlotHub.requirements.getGarageHomeDist() - getGardenLength();
+                }
+
+                totalLength += getParkingLength();
+                sewageDist -= getParkingLength();
+                garbageDist -= getParkingLength();
+            }
+            if ( getWell() ) {
+//                just one distance needed
+                totalLength += PlotHub.requirements.getWellLength() + PlotHub.requirements.getWellBorderDist();
+            }
+//            garbage
+            if ( isHome() ) {
+                if ( garbageDist > 0 ){
+                    totalLength += garbageDist;
+                    sewageDist -= garbageDist;
+                }
+
+                totalLength += PlotHub.requirements.getGarbageLength() + PlotHub.requirements.getGarbageBorderDist();
+                sewageDist -= PlotHub.requirements.getGarbageLength() + PlotHub.requirements.getGarbageBorderDist();
+            }
+
+            if ( getSewage() ) {
+                if ( totalLength < PlotHub.requirements.getSewageHomeDist() + PlotHub.requirements.getSewageBorderDist() ) {
+                    if (sewageDist > 0) {
+                        totalLength += sewageDist;
+                    }
+                    totalLength += PlotHub.requirements.getSewageBorderDist();
+                }
+            }
+
+            surface = totalLength * getHighestWidth();
         }
 
         return surface;
     }
-    public Integer calculateGreenerySurface(Integer surface) {
-//        that is how much the greenery has to take place on the plot 25% of total surface
-//        75 / 25 is 3 so after dividing the needed surface by 3 and adding the result we should be left with
-//        total surface needed
-        return surface += surface / 3;
-    }
+    //    single plot object's surface calculations
+    public Integer calculateHomeSurfaceWithGarbage() {
+        if ( getHomeWidth()<= 10 ){
+//                exceptional distance of ~ 2 m on narrow plot where width is 16 at most
+            return  ( getHomeWidth() + ( PlotHub.requirements.getHomeBorderDistEx() + PlotHub.requirements.getHomeBorderDist() ) )
+                    * ( getHomeLength() + ( PlotHub.requirements.getHomeBorderDist() )
+                    + PlotHub.requirements.getGarbageBorderDist() + PlotHub.requirements.getGarbageHomeDist()
+                    + PlotHub.requirements.getGarbageLength() );
 
+        } else {
+            //                here no longer exceptional distance is applied
+            return  ( getHomeWidth() + ( 2 * PlotHub.requirements.getHomeBorderDist() ) )
+                    * ( getHomeLength() + PlotHub.requirements.getHomeBorderDist()
+                    + PlotHub.requirements.getGarbageBorderDist() + PlotHub.requirements.getGarbageHomeDist()
+                    + PlotHub.requirements.getGarbageLength() );
+        }
+    }
+//    not gonna use it
+    public Integer calculateMinGreenerySurface(Integer surface) {
+//        that is how much the greenery has to take place on the plot 25% of total surface
+        int surfaceUsed = 0;
+        if ( isGarden() ) {
+            surfaceUsed += calculateGardenSurface();
+        }
+        if ( isHome() ) {
+            surfaceUsed += calculateHomeSurface();
+        }
+        if ( isParking() ) {
+            surfaceUsed += calculateParkingSurface();
+        }
+//        if surface - surface used is less than 1/3 of total surface additional greenery is needed
+//        surfaceUsed / 3; // needed greenery
+
+        return 0;
+    }
+    public Integer calculateHomeSurface() {
+        return getHomeLength() * getHomeWidth();
+    }
+    public Integer calculateGardenSurface() {
+        return getGardenWidth() * getGardenLength();
+    }
+    public Integer calculateParkingSurface() { return getParkingWidth() * getParkingLength(); }
 }

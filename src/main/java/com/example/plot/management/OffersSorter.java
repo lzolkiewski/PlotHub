@@ -35,6 +35,10 @@ public class OffersSorter {
         this.year = year;
     }
 
+    public Boolean checkIfPossible(){
+        return getArea()!=null || getPrice()!=null;
+    }
+
     public List<Offer> sortOffers(List<Offer>offers){
         if(getPrice()!=null){
             Comparator<Offer> compareByPrice = (Offer o1, Offer o2) -> o1.getPrice().compareTo(o2.getPrice());

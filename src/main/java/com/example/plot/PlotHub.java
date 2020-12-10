@@ -15,6 +15,7 @@ public class PlotHub {
 	public static void main(String[] args) {
 		SpringApplication.run(PlotHub.class, args);
 	}
+
 //	  load all the requirements from json file
 	private static Requirements starter(){
 		Gson gson = new Gson();

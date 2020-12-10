@@ -8,11 +8,11 @@
   
   "garbageHomeDist": 10,
   "garbageBorderDist": 3,
-  "garbageSurface": 9,
+  "garbageLength": 3,
   
-  "wellSurface": 4,
+  "wellLength": 2,
   "wellBorderDist": 5,
-  "wellSewageDist": 5,
+  "wellSewageDist": 15,
 
   "sewageHomeDist": 15,
   "sewageBorderDist":8

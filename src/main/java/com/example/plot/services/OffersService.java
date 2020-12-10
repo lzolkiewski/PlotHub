@@ -2,6 +2,8 @@ package com.example.plot.services;
 
 import com.example.plot.jpa.Offer;
 import com.example.plot.management.OffersFilter;
+import com.example.plot.management.OffersSorter;
+import com.example.plot.management.Planer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +22,7 @@ public class OffersService {
         return entityManager.find(Offer.class, id);
     }
 
-    public List<Offer> getOffers(OffersFilter offersFilter){
+    public List<Offer> getFilteredOffers(OffersFilter offersFilter) {
         String jpql = "select o from Offer o";
 
         if ( offersFilter.getPlotTypeId()!=null || (offersFilter.getSurroundingId()!=null)
@@ -154,6 +156,74 @@ public class OffersService {
         return query.getResultList();
     }
 
+    public List<Offer> getPlanerOffers(Planer planer) {
+        String jpql = "select o from Offer o";
+
+        if ( planer.getPlotTypeId()!=null || (planer.getSurroundingId()!=null)
+                || planer.checkTheNeedToFindCity() || planer.checkTheNeedToFindCountry()
+                || planer.checkTheNeedToCalculateSurface() ) {
+            jpql+= " where";
+
+            if ( planer.getPlotTypeId() != null ) {
+                jpql += " o.plotType.id = :pti";
+            }
+            if ( planer.getSurroundingId() != null ) {
+                if ( planer.getPlotTypeId() != null ) {
+                    jpql += " and";
+                }
+
+                jpql += " o.id = (select os.offer.id from OfferSurrounding os where os.surrounding.id = :si)";
+            }
+            if ( planer.checkTheNeedToFindCity() ) {
+                if ( planer.getPlotTypeId()!=null || planer.getSurroundingId()!=null ) {
+                    jpql+=" and";
+                }
+
+                jpql += " o.address.city.name = :cin";
+            }
+            if ( planer.checkTheNeedToFindCountry() ) {
+                if ( planer.getPlotTypeId()!=null || planer.getSurroundingId()!=null
+                        || planer.checkTheNeedToFindCity() ){
+                    jpql+=" and";
+                }
+
+                jpql += " o.address.country.name = :con";
+            }
+            if ( planer.checkTheNeedToCalculateSurface() ) {
+                if ( planer.getPlotTypeId()!=null || planer.getSurroundingId()!=null
+                        || planer.checkTheNeedToFindCity() || planer.checkTheNeedToFindCountry() ) {
+                    jpql+=" and";
+                }
+
+                jpql += " o.area >= :sur";
+            }
+        }
+
+        jpql+=" order by o.id";
+
+        TypedQuery<Offer> query = entityManager.createQuery(jpql, Offer.class);
+
+        if ( planer.getPlotTypeId()!=null ) {
+            query.setParameter("pti", planer.getPlotTypeId());
+        }
+        if ( planer.getSurroundingId()!=null ) {
+            query.setParameter("si", planer.getSurroundingId());
+        }
+        if ( planer.getCity()!=null && planer.getCity().compareTo("")!=0 ) {
+            query.setParameter("cin", planer.getCity());
+        }
+        if ( planer.getCountry()!=null && planer.getCountry().compareTo("")!=0 ){
+            query.setParameter("con", planer.getCountry());
+        }
+        if ( planer.checkTheNeedToCalculateSurface() ) {
+            query.setParameter("sur", planer.calculateSurface());
+            System.out.println(planer.calculateSurface());
+        }
+
+        return query.getResultList();
+    }
+
+
     public Offer createOffer(Offer offer) {
         entityManager.persist(offer);
 
@@ -186,4 +256,5 @@ public class OffersService {
 
         return query.getResultList();
     }
+
 }

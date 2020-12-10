@@ -11,9 +11,9 @@ public class Requirements {
 //    garbage part
     private Integer garbageBorderDist;
     private Integer garbageHomeDist;
-    private Integer garbageSurface;
+    private Integer garbageLength;
 //    well part
-    private Integer wellSurface;
+    private Integer wellLength;
     private Integer wellBorderDist;
     private Integer wellSewageDist;
 //    sewage part
@@ -79,20 +79,20 @@ public class Requirements {
         this.garbageHomeDist = garbageHomeDist;
     }
 
-    public Integer getGarbageSurface() {
-        return garbageSurface;
+    public Integer getGarbageLength() {
+        return garbageLength;
     }
 
-    public void setGarbageSurface(Integer garbageSurface) {
-        this.garbageSurface = garbageSurface;
+    public void setGarbageLength(Integer garbageLength) {
+        this.garbageLength = garbageLength;
     }
 
-    public Integer getWellSurface() {
-        return wellSurface;
+    public Integer getWellLength() {
+        return wellLength;
     }
 
-    public void setWellSurface(Integer wellSurface) {
-        this.wellSurface = wellSurface;
+    public void setWellLength(Integer wellLength) {
+        this.wellLength = wellLength;
     }
 
     public Integer getWellBorderDist() {
