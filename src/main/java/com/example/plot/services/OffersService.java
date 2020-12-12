@@ -257,4 +257,6 @@ public class OffersService {
         return query.getResultList();
     }
 
+
+
 }

@@ -3,21 +3,22 @@ package com.example.plot.jpa;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Size(max = 45, min = 3)
+    @Size(max = 45, min = 5)
     @Column(name = "password")
     @NotNull
     private String password;
 
-    @Size(max = 45, min = 5)
+    @Size(max = 45, min = 7)
     @Column(name = "email")
     @NotNull
     private String email;

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +23,12 @@ public class NavbarController {
     private DatabaseService databaseService;
 
     @RequestMapping("/")
-    public String homeMapping(Model model){
+    public String homeMapping(Model model, HttpSession session){
         return "home";
     }
 
     @RequestMapping("/offers")
-    public String offersMapping(Model model, OffersFilter offersFilter, OffersSorter offersSorter, Planer planer){
+    public String offersMapping(Model model, OffersFilter offersFilter, OffersSorter offersSorter, Planer planer, HttpSession session) {
         List<Offer> offers;
 
 //        differentiate between offersFilter and planer
@@ -50,7 +51,7 @@ public class NavbarController {
     }
 
     @RequestMapping("/about_us")
-    public String aboutUsMapping(Model model){
+    public String aboutUsMapping(Model model, HttpSession session){
         return "about_us";
     }
     

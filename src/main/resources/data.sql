@@ -3,7 +3,7 @@ insert into user
     values
         ('admin', 'admin@admin.pl'),
         ('lucas', 'lucas@inter.pl'),
-        ('kin', 'kin@boi.com');
+        ('kings', 'kin@boi.com');
 
 insert into city
     (name)

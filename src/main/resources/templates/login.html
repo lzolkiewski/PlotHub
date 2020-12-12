@@ -21,47 +21,43 @@ layout:decorator="layout">
           <div class="card-body">
             <!-- switch buttons -->
             <div class="d-flex justify-content-center" style="padding-bottom: 20px;">
-              <button id="login_btn_swith" type="button" class="btn btn-secondary active" style="width: fit-content;" onclick="login_switch()">Logowanie</button>
-              <button id="signup_btn_swith" type="button" class="btn btn-secondary" style="width: fit-content;" onclick="signup_switch()">Rejestracja</button>
+              <button id="login_btn_switch" type="button" class="btn btn-secondary active" style="width: fit-content;" onclick="login_switch()">Logowanie</button>
+              <button id="sign_up_btn_switch" type="button" class="btn btn-secondary" style="width: fit-content;" onclick="sign_up_switch()">Rejestracja</button>
             </div>
-            <!-- signup form -->
-            <form id="signup_form" action="" hidden>
-                <!-- email input -->
-                <div class="form-group d-flex justify-content-center">
-                    <input type="email" class="form-control" id="signup_password_input" placeholder="e-mail">
-                </div>
-                <!-- password input -->
-                <div class="form-group d-flex justify-content-center">
-                    <input type="password" class="form-control" id="signup_password_input" placeholder="Hasło">
-                </div>
-                <!-- repeat password input -->
-                <div class="form-group d-flex justify-content-center">
-                    <input type="password" class="form-control" id="signup_password_input" placeholder="Powtórz hasło">
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a id="signup_btn" href="/account" type="reset" class="btn btn-success" >Zarejestruj</a>
-                </div>
+            <!-- login / sing up form -->
+            <form id="login_form" th:action="@{/login/createSession}" method="post" th:object = "${user}">
+
+              <!-- login input -->
+              <div class="form-group d-flex justify-content-center">
+                <input type="email" class="form-control" th:field="*{email}" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+              </div>
+              
+              <!-- password input -->
+              <div class="form-group d-flex justify-content-center">
+                <input type="password" class="form-control" th:field="*{password}" placeholder="Hasło" pattern="[A-Za-z0-9]{5,45}" required>
+              </div>
+              
+              <!-- repeat password input -->
+              <div class="form-group d-flex justify-content-center">
+                <input id="repeat_password" type="password" class="form-control" th:field="*{rePassword}"  placeholder="Powtórz hasło" pattern="[A-Za-z0-9]{5,45}" onblur="validate()" hidden>
+              </div>
+
+              <div class="d-flex justify-content-center">
+                <input id="login_btn" type="submit" class="btn btn-success" value="Zaloguj" style="min-width: 150px;"/>
+                <input id="sing_up_btn" type="submit" class="btn btn-success" value="Zarejestruj" style="min-width: 150px;" hidden/>
+              </div>
+
             </form>
-            <!-- login form -->
-            <form id="login_form" action="">
-                <!-- login input -->
-                <div class="form-group d-flex justify-content-center">
-                  <input type="email" class="form-control" id="email_login_input" placeholder="E-mail">
-                </div>
-                <!-- password input -->
-                <div class="form-group d-flex justify-content-center">
-                  <input type="password" class="form-control" id="login_password_input" placeholder="Hasło">
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a id="login_btn" href="/account" type="reset" class="btn btn-success">Zaloguj</a>
-                </div>
-            </form>
+
+
+
           </div>
         </div>
       </div>
     </section>
 
     <!-- Optional JavaScript -->
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
