@@ -313,8 +313,9 @@ public class Planer {
 //        if surface - surface used is less than 1/3 of total surface additional greenery is needed
 //        surfaceUsed / 3; // needed greenery
 
-        return 0;
+        return surfaceUsed / 3;
     }
+    
     public Integer calculateHomeSurface() {
         return getHomeLength() * getHomeWidth();
     }

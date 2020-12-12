@@ -8,15 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 public class OfferController {
     @Autowired
     private OffersService offersService;
 
     @GetMapping("/offer/{id}")
-    public String offerMapping(Model model, @PathVariable("id")Integer id, HttpSession session){
+    public String offerMapping(Model model, @PathVariable("id")Integer id){
         Offer offer = offersService.getOffer(id);
 
         model.addAttribute("offer", offer);

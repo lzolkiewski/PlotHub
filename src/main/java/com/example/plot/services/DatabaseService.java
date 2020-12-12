@@ -65,46 +65,4 @@ public class DatabaseService {
         return entityManager.createQuery(jpql, User.class).getResultList();
     }
 
-    public User findMatchingEmailUser(LoginRegister user){
-        for ( User usr : getUsers() ) {
-            if ( usr.getEmail().compareTo(user.getEmail()) == 0 ) {
-                return usr;
-            }
-        }
-
-        return null;
-    }
-
-    public Boolean userExists(LoginRegister user) {
-        return findMatchingEmailUser(user) != null;
-    }
-    public Boolean matchingPassword(User userDB, LoginRegister user){
-        return userDB.getPassword().compareTo(user.getPassword()) == 0;
-    }
-
-    public User getUser(LoginRegister user) {
-        User userDB = findMatchingEmailUser(user);
-
-        if ( userDB != null && matchingPassword(userDB, user) ){
-            return userDB;
-        }
-
-        return null;
-    }
-    public User getUserByEmail(String email) {
-        String jpql = "select u from User u where u.email = :em";
-
-        return entityManager.createQuery(jpql, User.class).getSingleResult();
-    }
-
-    public User addUser(User user) {
-        entityManager.persist(user);
-
-        return user;
-    }
-
-
-
-
-
 }

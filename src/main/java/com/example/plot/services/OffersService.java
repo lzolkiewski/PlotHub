@@ -2,7 +2,6 @@ package com.example.plot.services;
 
 import com.example.plot.jpa.Offer;
 import com.example.plot.management.OffersFilter;
-import com.example.plot.management.OffersSorter;
 import com.example.plot.management.Planer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -222,7 +221,6 @@ public class OffersService {
 
         return query.getResultList();
     }
-
 
     public Offer createOffer(Offer offer) {
         entityManager.persist(offer);

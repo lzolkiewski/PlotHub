@@ -1,9 +1,5 @@
 package com.example.plot.management;
 
-import com.example.plot.jpa.Offer;
-
-import javax.persistence.TypedQuery;
-import java.util.List;
 
 public class OffersFilter {
     private Integer areaFrom;

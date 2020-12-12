@@ -2,7 +2,8 @@ package com.example.plot.controllers;
 
 import com.example.plot.jpa.User;
 import com.example.plot.management.LoginRegister;
-import com.example.plot.services.DatabaseService;
+
+import com.example.plot.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
     @Autowired
-    DatabaseService databaseService;
+    UserService userService;
 
     @RequestMapping("/login")
     public String loginMapping(Model model, HttpServletRequest request, LoginRegister user){
@@ -28,12 +29,12 @@ public class LoginController {
     }
 
     @PostMapping("/login/createSession")
-    public String login(Model model, HttpServletRequest request, LoginRegister loginUser) {
+    public String login(HttpServletRequest request, LoginRegister loginUser) {
 
-        if ( databaseService.userExists(loginUser) && loginUser.getRePassword().compareTo("") == 0 ) {
+        if ( userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") == 0 ) {
 //        login
             User user;
-            if ( ( user = databaseService.getUser(loginUser) ) != null ){
+            if ( ( user = userService.getUser(loginUser) ) != null ){
 //                login successful
                 request.getSession().setAttribute("user", user);
 
@@ -44,12 +45,12 @@ public class LoginController {
 
                 return "redirect:/login";
             }
-        } else if ( databaseService.userExists(loginUser) && loginUser.getRePassword().compareTo("") != 0 ) {
+        } else if ( userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") != 0 ) {
 //            user tried to register but the same user already exists
             System.out.println("user already exists");
 
             return "redirect:/login";
-        } else if ( !databaseService.userExists(loginUser) && loginUser.getRePassword().compareTo("") != 0 ) {
+        } else if ( !userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") != 0 ) {
             if (loginUser.getPassword().compareTo(loginUser.getRePassword())==0) {
 //                register if passwords match
                 User user = new User();
@@ -57,10 +58,12 @@ public class LoginController {
                 user.setEmail(loginUser.getEmail());
                 user.setPassword(loginUser.getPassword());
 
-                request.getSession().setAttribute("user", databaseService.addUser(user));
+                request.getSession().setAttribute("user", userService.addUser(user));
 
                 return "redirect:/account";
             } else {
+                System.out.println("passwords don't match");
+
                 return "redirect:/login";
             }
 
@@ -70,7 +73,5 @@ public class LoginController {
             return "redirect:/login";
         }
     }
-
-
 
 }
