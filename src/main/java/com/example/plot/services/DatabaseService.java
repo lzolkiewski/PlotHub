@@ -7,6 +7,7 @@ import com.example.plot.jpa.offer.DriveType;
 import com.example.plot.jpa.offer.PlotType;
 import com.example.plot.jpa.offer.address.City;
 import com.example.plot.jpa.offer.address.Country;
+import com.example.plot.jpa.offer.address.Street;
 import com.example.plot.management.LoginRegister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +40,12 @@ public class DatabaseService {
         String jpql = "select dt from DriveType dt order by dt.id";
 
         return entityManager.createQuery(jpql, DriveType.class).getResultList();
+    }
+
+    public List<Street> getStreets(){
+        String jpql = "select s from Street s order by s.id";
+
+        return entityManager.createQuery(jpql, Street.class).getResultList();
     }
 
     public List<Country> getCountries() {

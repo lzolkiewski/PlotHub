@@ -60,7 +60,6 @@ CREATE TABLE drive_type
 CREATE TABLE address
 (
  id            integer NOT NULL AUTO_INCREMENT ,
- street_number integer NOT NULL ,
  city_id       integer NOT NULL ,
  street_id     integer NOT NULL ,
  country_id    integer NOT NULL ,

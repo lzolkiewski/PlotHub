@@ -3,7 +3,7 @@
 xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 layout:decorator="layout">
   <head>
-    <title>Login</title>
+    <title>Nowa oferta</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,74 +19,68 @@ layout:decorator="layout">
       <div class="login-content">
         <div class="card">
           <div class="card-body">
-            <form style="padding-left: 10%;">
+            <form method="POST" th:object="${offer}" style="padding-left: 10%;">
 <!-- tytuł -->
               <div class="form-row form-inline">
                   <div class="form-group col-md-2">
-                      <label for="inputTitle">Tytuł ogłoszenia</label>
+                      <label>Tytuł ogłoszenia</label>
                   </div>
                   <div class="form-group col-md-8">
-                      <input type="text" class="form-control" id="inputTitle" placeholder="Tytuł" style="width: 100%;">
+                      <input type="text" class="form-control" th:field="*{title}" placeholder="Tytuł" style="width: 100%;">
                   </div>
               </div>
               
               <div class="form-row form-inline">
-<!-- rodzaj działki -->
+<!-- Cena -->
                   <div class="form-group col-md-2">
-                      <label for="plotPrice">Cena</label>
+                      <label>Cena</label>
                   </div>
                   <div class="form-group col-md-3">
-                    <input type="number" class="form-control" id="plotPrice" placeholder="zł" style="width: 100%;">
+                    <input type="number" class="form-control" th:field="*{price}" placeholder="zł" style="width: 100%;">
                   </div>
 <!-- Powierzchnia -->
                   <div class="form-group col-md-2">
-                      <label for="inputArea">Powierzchnia</label>
+                      <label>Powierzchnia</label>
                   </div>
                   <div class="form-group col-md-3">
-                      <input type="number" class="form-control" id="inputArea" placeholder="m2" style="width: 100%;">
+                      <input type="number" class="form-control" th:field="*{area}" placeholder="m2" style="width: 100%;">
                   </div>
               </div>
 
               <div class="form-row form-inline">
 <!-- Długość działki -->
                 <div class="form-group col-md-2">
-                    <label for="plotLenght">Długość działki</label>
+                    <label>Długość działki</label>
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="number" class="form-control" id="plotLenght" placeholder="m" style="width: 100%;">
+                    <input type="number" class="form-control" th:field="*{length}" placeholder="m" style="width: 100%;">
                 </div>
 <!-- Szerokość działki -->
                 <div class="form-group col-md-2">
-                    <label for="plotWidth">Szerokość działki</label>
+                    <label>Szerokość działki</label>
                 </div>
                 <div class="form-group col-md-3">
-                    <input type="number" class="form-control" id="plotWidth" placeholder="m" style="width: 100%;">
+                    <input type="number" class="form-control" th:field="*{width}" placeholder="m" style="width: 100%;">
                 </div>
               </div>
 
               <div class="form-row form-inline">
 <!-- Rodzaj działki -->
                 <div class="form-group col-md-2">
-                    <label for="plotType">Rodzaj działki</label>
+                    <label>Rodzaj działki</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <select class="form-control" id="plotType" style="width: 100%;">
-                    <option value="1">Budowlana</option>
-                    <option value="2">Leśna</option>
-                    <option value="3">Rolna</option>
-                    <option value="4">Rekreacyjna</option>
-                    <option value="5">Inwstycyjna</option>
+                  <select class="form-control" style="width: 100%;">
+                    <option th:each="plotType : ${plotTypes}" th:value="${plotType.id}" th:text=${plotType.name}></option>
                   </select>
                 </div>
 <!-- Typ dojazdu -->
                 <div class="form-group col-md-2">
-                    <label for="plotDrive">Rodzaj dojazdu</label>
+                    <label >Rodzaj drogi</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <select class="form-control" id="plotDrive" style="width: 100%;">
-                    <option value="1">Asfaltowy</option>
-                    <option value="2">Gruntowy</option>
-                    <option value="3">Utwardzany</option>
+                  <select class="form-control" style="width: 100%;">
+                    <option th:each="driveType : ${driveTypes}" th:value="${driveType.id}" th:text="${driveType.name}"></option>
                   </select>
                 </div>
               </div>
@@ -94,15 +88,42 @@ layout:decorator="layout">
               <div class="form-row form-inline">
 <!-- Rodzaj otoczenia działki -->
                 <div class="form-group col-md-2">
-                    <label for="plotSurounding">Okolica działki</label>
+                    <label>Okolica działki</label>
                 </div>
-                <div class="form-group col-md-8">
-                  <select multiple class="form-control" id="exampleFormControlSelect2" style="width: 100%;">
-                    <option>Las</option>
-                    <option>Jezioro</option>
-                    <option>Osiedle mieszkaniowe</option>
-                    <option>Basen</option>
+                <div class="form-group col-md-3">
+                  <select class="form-control" style="width: 100%;">
+                    <option th:each="surrounding : ${surroundings}" th:value="${surrounding.id}" th:text = "${surrounding.name}"></option>
                   </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Ulica</label>
+                </div>
+                <div class="form-group col-md-3">
+                  <input class = "form-control" list="street-browsers" style="width:100%;">
+                  <datalist id="street-browsers">
+                    <option th:each = "street : ${streets}" th:value = "${street.name}">
+                  </datalist>
+                </div>
+              </div>
+<!-- input city and country with list of currently present cities -->
+              <div class="form-row form-inline">
+                <div class="form-group col-md-2">
+                  <label>Miasto</label>
+                </div>
+                <div class="form-group col-md-3">
+                  <input class = "form-control" list="city-browsers" style="width:100%;">
+                  <datalist id="city-browsers">
+                    <option th:each = "city : ${cities}" th:value = "${city.name}">
+                  </datalist>
+                </div>
+                <div class="form-group col-md-2">
+                  <label>Państwo</label>
+                </div>
+                <div class="form-group col-md-3">
+                  <input class = "form-control" list="country-browsers" style="width:100%;">
+                  <datalist id="country-browsers">
+                    <option th:each = "country : ${countries}" th:value = "${country.name}">
+                  </datalist>
                 </div>
               </div>
 
@@ -112,30 +133,30 @@ layout:decorator="layout">
                     <label for="plotBuilding">Budynek na działce</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <input class="form-check-input" type="checkbox" id="plotBuilding" value="1">
+                  <input class="form-check-input" type="checkbox" id="plotBuilding" th:field="*{building}">
                 </div>
 <!-- Ogrodzenie -->
                 <div class="form-group col-md-2">
-                    <label for="plotFence">Ogrodzenie</label>
+                    <label>Ogrodzenie</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <input class="form-check-input" type="checkbox" id="plotFence" value="1">
+                  <input class="form-check-input" type="checkbox" id="plotFence" th:field="*{fence}">
                 </div>
               </div>
 
 <!-- opis -->
               <div class="form-row form-inline">
                 <div class="form-group col-md-2">
-                    <label for="inputDesc">Opis</label>
+                    <label>Opis</label>
                 </div>
                 <div class="form-group col-md-8">
-                    <textarea type="texta" class="form-control" id="inputDesc" placeholder="Opis" style="width: 100%; height: 100px;"></textarea>
+                    <textarea type="texta" class="form-control" th:field="*{description}" placeholder="Opis" style="width: 100%; height: 100px;"></textarea>
                 </div>
               </div>
 
               <div class="form-row justify-content-center">
                 <a href="/account" class="btn btn-secondary mb-2" style="margin-right: 10px;">Anuluj</a>
-                <button type="submit" class="btn btn-success mb-2">Dodaj ofertę</button>
+                <input type="submit" class="form-control btn btn-success mb-2" value="Dodaj ofertę" style="max-width: 150px;">
               </div>
             </form>
           </div>

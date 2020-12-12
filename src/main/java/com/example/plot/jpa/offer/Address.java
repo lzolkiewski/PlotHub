@@ -16,10 +16,6 @@ public class Address {
     @Column(name = "id")
     private Integer id;
 
-    @Min(1)
-    @Column(name = "street_number")
-    private Integer street_number;
-
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     @ManyToOne
     @NotNull
@@ -44,14 +40,6 @@ public class Address {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getStreet_number() {
-        return street_number;
-    }
-
-    public void setStreet_number(Integer street_number) {
-        this.street_number = street_number;
     }
 
     public City getCity() {

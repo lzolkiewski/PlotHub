@@ -50,12 +50,12 @@ insert into drive_type
         ('asfaltowa'),
         ('utwardzana');
 insert into address
-    (street_number, city_id, street_id, country_id)
+    (city_id, street_id, country_id)
     values
-        (15, 1, 3, 1),
-        (30, 1, 1 ,1),
-        (45, 2, 2, 1),
-        (60, 3, 3, 1);
+        (1, 3, 1),
+        (1, 1 ,1),
+        (2, 2, 1),
+        (3, 3, 1);
 insert into offer
     (title, length, width, area, description, price, drive_type_id, plot_type_id, fence, building, address_id)
     values
