@@ -1,4 +1,21 @@
 .offer-content{
-    min-height: 100vh;
-    
+    min-height: 100vh;   
+    padding-top: 10%;
+}
+.container{
+    /* for now */
+    min-height: 50vh; 
+
+    background-color: #333;
+
+    border-radius: 25px;
+    border: 2px solid rgb(131, 131, 131);
+}
+.container .title{
+    padding-top: 10px;
+}
+.el{
+    border: 2px solid rgb(131, 131, 131); 
+    border-radius: 25px;
+    margin: 5px;
 }

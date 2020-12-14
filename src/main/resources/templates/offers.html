@@ -266,11 +266,11 @@ layout:decorator="layout">
                     </tr>
                     <tr>
                       <td class = "text-left" style="padding-left: 20px; width: 200px;">
-                        <span th:text = "${#numbers.formatDecimal(offer.area, 0, 'WHITESPACE', 0,'COMMA')}" ></span> m2
+                        <span th:text = "|${#numbers.formatDecimal(offer.area, 0, 'WHITESPACE', 0,'COMMA')} m2|" ></span>
                       </td>
                       <td class = "text-center" rowspan="2" th:text = "|${offer.address.city.name}, ${offer.address.country.name}|"></td> 
                       <td class = "text-right" style="padding-right: 20px; width: 200px;">
-                        <span th:text = "${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 0,'COMMA')}"></span> zł
+                        <span th:text = "|${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 0,'COMMA')} zł|"></span>
                       </td>
                     </tr>
                   </tbody>

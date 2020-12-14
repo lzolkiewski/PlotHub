@@ -16,11 +16,14 @@ public class LoginController {
     @Autowired
     UserService userService;
 
+    private String warning;
+
     @RequestMapping("/login")
     public String loginMapping(Model model, HttpServletRequest request, LoginRegister user){
 //        if no session then login else go to account
         if ( request.getSession().getAttribute("user") == null ){
             model.addAttribute("user", user);
+            model.addAttribute("warning", warning);
 
             return "login";
         } else {
@@ -30,7 +33,6 @@ public class LoginController {
 
     @PostMapping("/login/createSession")
     public String login(HttpServletRequest request, LoginRegister loginUser) {
-        // TODO: 14.12.2020 add some warnings for when there is redirection to login
 
         if ( userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") == 0 ) {
 //login
@@ -42,13 +44,13 @@ public class LoginController {
                 return "redirect:/account";
             } else {
 //incorrect password
-                System.out.println("incorrect email or password");
+                warning = new String("Niewłaściwy e-mail lub hasło.");
 
                 return "redirect:/login";
             }
         } else if ( userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") != 0 ) {
 //            user tried to register but the same user already exists
-            System.out.println("user already exists");
+            warning = new String("Użytkownik już istnieje.");
 
             return "redirect:/login";
         } else if ( !userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") != 0 ) {
@@ -64,13 +66,13 @@ public class LoginController {
                 return "redirect:/account";
             } else {
 //not matching passwords
-                System.out.println("passwords don't match");
+                warning = new String("Hasła muszą być takie same");
 
                 return "redirect:/login";
             }
         } else {
 //user tried to login but incorrect credentials
-            System.out.println("incorrect email or password");
+            warning = new String("Niewłaściwy e-mail lub hasło.");
             return "redirect:/login";
         }
     }

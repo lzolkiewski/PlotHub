@@ -47,10 +47,8 @@ public class OffersController {
 
     @GetMapping("/offer/{id}")
     public String offerMapping(Model model, @PathVariable("id")Integer id){
-        Offer offer = offersService.getOfferById(id);
-
-        model.addAttribute("offer", offer);
-
+        model.addAttribute("offer", offersService.getOfferById(id));
+        // TODO: 14.12.2020 model offer user to get his e-mail add e-mail option in offer.html
         return "offer";
     }
 //    dodać podgląd oferty / edycję oferty /

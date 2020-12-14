@@ -30,10 +30,10 @@ insert into country
 insert into plot_type
     (name)
     values
-        ('Budowlana'),
-        ('Leśna'),
-        ('Rekreacyjna'),
-        ('Rolna');
+        ('budowlana'),
+        ('leśna'),
+        ('rekreacyjna'),
+        ('rolna');
 insert into surrounding
     (name)
     values
