@@ -57,17 +57,19 @@ insert into address
         (2, 2, 1),
         (3, 3, 1);
 insert into offer
-    (title, length, width, area, description, price, drive_type_id, plot_type_id, fence, building, address_id)
+    (title, length, width, area, description, price, drive_type_id, plot_type_id, fence, building, address_id, surrounding_id)
     values
-        ('Super oferta', 20, 20, 400, 'Budynek super świetny', 40000, 1, 1, 1, 1, 1),
-        ('Nie ma lepszej', 15, 10, 1500, 'No ładna działeczka na sprzedaż', 15000, 3, 1, 0, 0, 2),
-        ('Jedyna w swoim rodzaju', 50, 50, 2500, 'Duża i ładna', 250000, 3, 1, 0, 0, 3);
-insert into offer_surrounding
-    (offer_id, surrounding_id)
-    values
-        (1, 1),(1, 6),
-        (2, 2),(2, 5),
-        (3, 3),(3, 4);
+        ('Super oferta', 20, 20, 400, 'Budynek super świetny', 40000, 1, 1, 1, 1, 1, 1),
+        ('Nie ma lepszej', 15, 10, 1500, 'No ładna działeczka na sprzedaż', 15000, 3, 1, 0, 0, 2, 2),
+        ('Jedyna w swoim rodzaju', 50, 50, 2500, 'Duża i ładna', 250000, 3, 1, 0, 0, 3, 3);
+
+-- insert into offer_surrounding
+--     (offer_id, surrounding_id)
+--     values
+--         (1, 1),(1, 6),
+--         (2, 2),(2, 5),
+--         (3, 3),(3, 4);
+
 insert into user_offers
     (user_id, offer_id, date)
     values

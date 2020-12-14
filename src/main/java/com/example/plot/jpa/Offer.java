@@ -3,6 +3,7 @@ package com.example.plot.jpa;
 import com.example.plot.jpa.offer.Address;
 import com.example.plot.jpa.offer.DriveType;
 import com.example.plot.jpa.offer.PlotType;
+import com.example.plot.jpa.offer.Surrounding;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -70,6 +71,11 @@ public class Offer {
     @ManyToOne
     @NotNull
     private Address address;
+
+    @JoinColumn(name = "surrounding_id", referencedColumnName = "id")
+    @ManyToOne
+    @NotNull
+    private Surrounding surrounding;
 
     public Offer() {
     }
@@ -160,6 +166,14 @@ public class Offer {
 
     public void setPlotType(PlotType plotType) {
         this.plotType = plotType;
+    }
+
+    public Surrounding getSurrounding() {
+        return surrounding;
+    }
+
+    public void setSurrounding(Surrounding surrounding) {
+        this.surrounding = surrounding;
     }
 
     public Address getAddress() {

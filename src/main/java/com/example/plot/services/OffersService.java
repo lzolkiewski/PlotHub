@@ -17,7 +17,7 @@ public class OffersService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Offer getOffer(Integer id){
+    public Offer getOfferById(Integer id){
         return entityManager.find(Offer.class, id);
     }
 
@@ -39,7 +39,8 @@ public class OffersService {
                 jpql += " and";
             }
 
-            jpql += " o.id = (select os.offer.id from OfferSurrounding os where os.surrounding.id = :si)";
+            jpql += " o.id = :si";
+//            jpql += " o.id = (select os.offer.id from OfferSurrounding os where os.surrounding.id = :si)";
         }
         if ( offersFilter.checkTheNeedToFindBuilding() ) {
             if ( offersFilter.getPlotTypeId() != null || offersFilter.getSurroundingId() != null ) {
@@ -171,7 +172,8 @@ public class OffersService {
                     jpql += " and";
                 }
 
-                jpql += " o.id = (select os.offer.id from OfferSurrounding os where os.surrounding.id = :si)";
+                jpql += " o.id = :si";
+//                jpql += " o.id = (select os.offer.id from OfferSurrounding os where os.surrounding.id = :si)";
             }
             if ( planer.checkTheNeedToFindCity() ) {
                 if ( planer.getPlotTypeId()!=null || planer.getSurroundingId()!=null ) {
@@ -250,9 +252,7 @@ public class OffersService {
             jpql = "select offer from Offer offer order by offer.price";
         }
 
-        TypedQuery<Offer> query = entityManager.createQuery(jpql, Offer.class);
-
-        return query.getResultList();
+        return entityManager.createQuery(jpql, Offer.class).getResultList();
     }
 
 

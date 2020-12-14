@@ -30,17 +30,18 @@ public class LoginController {
 
     @PostMapping("/login/createSession")
     public String login(HttpServletRequest request, LoginRegister loginUser) {
+        // TODO: 14.12.2020 add some warnings for when there is redirection to login
 
         if ( userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") == 0 ) {
-//        login
+//login
             User user;
             if ( ( user = userService.getUser(loginUser) ) != null ){
-//                login successful
+//login successful
                 request.getSession().setAttribute("user", user);
 
                 return "redirect:/account";
             } else {
-//                incorrect password
+//incorrect password
                 System.out.println("incorrect email or password");
 
                 return "redirect:/login";
@@ -52,23 +53,23 @@ public class LoginController {
             return "redirect:/login";
         } else if ( !userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") != 0 ) {
             if (loginUser.getPassword().compareTo(loginUser.getRePassword())==0) {
-//                register if passwords match
+//register if passwords match
                 User user = new User();
 
                 user.setEmail(loginUser.getEmail());
                 user.setPassword(loginUser.getPassword());
-
+//both adding user to session and do database
                 request.getSession().setAttribute("user", userService.addUser(user));
 
                 return "redirect:/account";
             } else {
+//not matching passwords
                 System.out.println("passwords don't match");
 
                 return "redirect:/login";
             }
-
         } else {
-//            user tried to login but incorrect credentials
+//user tried to login but incorrect credentials
             System.out.println("incorrect email or password");
             return "redirect:/login";
         }

@@ -19,7 +19,7 @@ layout:decorator="layout">
       <div class="login-content">
         <div class="card">
           <div class="card-body">
-            <form method="POST" th:object="${offer}" style="padding-left: 10%;">
+            <form method="POST" th:action="@{/new_offer/createOffer}" th:object="${offer}" style="padding-left: 10%;">
 <!-- tytuł -->
               <div class="form-row form-inline">
                   <div class="form-group col-md-2">

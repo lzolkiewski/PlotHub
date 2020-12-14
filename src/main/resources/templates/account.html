@@ -18,6 +18,7 @@ layout:decorator="layout">
       <div class="account-content">
         <div class="album">
             <div class="container">
+
               <div class="row justify-content-center">
                 <div class="col-md-4">
                   <!-- create new offer -->
@@ -46,20 +47,8 @@ layout:decorator="layout">
                   </a>
                 </div>
               </div>
+
               <div class="row justify-content-center">
-                <div class="col-md-4">
-                  <!-- change e-mail -->
-                  <a href="/change_email">
-                    <div class="card mb-4 shadow-sm">
-                      <div style="margin: auto;">
-                        <i class="fa fa-envelope" style="color: rgb(184, 179, 179);"></i>
-                      </div>
-                      <div class="card-body ">
-                        <p class="card-text text-center"><strong>Zmaina e-maila</strong></p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
                 <div class="col-md-4">
                   <!-- change password  -->
                   <a href="/change_passwd">
@@ -73,8 +62,6 @@ layout:decorator="layout">
                     </div>
                   </a>
                 </div>
-              </div>
-              <div class="row justify-content-center">
                 <div class="col-md-4">
                   <!-- logout  -->
                   <a href="/account/destroy">
@@ -87,11 +74,9 @@ layout:decorator="layout">
                       </div>
                     </div>
                   </a>
-                  <!-- <div>
-                    <p th:text="|${user.id} ${user.email} ${user.password}|"></p>
-                  </div> -->
                 </div>
               </div>
+
             </div>
           </div>
       </div>

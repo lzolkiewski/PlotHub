@@ -9,12 +9,14 @@ import com.example.plot.services.OffersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-public class NavbarController {
+public class OffersController {
     @Autowired
     private OffersService offersService;
     @Autowired
@@ -43,9 +45,14 @@ public class NavbarController {
         return "offers";
     }
 
-    @RequestMapping("/about_us")
-    public String aboutUsMapping(){
-        return "about_us";
+    @GetMapping("/offer/{id}")
+    public String offerMapping(Model model, @PathVariable("id")Integer id){
+        Offer offer = offersService.getOfferById(id);
+
+        model.addAttribute("offer", offer);
+
+        return "offer";
     }
-    
+//    dodać podgląd oferty / edycję oferty /
+
 }

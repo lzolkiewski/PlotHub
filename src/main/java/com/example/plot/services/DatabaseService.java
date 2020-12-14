@@ -1,14 +1,13 @@
 package com.example.plot.services;
 
 import com.example.plot.jpa.Offer;
-import com.example.plot.jpa.Surrounding;
+import com.example.plot.jpa.offer.Surrounding;
 import com.example.plot.jpa.User;
 import com.example.plot.jpa.offer.DriveType;
 import com.example.plot.jpa.offer.PlotType;
 import com.example.plot.jpa.offer.address.City;
 import com.example.plot.jpa.offer.address.Country;
 import com.example.plot.jpa.offer.address.Street;
-import com.example.plot.management.LoginRegister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

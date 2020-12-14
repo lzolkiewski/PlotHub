@@ -277,7 +277,7 @@ public class Planer {
 
             surface = totalLength * getHighestWidth();
         }
-
+        // TODO: 14.12.2020 add percentage
         return surface;
     }
     //    single plot object's surface calculations
