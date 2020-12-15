@@ -11,22 +11,25 @@ layout:decorator="layout">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/newoffer.css">
+
   </head>
   <body>
-      
+
+
     <section layout:fragment="content">
       <!-- login / rejestracja -->
       <div class="login-content">
         <div class="card">
           <div class="card-body">
-            <form method="POST" th:action="@{/new_offer/createOffer}" th:object="${offer}" style="padding-left: 10%;">
+            <form method="POST" th:action="@{/new_offer}" th:object="${offer}" style="padding-left: 10%;">
 <!-- tytuł -->
               <div class="form-row form-inline">
                   <div class="form-group col-md-2">
                       <label>Tytuł ogłoszenia</label>
                   </div>
-                  <div class="form-group col-md-8">
+                  <div class="form-group col-md-8" th:classappend="${#fields.hasErrors('*{title}')?'has-error':''}">
                       <input type="text" class="form-control" th:field="*{title}" placeholder="Tytuł" style="width: 100%;">
+                      <span th:if="${#fields.hasErrors('*{title}')}" class="err">Dodaj tytuł o długości od 5 do 255 znaków</span>
                   </div>
               </div>
               
@@ -35,15 +38,17 @@ layout:decorator="layout">
                   <div class="form-group col-md-2">
                       <label>Cena</label>
                   </div>
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-3" th:classappend="${#fields.hasErrors('*{price}')?'has-error':''}">
                     <input type="number" class="form-control" th:field="*{price}" placeholder="zł" style="width: 100%;">
+                    <span th:if="${#fields.hasErrors('*{price}')}" class="err">Cena nie mniejsza od 0</span>
                   </div>
 <!-- Powierzchnia -->
                   <div class="form-group col-md-2">
                       <label>Powierzchnia</label>
                   </div>
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-3" th:classappend="${#fields.hasErrors('*{area}')?'has-error':''}">
                       <input type="number" class="form-control" th:field="*{area}" placeholder="m2" style="width: 100%;">
+                    <span th:if="${#fields.hasErrors('*{area}')}" class="err">Powierzchnia minimalna 64 m2.</span>
                   </div>
               </div>
 
@@ -52,15 +57,17 @@ layout:decorator="layout">
                 <div class="form-group col-md-2">
                     <label>Długość działki</label>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3" th:classappend="${#fields.hasErrors('*{length}')?'has-error':''}">
                     <input type="number" class="form-control" th:field="*{length}" placeholder="m" style="width: 100%;">
+                    <span th:if="${#fields.hasErrors('*{length}')}" class="err">Długość minimalna 8 m.</span>
                 </div>
 <!-- Szerokość działki -->
                 <div class="form-group col-md-2">
                     <label>Szerokość działki</label>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3" th:classappend="${#fields.hasErrors('*{width}')?'has-error':''}">
                     <input type="number" class="form-control" th:field="*{width}" placeholder="m" style="width: 100%;">
+                    <span th:if="${#fields.hasErrors('*{width}')}" class="err">Szerokość minimalna 8 m.</span>
                 </div>
               </div>
 
@@ -70,7 +77,7 @@ layout:decorator="layout">
                     <label>Rodzaj działki</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <select class="form-control" style="width: 100%;">
+                  <select class="form-control" th:field="*{plotType.id}" style="width: 100%;">
                     <option th:each="plotType : ${plotTypes}" th:value="${plotType.id}" th:text=${plotType.name}></option>
                   </select>
                 </div>
@@ -79,7 +86,7 @@ layout:decorator="layout">
                     <label >Rodzaj drogi</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <select class="form-control" style="width: 100%;">
+                  <select class="form-control" th:field="*{driveType.id}" style="width: 100%;">
                     <option th:each="driveType : ${driveTypes}" th:value="${driveType.id}" th:text="${driveType.name}"></option>
                   </select>
                 </div>
@@ -91,7 +98,7 @@ layout:decorator="layout">
                     <label>Okolica działki</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <select class="form-control" style="width: 100%;">
+                  <select class="form-control" th:field="*{surrounding.id}" style="width: 100%;">
                     <option th:each="surrounding : ${surroundings}" th:value="${surrounding.id}" th:text = "${surrounding.name}"></option>
                   </select>
                 </div>
@@ -99,7 +106,8 @@ layout:decorator="layout">
                   <label>Ulica</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <input class = "form-control" list="street-browsers" style="width:100%;">
+                  <input class = "form-control" th:field="*{address.street.name}" list="street-browsers" style="width:100%;" placeholder="ulica">
+                  <span th:if="${er} == ${true}" class="err">Nazwa ulicy od 5 do 45 znaków.</span>
                   <datalist id="street-browsers">
                     <option th:each = "street : ${streets}" th:value = "${street.name}">
                   </datalist>
@@ -111,7 +119,8 @@ layout:decorator="layout">
                   <label>Miasto</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <input class = "form-control" list="city-browsers" style="width:100%;">
+                  <input class = "form-control" th:field="*{address.city.name}" list="city-browsers" style="width:100%;" placeholder="miasto">
+                  <span th:if="${er} == ${true}" class="err">Nazwa miasta od 3 do 120 znaków.</span>
                   <datalist id="city-browsers">
                     <option th:each = "city : ${cities}" th:value = "${city.name}">
                   </datalist>
@@ -120,7 +129,8 @@ layout:decorator="layout">
                   <label>Państwo</label>
                 </div>
                 <div class="form-group col-md-3">
-                  <input class = "form-control" list="country-browsers" style="width:100%;">
+                  <input class = "form-control" th:field="*{address.country.name}" list="country-browsers" style="width:100%;" placeholder="państwo">
+                  <span th:if="${er} == ${true}" class="err">Nazwa państwa od 5 do 60 znaków.</span>
                   <datalist id="country-browsers">
                     <option th:each = "country : ${countries}" th:value = "${country.name}">
                   </datalist>
@@ -128,14 +138,14 @@ layout:decorator="layout">
               </div>
 
               <div class="form-row form-inline">
-<!-- Budynek -->
+<!-- Building -->
                 <div class="form-group col-md-2">
-                    <label for="plotBuilding">Budynek na działce</label>
+                    <label for="plotBuilding">Budynek</label>
                 </div>
                 <div class="form-group col-md-3">
                   <input class="form-check-input" type="checkbox" id="plotBuilding" th:field="*{building}">
                 </div>
-<!-- Ogrodzenie -->
+<!-- Fence -->
                 <div class="form-group col-md-2">
                     <label>Ogrodzenie</label>
                 </div>
@@ -144,13 +154,14 @@ layout:decorator="layout">
                 </div>
               </div>
 
-<!-- opis -->
+<!-- Description -->
               <div class="form-row form-inline">
                 <div class="form-group col-md-2">
                     <label>Opis</label>
                 </div>
-                <div class="form-group col-md-8">
-                    <textarea type="texta" class="form-control" th:field="*{description}" placeholder="Opis" style="width: 100%; height: 100px;"></textarea>
+                <div class="form-group col-md-8" th:classappend="${#fields.hasErrors('*{description}')?'has-error':''}">
+                    <textarea maxlength="500" name="message" id="message" class="form-control" th:field="*{description}" placeholder="Dodaj opis" style="width: 100%; height: 100px;"></textarea>
+                    <span th:if="${#fields.hasErrors('*{description}')}" class="err">Należy podać opis (5 do 500 znaków).</span>
                 </div>
               </div>
 
@@ -165,6 +176,7 @@ layout:decorator="layout">
     </section>
 
     <!-- Optional JavaScript -->
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

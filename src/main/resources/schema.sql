@@ -2,7 +2,7 @@
 CREATE TABLE city
 (
  id   integer NOT NULL AUTO_INCREMENT ,
- name varchar(45) NOT NULL ,
+ name varchar(45) ,
 
  PRIMARY KEY (id)
 );
@@ -10,7 +10,7 @@ CREATE TABLE city
 CREATE TABLE street
 (
  id   integer NOT NULL AUTO_INCREMENT ,
- name varchar(45) NOT NULL ,
+ name varchar(45) ,
 
  PRIMARY KEY (id)
 );
@@ -18,7 +18,7 @@ CREATE TABLE street
 CREATE TABLE country
 (
  id   integer NOT NULL AUTO_INCREMENT ,
- name varchar(45) NOT NULL ,
+ name varchar(45) ,
 
  PRIMARY KEY (id)
 );
@@ -26,7 +26,7 @@ CREATE TABLE country
 CREATE TABLE plot_type
 (
  id   integer NOT NULL AUTO_INCREMENT ,
- name varchar(45) NOT NULL ,
+ name varchar(45) ,
 
  PRIMARY KEY (id)
 );
@@ -34,7 +34,7 @@ CREATE TABLE plot_type
 CREATE TABLE surrounding
 (
  id   integer NOT NULL AUTO_INCREMENT ,
- name varchar(45) NOT NULL ,
+ name varchar(45) ,
 
  PRIMARY KEY (id)
 );
@@ -51,7 +51,7 @@ CREATE TABLE user
 CREATE TABLE drive_type
 (
  id   integer NOT NULL AUTO_INCREMENT ,
- name varchar(45) NOT NULL ,
+ name varchar(45) ,
 
  PRIMARY KEY (id)
 );
@@ -60,9 +60,9 @@ CREATE TABLE address
 (
  id            integer NOT NULL AUTO_INCREMENT ,
  
- city_id       integer NOT NULL ,
- street_id     integer NOT NULL ,
- country_id    integer NOT NULL ,
+ city_id       integer NOT NULL,
+ street_id     integer NOT NULL,
+ country_id    integer NOT NULL,
 
  PRIMARY KEY (id),
 
@@ -83,13 +83,13 @@ CREATE TABLE offer
  title       varchar(45) NOT NULL ,
  description text NOT NULL ,
  
- fence       bit NOT NULL ,
- building    bit NOT NULL ,
+ fence       bit ,
+ building    bit ,
 
- drive_type_id  integer NOT NULL ,
- plot_type_id   integer NOT NULL ,
- address_id  integer NOT NULL ,
- surrounding_id integer NOT NULL,
+ drive_type_id  integer ,
+ plot_type_id   integer ,
+ address_id  integer ,
+ surrounding_id integer ,
 
  PRIMARY KEY (id),
 
@@ -98,21 +98,7 @@ CREATE TABLE offer
  FOREIGN KEY (plot_type_id) REFERENCES plot_type (id),
  FOREIGN KEY (surrounding_id) REFERENCES surrounding(id)
 );
-
--- ************************************** `offerSurrounding`
--- CREATE TABLE offer_surrounding
--- (
---  id             integer NOT NULL AUTO_INCREMENT ,
---  offer_id       integer NOT NULL ,
---  surrounding_id integer NOT NULL ,
-
---  PRIMARY KEY (id),
---  FOREIGN KEY (offer_id) REFERENCES offer (id),
---  FOREIGN KEY (surrounding_id) REFERENCES surrounding (id)
--- );
-
--- ************************************** `userOffers`
-
+-- ************************************** `user_offer`
 CREATE TABLE user_offers
 (
  id       integer NOT NULL AUTO_INCREMENT ,

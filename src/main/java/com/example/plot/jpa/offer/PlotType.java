@@ -1,6 +1,7 @@
 package com.example.plot.jpa.offer;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -8,13 +9,14 @@ import javax.validation.constraints.Size;
 @Table(name = "plot_type")
 public class PlotType {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
     @Size(max = 45, min = 4)
     @Column(name = "name")
     @NotNull
+    @NotBlank
     private String name;
 
     public PlotType() {

@@ -7,6 +7,7 @@ import com.example.plot.jpa.offer.Surrounding;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,34 +15,35 @@ import javax.validation.constraints.Size;
 @Table(name = "offer")
 public class Offer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Size(max = 45, min = 5)
+    @Size(max = 255, min = 5)
     @Column(name = "title")
     @NotNull
+    @NotBlank
     private String title;
 
-    @Min(5)
+    @Min(8)
     @NotNull
     @Column(name = "length")
     private Integer length;
 
-    @Min(5)
+    @Min(8)
     @NotNull
     @Column(name = "width")
     private Integer width;
 
-    @Min(25)
+    @Min(64)
     @NotNull
     @Column(name = "area")
     private Integer area;
 
     @Lob
-    @Size(max = 60000, min = 5)
+    @Size(max = 500, min = 5)
     @Column(name = "description")
-    @NotNull
+    @NotBlank
     private String description;
 
     @Column(name = "price")
@@ -68,7 +70,7 @@ public class Offer {
     private PlotType plotType;
 
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @NotNull
     private Address address;
 

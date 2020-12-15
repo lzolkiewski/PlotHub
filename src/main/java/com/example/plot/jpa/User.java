@@ -1,6 +1,8 @@
 package com.example.plot.jpa;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -16,11 +18,13 @@ public class User implements Serializable {
     @Size(max = 45, min = 5)
     @Column(name = "password")
     @NotNull
+    @NotBlank
     private String password;
 
     @Size(max = 45, min = 7)
     @Column(name = "email")
     @NotNull
+    @Email
     private String email;
 
     public User() {

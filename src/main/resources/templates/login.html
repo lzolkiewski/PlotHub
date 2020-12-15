@@ -21,8 +21,8 @@ layout:decorator="layout">
           <div class="card-body">
             <!-- switch buttons -->
             <div class="d-flex justify-content-center" style="padding-bottom: 20px;">
-              <button id="login_btn_switch" type="button" class="btn btn-secondary active" style="width: fit-content;" onclick="login_switch()">Logowanie</button>
-              <button id="sign_up_btn_switch" type="button" class="btn btn-secondary" style="width: fit-content;" onclick="sign_up_switch()">Rejestracja</button>
+              <button id="login_btn_switch" type="button" class="btn btn-secondary active" style="width: fit-content; margin-right: 5px;" onclick="login_switch()">Logowanie</button>
+              <button id="sign_up_btn_switch" type="button" class="btn btn-secondary" style="width: fit-content; margin-left: 5px;" onclick="sign_up_switch()">Rejestracja</button>
             </div>
             <!-- login / sing up form -->
             <form id="login_form" th:action="@{/login/createSession}" method="post" th:object = "${user}">

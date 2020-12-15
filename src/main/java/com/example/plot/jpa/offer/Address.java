@@ -12,22 +12,22 @@ import javax.validation.constraints.NotNull;
 @Table(name = "address")
 public class Address {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
     @JoinColumn(name = "city_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @NotNull
     private City city;
 
     @JoinColumn(name = "street_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @NotNull
     private Street street;
 
     @JoinColumn(name = "country_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @NotNull
     private Country country;
 

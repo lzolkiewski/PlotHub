@@ -56,6 +56,10 @@ public class UserService {
         return user;
     }
 
+    public User updateUser(User user) {
+        return entityManager.merge(user);
+    }
+
     public Boolean userExists(LoginRegister user) {
         return getUserByEmail(user) != null;
     }
@@ -63,5 +67,7 @@ public class UserService {
     public Boolean checkPassword(User userDB, LoginRegister user){
         return userDB.getPassword().compareTo(user.getPassword()) == 0;
     }
+
+
 
 }

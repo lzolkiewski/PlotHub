@@ -1,6 +1,8 @@
 package com.example.plot.services;
 
 import com.example.plot.jpa.Offer;
+import com.example.plot.jpa.User;
+import com.example.plot.jpa.UserOffers;
 import com.example.plot.management.OffersFilter;
 import com.example.plot.management.Planer;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -224,7 +227,7 @@ public class OffersService {
         return query.getResultList();
     }
 
-    public Offer createOffer(Offer offer) {
+    public Offer addOffer(Offer offer) {
         entityManager.persist(offer);
 
         return offer;
@@ -255,6 +258,19 @@ public class OffersService {
         return entityManager.createQuery(jpql, Offer.class).getResultList();
     }
 
+    public Boolean addressHasErrors(Offer offer){
+        return  ( offer.getAddress().getCity().getName().compareTo("") == 0
+                || offer.getAddress().getStreet().getName().compareTo("") ==0
+                || offer.getAddress().getCountry().getName().compareTo("") == 0 );
+    }
 
+    public void linkUserWithOffer(Offer offer, User user) {
+        UserOffers userOffers = new UserOffers();
 
+        userOffers.setUser(user);
+        userOffers.setOffer(offer);
+        userOffers.setDate(new Date());
+
+        entityManager.persist(userOffers);
+    }
 }

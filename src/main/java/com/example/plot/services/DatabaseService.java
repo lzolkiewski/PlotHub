@@ -1,6 +1,7 @@
 package com.example.plot.services;
 
 import com.example.plot.jpa.Offer;
+import com.example.plot.jpa.offer.Address;
 import com.example.plot.jpa.offer.Surrounding;
 import com.example.plot.jpa.User;
 import com.example.plot.jpa.offer.DriveType;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 
@@ -41,10 +44,51 @@ public class DatabaseService {
         return entityManager.createQuery(jpql, DriveType.class).getResultList();
     }
 
-    public List<Street> getStreets(){
+    public List<Address> getAddresses() {
+        String jpql = "select a from Address a order by a.id";
+
+        return entityManager.createQuery(jpql, Address.class).getResultList();
+    }
+    public Address getAddressFromDatabase(Address address) {
+        try {
+            String jpql = "select a from Address a where a.street.name = :sn and a.city.name = :cin and a.country.name = :con";
+
+            TypedQuery<Address> query = entityManager.createQuery(jpql, Address.class);
+
+            return query.setParameter("sn", address.getStreet().getName())
+                    .setParameter("cin", address.getCity().getName())
+                    .setParameter("con", address.getCountry().getName())
+                    .getSingleResult();
+        } catch (NoResultException e ) {
+            return null;
+        }
+    }
+    public Address addAddress(Address address) {
+        entityManager.persist(address);
+
+        return address;
+    }
+
+    public List<Street> getStreets() {
         String jpql = "select s from Street s order by s.id";
 
         return entityManager.createQuery(jpql, Street.class).getResultList();
+    }
+    public Street getStreetFromDatabase(Street street) {
+        try {
+            String jpql = "select s from Street s where s.name = :sn";
+
+            TypedQuery<Street> query = entityManager.createQuery(jpql, Street.class);
+
+            return query.setParameter("sn", street.getName()).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+
+    }
+    public void addStreet(Street street) {
+        entityManager.persist(street);
+
     }
 
     public List<Country> getCountries() {
@@ -52,11 +96,41 @@ public class DatabaseService {
 
         return entityManager.createQuery(jpql, Country.class).getResultList();
     }
+    public Country getCountryFromDatabase(Country country) {
+        try {
+            String jpql = "select c from Country c where c.name = :cn";
+
+            TypedQuery<Country> query = entityManager.createQuery(jpql, Country.class);
+
+            return query.setParameter("cn", country.getName()).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    public void addCountry(Country country) {
+        entityManager.persist(country);
+
+    }
 
     public List<City> getCities() {
         String jpql = "select ci from City ci order by ci.id";
 
         return entityManager.createQuery(jpql, City.class).getResultList();
+    }
+    public City getCityFromDatabase(City city) {
+        try {
+            String jpql = "select c from City c where c.name = :cn";
+
+            TypedQuery<City> query = entityManager.createQuery(jpql, City.class);
+
+            return query.setParameter("cn", city.getName()).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    public void addCity(City city) {
+        entityManager.persist(city);
+
     }
 
     public List<Offer> getOffers() {
@@ -71,4 +145,28 @@ public class DatabaseService {
         return entityManager.createQuery(jpql, User.class).getResultList();
     }
 
+    public Address addAddressIfNotExist(Address address) {
+        System.out.println(address.getId() + address.getStreet().getName() + address.getCity().getName() + address.getCountry().getName());
+//        if such address already exists return address form database
+        if ( getAddressFromDatabase(address) != null ){
+            return getAddressFromDatabase(address);
+        }
+//        if there is no such Country add to database
+        if ( getCountryFromDatabase(address.getCountry()) == null ) {
+            addCountry(address.getCountry());
+        }
+        address.setCountry(getCountryFromDatabase(address.getCountry()));
+//        if there is no such city add to database
+        if ( getCityFromDatabase(address.getCity()) == null ) {
+            addCity(address.getCity());
+        }
+        address.setCity(getCityFromDatabase(address.getCity()));
+//        if there is no such street add to database
+        if ( getStreetFromDatabase(address.getStreet()) == null ) {
+            addStreet(address.getStreet());
+        }
+        address.setStreet(getStreetFromDatabase(address.getStreet()));
+
+        return address;
+    }
 }

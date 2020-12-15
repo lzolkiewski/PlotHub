@@ -20,3 +20,8 @@ input::-webkit-inner-spin-button {
 form{
     padding-top: 50px;
 }
+.err{
+    color: red; 
+    font-size: smaller;
+    margin: auto;
+}

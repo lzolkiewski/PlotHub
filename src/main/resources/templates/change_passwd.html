@@ -21,21 +21,39 @@ layout:decorator="layout">
         <div class="card">
           <div class="card-body">
             <!-- login form -->
-            <form id="change_passwd_form" action="">
+            <form id="change_passwd_form" action="/change_passwd/change" th:object = "${changePassword}" method="POST">
                 <!-- login input -->
                 <div class="form-group d-flex justify-content-center">
-                  <input type="password" class="form-control" placeholder="Nowe hasło" >
+                  <div class="col-md-4 d-flex justify-content-end">
+                    Nowe hasło:
+                  </div>
+                  <div class="col-md">
+                    <input type="password" class="form-control" placeholder="Nowe hasło" th:field = "*{newPassword}" pattern="[A-Za-z0-9]{5,45}" required>
+                  </div>
                 </div>
                 <div class="form-group d-flex justify-content-center">
-                  <input type="password" class="form-control" placeholder="Powtóż nowe hasło">
+                  <div class="col-md-4 d-flex justify-content-end">
+                    Powtóż nowe hasło:
+                  </div>
+                  <div class="col-md">
+                    <input type="password" class="form-control" placeholder="Powtóż nowe hasło" th:field = "*{reNewPassword}" pattern="[A-Za-z0-9]{5,45}" required>
+                  </div>
                 </div>
                 <!-- password input -->
                 <div class="form-group d-flex justify-content-center">
-                  <input type="password" class="form-control" placeholder="Potwierdź obecnym hasłem ">
+                  <div class="col-md-4 d-flex justify-content-end">
+                    Obecne hasło: 
+                  </div>
+                  <div class="col-md">
+                    <input type="password" class="form-control" placeholder="Potwierdź obecnym hasłem" th:field = "*{currentPassword}" pattern="[A-Za-z0-9]{5,45}" required>
+                  </div>
                 </div>
+                
+                <span class="d-flex justify-content-center form-group" style="color: red; font-size: small;" th:text = "${err}"></span>
+
                 <div class="d-flex justify-content-center">
-                    <a href="/account" class="btn btn-secondary mb-2">Anuluj</a>
-                    <a href="/account" type="submit" class="btn btn-success mb-2" style="margin-left: 10px;">Zmień hasło</a>
+                  <a href="/account" class="btn btn-secondary mb-2" style="margin-right: 5px;">Anuluj</a>
+                  <input type="submit" class="btn btn-success mb-2" value="Zmień hasło" style="margin-left: 5px; min-width: 150px;"/>
                 </div>
             </form>
           </div>
