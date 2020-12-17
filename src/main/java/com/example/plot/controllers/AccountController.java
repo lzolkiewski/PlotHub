@@ -169,7 +169,7 @@ public class AccountController {
     public String deleteOffer(HttpServletRequest request, @PathVariable("id")Integer id){
         databaseService.removeUserOffer(((User)request.getSession().getAttribute("user")).getId(), id);
         offersService.deleteOffer(id);
-// TODO: 17.12.2020 removing offer
+
         return "redirect:/userOffers/" + ((User)request.getSession().getAttribute("user")).getId();
     }
 
