@@ -26,23 +26,35 @@ layout:decorator="layout">
                   <form action="/offers" method="POST" th:object = "${offersFilter}" name="search-form"> 
 <!-- inputs for area and price -->
                     <div class="form-inline">
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-2">
                         Powierzchnia
                       </div>
-                      <div class="form-group col-md-2">
-                        <input type="number" class="form-control" th:field = "*{areaFrom}" style="width: 100%; margin: 5px;" placeholder="od">
+                      <div class="input-group col-md-2">
+                        <input type="number" class="form-control" th:field = "*{areaFrom}" placeholder="od" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">m2</span>
+                        </div>
                       </div>
-                      <div class="form-group col-md-2">
-                        <input type="number" class="form-control" th:field = "*{areaTo}" style="width: 100%; margin: 5px;" placeholder="do">
+                      <div class="input-group col-md-2">
+                        <input type="number" class="form-control" th:field = "*{areaTo}" placeholder="do" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">m2</span>
+                        </div>
                       </div>
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-2">
                         Cena
                       </div>
-                      <div class="form-group col-md-2">
-                        <input type="number" class="form-control" th:field = "*{priceFrom}" style="width: 100%; margin: 5px;" placeholder="od">
+                      <div class="input-group col-md-2">
+                        <input type="number" class="form-control" th:field = "*{priceFrom}" placeholder="od" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">zł</span>
+                        </div>
                       </div>
-                      <div class="form-group col-md-2">
-                        <input type="number" class="form-control" th:field = "*{priceTo}" style="width: 100%; margin: 5px;" placeholder="do">
+                      <div class="input-group col-md-2">
+                        <input type="number" class="form-control" th:field = "*{priceTo}" placeholder="do" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">zł</span>
+                        </div>
                       </div>
                     </div>
 <!-- selects with plot types and surroundings -->
@@ -50,17 +62,17 @@ layout:decorator="layout">
                       <div class="form-group col-md-2">
                         Typ działki
                       </div>
-                      <div class="form-group col-md-4">
-                        <select class="form-control" th:field = "*{plotTypeId}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-4">
+                        <select class="form-control" th:field = "*{plotTypeId}">
                           <option value="">Typ działki</option>
                           <option th:each = "plotType : ${plotTypes}" th:value="${plotType.id}" th:text = "${plotType.name}"></option>
                         </select>
                       </div>
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-2">
                         Otoczenie
                       </div>
-                      <div class="form-group col-md-4">
-                        <select class="form-control" th:field = "*{surroundingId}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-4">
+                        <select class="form-control" th:field = "*{surroundingId}">
                           <option value="">Otoczenie</option>
                           <option th:each = "surrounding : ${surroundings}" th:value="${surrounding.id}" th:text = "${surrounding.name}"></option>
                         </select>
@@ -68,20 +80,20 @@ layout:decorator="layout">
                     </div>
 <!-- inputs with list of cities and countries -->
                     <div class="form-inline">
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-2">
                         Miasto
                       </div>
-                      <div class="form-group col-md-4">
-                        <input class = "form-control" list="city-browsers" th:field = "*{city}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-4">
+                        <input class = "form-control" list="city-browsers" th:field = "*{city}">
                         <datalist id="city-browsers">
                           <option th:each = "city : ${cities}" th:value = "${city.name}">
                         </datalist>
                       </div>
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-2">
                         Państwo
                       </div>
-                      <div class="form-group col-md-4">
-                        <input class = "form-control" list="country-browsers" th:field = "*{country}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-4">
+                        <input class = "form-control" list="country-browsers" th:field = "*{country}">
                         <datalist id="country-browsers">
                           <option th:each = "country : ${countries}" th:value = "${country.name}">
                         </datalist>
@@ -89,17 +101,17 @@ layout:decorator="layout">
                     </div>
 <!-- checkboxes for fence and building on the plot -->
                     <div class="form-inline">
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-2">
                         Ogrodzenie
                       </div>
-                      <div class="form-group col-md-4">
-                        <input class="form-check-input" type="checkbox" style="margin: 10px;" th:field = "*{fence}">
+                      <div class="input-group col-md-4">
+                        <input class="form-check-input" type="checkbox" th:field = "*{fence}">
                       </div>
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-2">
                         Budynek
                       </div>
-                      <div class="form-group col-md-4">
-                        <input class="form-check-input" type="checkbox" style="margin: 10px;" th:field = "*{building}">
+                      <div class="input-group col-md-4">
+                        <input class="form-check-input" type="checkbox" th:field = "*{building}">
                       </div>
                     </div>
 <!-- apply button -->
@@ -121,101 +133,107 @@ layout:decorator="layout">
                   <form action="/offers" method="POST" th:object = "${planer}">
 <!-- building inputs -->
                     <div class="form-inline">
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-3">
                         Długość budynku
                       </div>
-                      <div class="form-group col-md-4">
-                        <input type="number" class = "form-control" th:field = "*{homeLength}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-3">
+                        <input type="number" class = "form-control" th:field = "*{homeLength}" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">m</span>
+                        </div>
                       </div>
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-3">
                         Szerokość budynku
                       </div>
-                      <div class="form-group col-md-4">
-                        <input type="number" class = "form-control" th:field = "*{homeWidth}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-3">
+                        <input type="number" class = "form-control" th:field = "*{homeWidth}" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">m</span>
+                        </div>
                       </div>
                     </div>
 <!-- garage inputs -->
                     <div class="form-inline">
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-3">
                         Długość garażu
                       </div>
-                      <div class="form-group col-md-4">
-                        <input type="number" class = "form-control" th:field = "*{parkingLength}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-3">
+                        <input type="number" class = "form-control" th:field = "*{parkingLength}" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">m</span>
+                        </div>
                       </div>
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-3">
                         Szerokość garażu
                       </div>
-                      <div class="form-group col-md-4">
-                        <input type="number" class = "form-control" th:field = "*{parkingWidth}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-3">
+                        <input type="number" class = "form-control" th:field = "*{parkingWidth}" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">m</span>
+                        </div>
                       </div>
                     </div>
 <!-- garden inputs -->
                     <div class="form-inline">
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-3">
                         Długość ogrodu
                       </div>
-                      <div class="form-group col-md-4">
-                        <input type="number" class = "form-control" th:field = "*{gardenLength}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-3">
+                        <input type="number" class = "form-control" th:field = "*{gardenLength}" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">m</span>
+                        </div>
                       </div>
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-3">
                         Szerokość ogrodu
                       </div>
-                      <div class="form-group col-md-4">
-                        <input type="number" class = "form-control" th:field = "*{gardenWidth}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-3">
+                        <input type="number" class = "form-control" th:field = "*{gardenWidth}" min="0">
+                        <div class="input-group-append">
+                          <span class="input-group-text">m</span>
+                        </div>
                       </div>
                     </div>
 <!-- checkboxes for well and sewage -->
                     <div class="form-inline">
-                      <div class="form-group col-md-2">
-                        Studnie
-                      </div>
-                      <div class="form-group col-md-4">
-                        <input class="form-check-input" type="checkbox" style="margin: 10px;" th:field = "*{well}">
-                      </div>
-                      <div class="form-group col-md-2">
-                        Zbiornik na nieczystości
-                      </div>
-                      <div class="form-group col-md-4">
-                        <input class="form-check-input" type="checkbox" style="margin: 10px;" th:field = "*{sewage}">
-                      </div>
-                    </div>
-<!-- selects with plot types and surroundings -->
-                    <div class="form-inline">
-                      <div class="form-group col-md-2">
-                        Typ działki
-                      </div>
-                      <div class="form-group col-md-4">
-                        <select class="form-control" th:field = "*{plotTypeId}" style="width:100%; margin: 5px;">
-                          <option value="">Typ działki</option>
-                          <option th:each = "plotType : ${plotTypes}" th:value="${plotType.id}" th:text = "${plotType.name}"></option>
-                        </select>
-                      </div>
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-3">
                         Otoczenie
                       </div>
-                      <div class="form-group col-md-4">
-                        <select class="form-control" th:field = "*{surroundingId}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-3">
+                        <select class="form-control" th:field = "*{surroundingId}" style="width: 100%;">
                           <option value="">Otoczenie</option>
                           <option th:each = "surrounding : ${surroundings}" th:value="${surrounding.id}" th:text = "${surrounding.name}"></option>
                         </select>
                       </div>
+                      <div class="input-group col-md-2">
+                        Studnie
+                      </div>
+                      <div class="input-group col-md-1">
+                        <input class="form-check-input" type="checkbox" th:field = "*{well}">
+                      </div>
+                      <div class="input-group col-md-2">
+                        Szambo
+                      </div>
+                      <div class="input-group col-md-1">
+                        <input class="form-check-input" type="checkbox" th:field = "*{sewage}">
+                      </div>
                     </div>
 <!-- inputs with list of cities and countries -->
                     <div class="form-inline">
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-3">
                         Miasto
                       </div>
-                      <div class="form-group col-md-4">
-                        <input class = "form-control" list="city-browsers" th:field = "*{city}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-3">
+                        <input class = "form-control" list="city-browsers" th:field = "*{city}">
                         <datalist id="city-browsers">
                           <option th:each = "city : ${cities}" th:value = "${city.name}">
                         </datalist>
                       </div>
-                      <div class="form-group col-md-2">
+                      <div class="input-group col-md-3">
                         Państwo
                       </div>
-                      <div class="form-group col-md-4">
-                        <input class = "form-control" list="country-browsers" th:field = "*{country}" style="width:100%; margin: 5px;">
+                      <div class="input-group col-md-3">
+                        <input class = "form-control" list="country-browsers" th:field = "*{country}">
                         <datalist id="country-browsers">
                           <option th:each = "country : ${countries}" th:value = "${country.name}">
                         </datalist>
@@ -231,6 +249,18 @@ layout:decorator="layout">
               </div>
             </div>
           </div>
+<!-- explaination -->
+          <div class="collapse" id="explaination">
+            <div class="card card-body">
+              <div class="panel panel-default">
+                <div class="panel-heading d-flex justify-content-center" style="margin-bottom: 20px;">Co oznacza pomarańczowa ramka?</div>
+                <div class="panel-body">
+                  Pomarańczowa ramka mówi o tym że dana oferta spełnia nasze wymagania maksymalnie w 90%. Przeglądając daną ofertę należy pamiętać o tym, 
+                  że należy przemyśleć nasze wymagania. 
+                </div>
+              </div>
+            </div>
+          </div>
 <!-- sorting / search toggle / planer toggle -->
           <form action="/offers" method="GET" th:object="${offerSorter}" id="offerSorterForm">
             <div class="d-flex bd-highlight mb-3">
@@ -239,10 +269,7 @@ layout:decorator="layout">
                 <a class="btn btn-secondary" data-toggle="collapse" href="#planer" role="button" aria-expanded="false" aria-controls="collapseExample">Planer</a>
               </div>
               <div class="p-2 bd-highlight">
-                <a href="/offers?area=1" class="btn btn-secondary">Powierzchnia</a>
-              </div>
-              <div class="p-2 bd-highlight">
-                <a href="/offers?price=1" class="btn btn-secondary">Cena</a>
+                <a class="btn btn-secondary" data-toggle="collapse" href="#explaination" role="button" aria-expanded="false" aria-controls="collapseExample">Pomarańczowa ramka</a>
               </div>
             </div>
           </form>
@@ -251,17 +278,23 @@ layout:decorator="layout">
           <table class="table">
             <tbody>
               <!-- do tr należy dodać th:each i w odpowiednich miejscahc th:text i th:href-->
-              <tr class="row-offer" th:each = "offer : ${offers}"><!-- tu należy dodać th:each -->
-                <table class="offer">
+              <tr class="row-offer warning" th:each = "offer : ${offers}"><!-- tu należy dodać th:each -->
+                <!--  th:classappend="${expected > offer.area } ? 'warning' :'' " -->
+                <table class="offer" th:classappend="${expected != null && expected > offer.area} ? 'warning' :'' " >
                   <tbody>
                     <tr>
-                      <td class="offer-img text-center" rowspan="2">
+                      <td class="offer-img text-center" rowspan="2" style="color: aliceblue;">
                         <a th:href="|/offer/${offer.id}|"> <!-- tu należy dodać th:href -->
-                          <img src="/images/offers_images/background.jpg" height="150px" width="250px" alt="offer's image" style="border-radius: 25px;"> <!-- tu należy dodać th:src -->
+                          <img src="/images/offers_images/background.jpg" height="150px" width="250px" alt="offer's image" style="border-radius: 25px;">
                         </a>
                       </td>
-                      <td class="text-left offer-title" colspan="4" style="padding-left: 20px;">
-                        <a th:href="|/offer/${offer.id}|" th:text = "${offer.title}"></a>
+                      <td class="text-left offer-title" colspan="2" style="padding-left: 20px;">
+                        <a th:href="|/offer/${offer.id}|" th:text = "${offer.title}" style="max-width: 520;"></a>
+                      </td>
+                      <td class="text-right" colspan="2" style="padding-right: 20px;">
+                        <div th:if = "${expected != null}">
+                          <span th:text = "${offer.area*100/expected &lt 100} ? |${offer.area*100/expected}%| : ''"></span>
+                        </div>
                       </td>
                     </tr>
                     <tr>

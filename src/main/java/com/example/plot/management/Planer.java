@@ -22,10 +22,11 @@ public class Planer {
 //    sewage section
     private Boolean sewage;
 //just some options
-    private Integer plotTypeId;
     private Integer surroundingId;
     private String city;
     private String country;
+
+    private Integer surface;
 
     public Integer getHomeLength() {
         return homeLength;
@@ -41,14 +42,6 @@ public class Planer {
 
     public void setHomeWidth(Integer homeWidth) {
         this.homeWidth = homeWidth;
-    }
-
-    public Integer getPlotTypeId() {
-        return plotTypeId;
-    }
-
-    public void setPlotTypeId(Integer plotTypeId) {
-        this.plotTypeId = plotTypeId;
     }
 
     public Integer getSurroundingId() {
@@ -147,7 +140,15 @@ public class Planer {
         this.gardenWidth = gardenWidth;
     }
 
-//    checking data
+    public Integer getSurface() {
+        return surface;
+    }
+
+    public void setSurface(Integer surface) {
+        this.surface = surface;
+    }
+
+    //    checking data
     public Boolean checkTheNeedToFindCountry(){
         return getCountry()!=null && getCountry().compareTo("")!=0;
     }
@@ -220,65 +221,96 @@ public class Planer {
     }
     //    total calculation
     public Integer calculateSurface() {
-        int surface = 0, totalLength = 0;
+        Integer totalLen = 0;
+        Integer garbageHomeDistance = PlotHub.requirements.getGarbageHomeDist(),
+                sewageHomeDistance = PlotHub.requirements.getSewageHomeDist();
+        Boolean counted = false;
 
-        //        if user chose only home then special condition can be applied
-        if ( !isGarden() && !isParking() && !getSewage() && !getWell() && isHome() ){
-            surface = calculateHomeSurfaceWithGarbage();
-
-        } else {
-            swapLengthsWidths();
-            int sewageDist = PlotHub.requirements.getSewageHomeDist(),
-                garbageDist = PlotHub.requirements.getGarbageHomeDist();
-
-            if ( isHome() ) {
-                totalLength += getHomeLength() + PlotHub.requirements.getHomeBorderDist();
-            }
-            if ( isGarden() ) {
-                totalLength += getGardenLength();
-                sewageDist -= getGardenLength();
-                garbageDist -= getGardenLength();
-            }
-            if ( isParking() ) {
-//                if garden longer than the requirements there is no need to add home distance
-                if ( getGardenLength() < PlotHub.requirements.getGarageHomeDist() ) {
-                    totalLength += PlotHub.requirements.getGarageHomeDist() - getGardenLength();
-                    sewageDist -= PlotHub.requirements.getGarageHomeDist() - getGardenLength();
-                    garbageDist -= PlotHub.requirements.getGarageHomeDist() - getGardenLength();
-                }
-
-                totalLength += getParkingLength();
-                sewageDist -= getParkingLength();
-                garbageDist -= getParkingLength();
-            }
-            if ( getWell() ) {
-//                just one distance needed
-                totalLength += PlotHub.requirements.getWellLength() + PlotHub.requirements.getWellBorderDist();
-            }
-//            garbage
-            if ( isHome() ) {
-                if ( garbageDist > 0 ){
-                    totalLength += garbageDist;
-                    sewageDist -= garbageDist;
-                }
-
-                totalLength += PlotHub.requirements.getGarbageLength() + PlotHub.requirements.getGarbageBorderDist();
-                sewageDist -= PlotHub.requirements.getGarbageLength() + PlotHub.requirements.getGarbageBorderDist();
-            }
-
-            if ( getSewage() ) {
-                if ( totalLength < PlotHub.requirements.getSewageHomeDist() + PlotHub.requirements.getSewageBorderDist() ) {
-                    if (sewageDist > 0) {
-                        totalLength += sewageDist;
-                    }
-                    totalLength += PlotHub.requirements.getSewageBorderDist();
-                }
-            }
-
-            surface = totalLength * getHighestWidth();
+//        well has no home distance and can be used to somehow merge home border distance with well's
+        if ( getWell() ) {
+            totalLen += PlotHub.requirements.getWellLength() + PlotHub.requirements.getWellBorderDist();
         }
-        // TODO: 14.12.2020 add percentage
-        return surface;
+//        add home to total distance
+        if ( isHome() ) {
+//            if there is well the border distance can be skipped
+            if ( getWell() ) {
+                totalLen += getHomeLength();
+            } else {
+                totalLen += getHomeLength() + PlotHub.requirements.getHomeBorderDist();
+            }
+        }
+//        add garden to total distance, it's 3rd as it has no requirements for distances from home or border
+//        it's also place where we start caring about the distance from home for sewage and garbage
+        if ( isGarden() ) {
+            totalLen += gardenLength;
+
+            garbageHomeDistance -= gardenLength;
+            sewageHomeDistance -= gardenLength;
+//            let us also check whether the garden length is enough for garbage to be placed
+            if ( garbageHomeDistance <= 0 ) {
+                totalLen += PlotHub.requirements.getGarbageLength();
+
+                counted = true;
+                sewageHomeDistance -= PlotHub.requirements.getGarbageLength();
+            }
+        }
+//        add garage to total distance
+        if ( isParking() ) {
+//            if there is garbage between garden and parking or garden length is higher than required just add parking length
+            if ( isGarden() && (getGardenLength() >= PlotHub.requirements.getGarbageHomeDist()
+                 || getGardenLength() >= PlotHub.requirements.getParkingHomeDist()) ){
+                totalLen += getParkingLength();
+
+                sewageHomeDistance -= getParkingLength();
+                if ( isGarden() && (getGardenLength() >= PlotHub.requirements.getParkingHomeDist()) ) {
+                    garbageHomeDistance -= getParkingLength();
+                }
+            } else {
+//                if there is no garden add full distance to parking required
+                totalLen += PlotHub.requirements.getParkingHomeDist() + getParkingLength();
+
+                sewageHomeDistance -= PlotHub.requirements.getParkingHomeDist() + getParkingLength();
+                garbageHomeDistance -= PlotHub.requirements.getParkingHomeDist() + getParkingLength();
+//                if there is garden and the length of it is less than required length for parking
+                if ( isGarden() && getGardenLength() < PlotHub.requirements.getParkingHomeDist() ) {
+                    totalLen -= getGardenLength();
+
+                    sewageHomeDistance += getGardenLength();
+                    garbageHomeDistance += getGardenLength();
+                }
+            }
+        } else if ( counted ) {
+//            there is need to add garbage border distance in case there is no garage
+            totalLen += PlotHub.requirements.getGarbageBorderDist();
+
+            sewageHomeDistance -= PlotHub.requirements.getGarbageBorderDist();
+        }
+//        garbage behind the parking if there is home
+        if ( isHome() && !counted ){
+//            if distance is too small it needs to be taken into account
+            if ( garbageHomeDistance > 0 ) {
+                totalLen += garbageHomeDistance;
+
+                sewageHomeDistance -= garbageHomeDistance;
+            }
+//            add the garbage length and garbage required distance from border
+            totalLen += PlotHub.requirements.getGarbageLength() + PlotHub.requirements.getGarbageBorderDist();
+            sewageHomeDistance -= PlotHub.requirements.getGarbageLength() + PlotHub.requirements.getGarbageBorderDist();
+        }
+//        add sewage to total distance
+        if ( getSewage() ) {
+            if ( sewageHomeDistance == 0 ) {
+                totalLen += PlotHub.requirements.getSewageBorderDist();
+            } else if ( sewageHomeDistance < 0 && -sewageHomeDistance > PlotHub.requirements.getGarbageBorderDist() ) {
+                totalLen += PlotHub.requirements.getSewageBorderDist() - PlotHub.requirements.getGarbageBorderDist();
+            } else {
+                totalLen += PlotHub.requirements.getSewageBorderDist() + sewageHomeDistance;
+            }
+        }
+
+        setSurface(totalLen*getHighestWidth());
+
+        return getSurface();
     }
     //    single plot object's surface calculations
     public Integer calculateHomeSurfaceWithGarbage() {

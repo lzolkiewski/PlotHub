@@ -1,6 +1,7 @@
 package com.example.plot.controllers;
 
 import com.example.plot.jpa.User;
+import com.example.plot.jpa.UserOffers;
 import com.example.plot.management.ChangePassword;
 import com.example.plot.services.OffersService;
 import com.example.plot.services.UserService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +19,9 @@ import javax.validation.Valid;
 
 import com.example.plot.jpa.Offer;
 import com.example.plot.services.DatabaseService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AccountController {
@@ -34,6 +39,8 @@ public class AccountController {
         if ( request.getSession().getAttribute("user") == null ){
             return "redirect:/login";
         }
+
+        model.addAttribute("user", (User)request.getSession().getAttribute("user"));
 
         return "account";
     }
@@ -142,4 +149,28 @@ public class AccountController {
 
         return "redirect:/login";
     }
+
+    @GetMapping("/userOffers/{id}")
+    public String userOffers(Model model, @PathVariable("id")Integer id) {
+        List<Offer> offers;
+
+        if (offersService.getUserOffers(id) == null){
+            offers = new ArrayList<>();
+        }else {
+            offers = offersService.getUserOffers(id);
+        }
+
+        model.addAttribute("offers", offers);
+
+        return "user_offers";
+    }
+
+    @GetMapping("/account/delete/{id}")
+    public String deleteOffer(HttpServletRequest request, @PathVariable("id")Integer id){
+//        databaseService.removeUserOffer(((User)request.getSession().getAttribute("user")).getId(), id);
+//        offersService.deleteOffer(id);
+// TODO: 17.12.2020 removing offer
+        return "redirect:/userOffers/" + ((User)request.getSession().getAttribute("user")).getId();
+    }
+
 }

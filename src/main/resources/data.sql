@@ -33,6 +33,7 @@ insert into plot_type
         ('budowlana'),
         ('leśna'),
         ('rekreacyjna'),
+        ('inwestycyjna'),
         ('rolna');
 insert into surrounding
     (name)
@@ -46,9 +47,9 @@ insert into surrounding
 insert into drive_type
     (name)
     values
-        ('gruntowa'),
-        ('asfaltowa'),
-        ('utwardzana');
+        ('gruntowy'),
+        ('asfaltowy'),
+        ('utwardzony');
 insert into address
     (city_id, street_id, country_id)
     values

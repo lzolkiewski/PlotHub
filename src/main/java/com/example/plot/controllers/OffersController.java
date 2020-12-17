@@ -2,7 +2,6 @@ package com.example.plot.controllers;
 
 import com.example.plot.jpa.Offer;
 import com.example.plot.management.OffersFilter;
-import com.example.plot.management.OffersSorter;
 import com.example.plot.management.Planer;
 import com.example.plot.services.DatabaseService;
 import com.example.plot.services.OffersService;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,11 +23,11 @@ public class OffersController {
     private DatabaseService databaseService;
 
     @RequestMapping("/offers")
-    public String offersMapping(Model model, OffersFilter offersFilter, OffersSorter offersSorter, Planer planer) {
+    public String offersMapping(Model model, OffersFilter offersFilter, Planer planer) {
         List<Offer> offers;
-
 //        differentiate between offersFilter and planer
         if (offersFilter.checkTheNeedToFindBuilding() || offersFilter.checkTheNeedToFindFence()
+                || offersFilter.getPlotTypeId() != null || offersFilter.getSurroundingId() != null
                 || offersFilter.getAreaFrom() != null || offersFilter.getAreaTo() != null
                 || offersFilter.getPriceFrom() != null || offersFilter.getPriceTo() != null) {
             offers = offersService.getFilteredOffers(offersFilter);
@@ -36,6 +36,7 @@ public class OffersController {
         }
 
 //        model all necessary attributes
+        model.addAttribute("expected", planer.getSurface());
         model.addAttribute("offers", offers);
         model.addAttribute("plotTypes", databaseService.getPlotTypes());
         model.addAttribute("surroundings", databaseService.getSurroundings());
@@ -46,11 +47,12 @@ public class OffersController {
     }
 
     @GetMapping("/offer/{id}")
-    public String offerMapping(Model model, @PathVariable("id")Integer id){
+    public String offerMapping(Model model, @PathVariable("id")Integer id) {
         model.addAttribute("offer", offersService.getOfferById(id));
+        model.addAttribute("date", databaseService.getUserOffersById(id));
         // TODO: 14.12.2020 model offer user to get his e-mail add e-mail option in offer.html
         return "offer";
     }
-//    dodać podgląd oferty / edycję oferty /
+// TODO: 17.12.2020 add saving pictures and add pictures to database
 
 }

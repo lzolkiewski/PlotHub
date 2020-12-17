@@ -21,18 +21,21 @@ layout:decorator="layout">
               <h3 th:text = "${offer.title}"></h3>
             </div>
 <!-- surface / price placement -->
-            <div class="form-inline form-group" style="margin-top: 30px;">
+            <div class="form-inline form-group">
               <div class="col-md d-flex justify-content-start">
-                <div class="col-md-6 d-flex justify-content-center el" th:text = "|${#numbers.formatDecimal(offer.area, 0, 'WHITESPACE', 0,'COMMA')} m2|"></div>
+                <div class="col-md-7 d-flex justify-content-center el" th:text = "|Powierzchnia: ${#numbers.formatDecimal(offer.area, 0, 'WHITESPACE', 0,'COMMA')} m2|"></div>
               </div>
-              <div class="col-md-5 d-flex justify-content-end">
-                <div class="col-md-6 d-flex justify-content-center el">
-                  <div th:text = "|${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 0,'COMMA')} zł|"></div>
-                </div>
+              <div class="col-md d-flex justify-content-end">
+                <div class="col-md-7 d-flex justify-content-center el" th:text = "|Cena: ${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 0,'COMMA')} zł|"></div>
               </div>
             </div> 
+<!-- miejsce na obrazek -->
+            <div style="margin-top: 200px;"></div>
 <!-- plot type, drive type, surrounding -->
-            <div class="form-inline form-group col-md" style="margin-top: 200px;">
+            <div class="col-md">
+              <label class="col-md">Szczegóły</label>
+            </div>
+            <div class="form-inline form-group col-md">
                 <div class="col-md d-flex justify-content-center el" th:text = "|Działka: ${offer.plotType.name}|"></div>
                 <div class="col-md d-flex justify-content-center el" th:text = "|Okolica: ${offer.surrounding.name}|"></div>
                 <div class="col-md d-flex justify-content-center el" th:text = "|Dojazd: ${offer.driveType.name}|"></div>
@@ -46,11 +49,13 @@ layout:decorator="layout">
           </div>
 <!-- description placement -->
             <div class="form-group col-md" style="margin-top: 50px;">
+              <label class="col-md">Opis</label>
               <div class="col-md d-flex justify-content-center el" th:text = "${offer.description}"></div>
             </div>
 <!-- date placement -->
             <div class="form-group col-md">
-              <div class="col-md-2 d-flex justify-content-center form-group el">Dodano: 12.12.2012</div>
+              <label class="col-md-2">Data dodania</label>
+              <span class="col-md-2 d-flex justify-content-center form-group el" th:text = "${#dates.format(date.date, 'dd-MM-yyyy')}"></span>
             </div>
             <div class="d-flex justify-content-center form-group">
               <a href="/offers" class="btn btn-secondary" style="margin-right: 5px;">Powrót</a>

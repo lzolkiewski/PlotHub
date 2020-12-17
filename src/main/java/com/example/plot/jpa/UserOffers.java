@@ -12,13 +12,13 @@ public class UserOffers {
     @Column(name = "id")
     private Integer Id;
 
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @NotNull
     private User user;
 
-    @JoinColumn(name = "offer_id", referencedColumnName = "id")
     @ManyToOne
+    @JoinColumn(name = "offer_id", referencedColumnName = "id")
     @NotNull
     private Offer offer;
 

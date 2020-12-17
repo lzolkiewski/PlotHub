@@ -4,6 +4,7 @@ import com.example.plot.jpa.Offer;
 import com.example.plot.jpa.offer.Address;
 import com.example.plot.jpa.offer.Surrounding;
 import com.example.plot.jpa.User;
+import com.example.plot.jpa.UserOffers;
 import com.example.plot.jpa.offer.DriveType;
 import com.example.plot.jpa.offer.PlotType;
 import com.example.plot.jpa.offer.address.City;
@@ -169,4 +170,21 @@ public class DatabaseService {
 
         return address;
     }
+
+    public UserOffers getUserOffersById(Integer id) {
+        return entityManager.find(UserOffers.class, id);
+    }
+    public UserOffers getUserOffer(Integer user_id, Integer offer_id) {
+        String jpql = "select uo from UserOffers uo where uo.user.id = :ui and uo.offer.id = :oi";
+
+        TypedQuery<UserOffers>query = entityManager.createQuery(jpql, UserOffers.class);
+
+        return query.setParameter("ui", user_id).setParameter("oi", offer_id).getSingleResult();
+    }
+    public void removeUserOffer(Integer user_id, Integer offer_id){
+        UserOffers userOffers = getUserOffer(user_id, offer_id);
+
+        entityManager.remove(userOffers);
+    }
+
 }

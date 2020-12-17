@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -156,46 +158,39 @@ public class OffersService {
             query.setParameter("cin", offersFilter.getCity());
         }
 
+        
+
         return query.getResultList();
     }
 
     public List<Offer> getPlanerOffers(Planer planer) {
         String jpql = "select o from Offer o";
 
-        if ( planer.getPlotTypeId()!=null || (planer.getSurroundingId()!=null)
-                || planer.checkTheNeedToFindCity() || planer.checkTheNeedToFindCountry()
-                || planer.checkTheNeedToCalculateSurface() ) {
+        if ( (planer.getSurroundingId()!=null) || planer.checkTheNeedToFindCity()
+              || planer.checkTheNeedToFindCountry() || planer.checkTheNeedToCalculateSurface() ) {
             jpql+= " where";
 
-            if ( planer.getPlotTypeId() != null ) {
-                jpql += " o.plotType.id = :pti";
-            }
             if ( planer.getSurroundingId() != null ) {
-                if ( planer.getPlotTypeId() != null ) {
-                    jpql += " and";
-                }
-
                 jpql += " o.id = :si";
 //                jpql += " o.id = (select os.offer.id from OfferSurrounding os where os.surrounding.id = :si)";
             }
             if ( planer.checkTheNeedToFindCity() ) {
-                if ( planer.getPlotTypeId()!=null || planer.getSurroundingId()!=null ) {
+                if ( planer.getSurroundingId()!=null ) {
                     jpql+=" and";
                 }
 
                 jpql += " o.address.city.name = :cin";
             }
             if ( planer.checkTheNeedToFindCountry() ) {
-                if ( planer.getPlotTypeId()!=null || planer.getSurroundingId()!=null
-                        || planer.checkTheNeedToFindCity() ){
+                if ( planer.getSurroundingId()!=null || planer.checkTheNeedToFindCity() ){
                     jpql+=" and";
                 }
 
                 jpql += " o.address.country.name = :con";
             }
             if ( planer.checkTheNeedToCalculateSurface() ) {
-                if ( planer.getPlotTypeId()!=null || planer.getSurroundingId()!=null
-                        || planer.checkTheNeedToFindCity() || planer.checkTheNeedToFindCountry() ) {
+                if ( planer.getSurroundingId()!=null || planer.checkTheNeedToFindCity()
+                     || planer.checkTheNeedToFindCountry() ) {
                     jpql+=" and";
                 }
 
@@ -207,9 +202,6 @@ public class OffersService {
 
         TypedQuery<Offer> query = entityManager.createQuery(jpql, Offer.class);
 
-        if ( planer.getPlotTypeId()!=null ) {
-            query.setParameter("pti", planer.getPlotTypeId());
-        }
         if ( planer.getSurroundingId()!=null ) {
             query.setParameter("si", planer.getSurroundingId());
         }
@@ -220,8 +212,10 @@ public class OffersService {
             query.setParameter("con", planer.getCountry());
         }
         if ( planer.checkTheNeedToCalculateSurface() ) {
-            query.setParameter("sur", planer.calculateSurface());
+            query.setParameter("sur", (int)(planer.calculateSurface() * 0.9));
+
             System.out.println(planer.calculateSurface());
+            System.out.println(planer.calculateSurface()*0.9);
         }
 
         return query.getResultList();
@@ -233,12 +227,11 @@ public class OffersService {
         return offer;
     }
 
-    public Offer deleteOffer(Integer id) {
+    public void deleteOffer(Integer id) {
         Offer offer = entityManager.find(Offer.class, id);
 
         entityManager.remove(offer);
-
-        return offer;
+//        entityManager.createQuery("delete from Offer o where o.id = :id").setParameter("id", id).executeUpdate();
     }
 
     public Offer saveOffer(Offer offer) {
@@ -272,5 +265,17 @@ public class OffersService {
         userOffers.setDate(new Date());
 
         entityManager.persist(userOffers);
+    }
+
+    public List<Offer>getUserOffers(Integer id){
+        try {
+            String jpql = "select offer from Offer offer join UserOffers uo on uo.offer.id = offer.id where uo.user.id = :id";
+
+            TypedQuery<Offer>query = entityManager.createQuery(jpql, Offer.class);
+
+            return query.setParameter("id", id).getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

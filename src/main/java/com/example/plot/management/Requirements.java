@@ -5,9 +5,9 @@ public class Requirements {
     private Integer homeBorderDist;
     private Integer homeBorderDistEx;
 //    garage part
-    private Integer garageHomeDist;
-    private Double garagePositionWidth;
-    private Integer garagePositionLength;
+    private Integer parkingHomeDist;
+    private Integer parkingPositionWidth;
+    private Integer parkingPositionLength;
 //    garbage part
     private Integer garbageBorderDist;
     private Integer garbageHomeDist;
@@ -39,28 +39,28 @@ public class Requirements {
         this.homeBorderDistEx = homeBorderDistEx;
     }
 
-    public Integer getGarageHomeDist() {
-        return garageHomeDist;
+    public Integer getParkingHomeDist() {
+        return parkingHomeDist;
     }
 
-    public void setGarageHomeDist(Integer garageHomeDist) {
-        this.garageHomeDist = garageHomeDist;
+    public void setParkingHomeDist(Integer garageHomeDist) {
+        this.parkingHomeDist = garageHomeDist;
     }
 
-    public Double getGaragePositionWidth() {
-        return garagePositionWidth;
+    public Integer getParkingPositionWidth() {
+        return parkingPositionWidth;
     }
 
-    public void setGaragePositionWidth(Double garagePositionWidth) {
-        this.garagePositionWidth = garagePositionWidth;
+    public void setParkingPositionWidth(Integer garagePositionWidth) {
+        this.parkingPositionWidth = garagePositionWidth;
     }
 
-    public Integer getGaragePositionLength() {
-        return garagePositionLength;
+    public Integer getParkingPositionLength() {
+        return parkingPositionLength;
     }
 
-    public void setGaragePositionLength(Integer garagePositionLength) {
-        this.garagePositionLength = garagePositionLength;
+    public void setParkingPositionLength(Integer garagePositionLength) {
+        this.parkingPositionLength = garagePositionLength;
     }
 
     public Integer getGarbageBorderDist() {

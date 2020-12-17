@@ -38,16 +38,22 @@ layout:decorator="layout">
                   <div class="form-group col-md-2">
                       <label>Cena</label>
                   </div>
-                  <div class="form-group col-md-3" th:classappend="${#fields.hasErrors('*{price}')?'has-error':''}">
-                    <input type="number" class="form-control" th:field="*{price}" placeholder="zł" style="width: 100%;">
+                  <div class="input-group col-md-3" th:classappend="${#fields.hasErrors('*{price}')?'has-error':''}">
+                    <input type="number" class="form-control" th:field="*{price}" placeholder="zł" min="0">
+                    <div class="input-group-append">
+                      <span class="input-group-text">zł</span>
+                    </div>
                     <span th:if="${#fields.hasErrors('*{price}')}" class="err">Cena nie mniejsza od 0</span>
                   </div>
 <!-- Powierzchnia -->
                   <div class="form-group col-md-2">
                       <label>Powierzchnia</label>
                   </div>
-                  <div class="form-group col-md-3" th:classappend="${#fields.hasErrors('*{area}')?'has-error':''}">
-                      <input type="number" class="form-control" th:field="*{area}" placeholder="m2" style="width: 100%;">
+                  <div class="input-group col-md-3" th:classappend="${#fields.hasErrors('*{area}')?'has-error':''}">
+                    <input type="number" class="form-control" th:field="*{area}" placeholder="m2" min="64">
+                    <div class="input-group-append">
+                      <span class="input-group-text">m2</span>
+                    </div>
                     <span th:if="${#fields.hasErrors('*{area}')}" class="err">Powierzchnia minimalna 64 m2.</span>
                   </div>
               </div>
@@ -57,20 +63,25 @@ layout:decorator="layout">
                 <div class="form-group col-md-2">
                     <label>Długość działki</label>
                 </div>
-                <div class="form-group col-md-3" th:classappend="${#fields.hasErrors('*{length}')?'has-error':''}">
-                    <input type="number" class="form-control" th:field="*{length}" placeholder="m" style="width: 100%;">
+                <div class="input-group col-md-3" th:classappend="${#fields.hasErrors('*{length}')?'has-error':''}">
+                    <input type="number" class="form-control" th:field="*{length}" placeholder="m" min="8">
+                    <div class="input-group-append">
+                      <span class="input-group-text">m</span>
+                    </div>
                     <span th:if="${#fields.hasErrors('*{length}')}" class="err">Długość minimalna 8 m.</span>
                 </div>
 <!-- Szerokość działki -->
                 <div class="form-group col-md-2">
                     <label>Szerokość działki</label>
                 </div>
-                <div class="form-group col-md-3" th:classappend="${#fields.hasErrors('*{width}')?'has-error':''}">
-                    <input type="number" class="form-control" th:field="*{width}" placeholder="m" style="width: 100%;">
+                <div class="input-group col-md-3" th:classappend="${#fields.hasErrors('*{width}')?'has-error':''}">
+                    <input type="number" class="form-control" th:field="*{width}" placeholder="m" min="8">
+                    <div class="input-group-append">
+                      <span class="input-group-text">m</span>
+                    </div>
                     <span th:if="${#fields.hasErrors('*{width}')}" class="err">Szerokość minimalna 8 m.</span>
                 </div>
               </div>
-
               <div class="form-row form-inline">
 <!-- Rodzaj działki -->
                 <div class="form-group col-md-2">

@@ -2,9 +2,9 @@
   "homeBorderDist": 4,
   "homeBorderDistEx": 2,
   
-  "garageHomeDist": 7,
-  "garagePositionWidth": 2.3,
-  "garagePositionLength": 5,
+  "parkingHomeDist": 7,
+  "parkingPositionWidth": 3,
+  "parkingPositionLength": 5,
   
   "garbageHomeDist": 10,
   "garbageBorderDist": 3,

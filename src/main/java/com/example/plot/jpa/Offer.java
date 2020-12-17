@@ -74,6 +74,8 @@ public class Offer {
     @NotNull
     private Address address;
 
+
+
     @JoinColumn(name = "surrounding_id", referencedColumnName = "id")
     @ManyToOne
     @NotNull
