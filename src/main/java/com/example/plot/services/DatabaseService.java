@@ -182,9 +182,8 @@ public class DatabaseService {
         return query.setParameter("ui", user_id).setParameter("oi", offer_id).getSingleResult();
     }
     public void removeUserOffer(Integer user_id, Integer offer_id){
-        UserOffers userOffers = getUserOffer(user_id, offer_id);
-
-        entityManager.remove(userOffers);
+        entityManager.createQuery("delete from UserOffers uo where uo.user.id = :ui and uo.offer.id = :oi").
+                setParameter("ui", user_id).setParameter("oi", offer_id).executeUpdate();
     }
 
 }

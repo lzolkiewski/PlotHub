@@ -228,10 +228,7 @@ public class OffersService {
     }
 
     public void deleteOffer(Integer id) {
-        Offer offer = entityManager.find(Offer.class, id);
-
-        entityManager.remove(offer);
-//        entityManager.createQuery("delete from Offer o where o.id = :id").setParameter("id", id).executeUpdate();
+        entityManager.createQuery("delete from Offer o where o.id = :id").setParameter("id", id).executeUpdate();
     }
 
     public Offer saveOffer(Offer offer) {
