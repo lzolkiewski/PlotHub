@@ -49,10 +49,11 @@ public class OffersController {
     @GetMapping("/offer/{id}")
     public String offerMapping(Model model, @PathVariable("id")Integer id) {
         model.addAttribute("offer", offersService.getOfferById(id));
+        model.addAttribute("email", databaseService.getUserEmail(id));
+        
         model.addAttribute("date", databaseService.getUserOffersById(id));
         // TODO: 14.12.2020 model offer user to get his e-mail add e-mail option in offer.html
         return "offer";
     }
-// TODO: 17.12.2020 add saving pictures and add pictures to database
 
 }

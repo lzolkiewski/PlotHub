@@ -247,7 +247,7 @@ public class Planer {
             garbageHomeDistance -= gardenLength;
             sewageHomeDistance -= gardenLength;
 //            let us also check whether the garden length is enough for garbage to be placed
-            if ( garbageHomeDistance <= 0 ) {
+            if ( garbageHomeDistance <= 0 && isHome() ) {
                 totalLen += PlotHub.requirements.getGarbageLength();
 
                 counted = true;
@@ -258,7 +258,8 @@ public class Planer {
         if ( isParking() ) {
 //            if there is garbage between garden and parking or garden length is higher than required just add parking length
             if ( isGarden() && (getGardenLength() >= PlotHub.requirements.getGarbageHomeDist()
-                 || getGardenLength() >= PlotHub.requirements.getParkingHomeDist()) ){
+                 || getGardenLength() >= PlotHub.requirements.getParkingHomeDist()) 
+                 || !isHome() ){
                 totalLen += getParkingLength();
 
                 sewageHomeDistance -= getParkingLength();
@@ -298,7 +299,7 @@ public class Planer {
             sewageHomeDistance -= PlotHub.requirements.getGarbageLength() + PlotHub.requirements.getGarbageBorderDist();
         }
 //        add sewage to total distance
-        if ( getSewage() ) {
+        if ( getSewage() && isHome() ) {
             if ( sewageHomeDistance == 0 ) {
                 totalLen += PlotHub.requirements.getSewageBorderDist();
             } else if ( sewageHomeDistance < 0 && -sewageHomeDistance > PlotHub.requirements.getGarbageBorderDist() ) {

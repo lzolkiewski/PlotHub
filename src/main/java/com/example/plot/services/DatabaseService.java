@@ -28,35 +28,24 @@ public class DatabaseService {
     EntityManager entityManager;
 
     public List<PlotType> getPlotTypes() {
-        String jpql = "select pt from PlotType pt order by pt.id";
-
-        return entityManager.createQuery(jpql, PlotType.class).getResultList();
+        return entityManager.createQuery("select pt from PlotType pt order by pt.id", PlotType.class).getResultList();
     }
 
     public List<Surrounding> getSurroundings() {
-        String jpql = "select s from Surrounding s order by s.id";
-
-        return entityManager.createQuery(jpql, Surrounding.class).getResultList();
+        return entityManager.createQuery("select s from Surrounding s order by s.id", Surrounding.class).getResultList();
     }
 
     public List<DriveType> getDriveTypes() {
-        String jpql = "select dt from DriveType dt order by dt.id";
-
-        return entityManager.createQuery(jpql, DriveType.class).getResultList();
+        return entityManager.createQuery("select dt from DriveType dt order by dt.id", DriveType.class).getResultList();
     }
 
-    public List<Address> getAddresses() {
-        String jpql = "select a from Address a order by a.id";
-
-        return entityManager.createQuery(jpql, Address.class).getResultList();
+    public List<Address> getAddresses() { 
+        return entityManager.createQuery("select a from Address a order by a.id", Address.class).getResultList();
     }
     public Address getAddressFromDatabase(Address address) {
         try {
-            String jpql = "select a from Address a where a.street.name = :sn and a.city.name = :cin and a.country.name = :con";
-
-            TypedQuery<Address> query = entityManager.createQuery(jpql, Address.class);
-
-            return query.setParameter("sn", address.getStreet().getName())
+            return entityManager.createQuery("select a from Address a where a.street.name = :sn and a.city.name = :cin and a.country.name = :con", Address.class)
+                    .setParameter("sn", address.getStreet().getName())
                     .setParameter("cin", address.getCity().getName())
                     .setParameter("con", address.getCountry().getName())
                     .getSingleResult();
@@ -71,17 +60,13 @@ public class DatabaseService {
     }
 
     public List<Street> getStreets() {
-        String jpql = "select s from Street s order by s.id";
-
-        return entityManager.createQuery(jpql, Street.class).getResultList();
+        return entityManager.createQuery("select s from Street s order by s.id", Street.class).getResultList();
     }
     public Street getStreetFromDatabase(Street street) {
         try {
-            String jpql = "select s from Street s where s.name = :sn";
-
-            TypedQuery<Street> query = entityManager.createQuery(jpql, Street.class);
-
-            return query.setParameter("sn", street.getName()).getSingleResult();
+            return entityManager.createQuery("select s from Street s where s.name = :sn", Street.class)
+                    .setParameter("sn", street.getName())
+                    .getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
@@ -89,65 +74,47 @@ public class DatabaseService {
     }
     public void addStreet(Street street) {
         entityManager.persist(street);
-
     }
 
     public List<Country> getCountries() {
-        String jpql = "select co from Country co order by co.id";
-
-        return entityManager.createQuery(jpql, Country.class).getResultList();
+        return entityManager.createQuery("select co from Country co order by co.id", Country.class).getResultList();
     }
     public Country getCountryFromDatabase(Country country) {
         try {
-            String jpql = "select c from Country c where c.name = :cn";
-
-            TypedQuery<Country> query = entityManager.createQuery(jpql, Country.class);
-
-            return query.setParameter("cn", country.getName()).getSingleResult();
+            return entityManager.createQuery("select c from Country c where c.name = :cn", Country.class)
+                    .setParameter("cn", country.getName()).getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
     }
     public void addCountry(Country country) {
         entityManager.persist(country);
-
     }
 
     public List<City> getCities() {
-        String jpql = "select ci from City ci order by ci.id";
-
-        return entityManager.createQuery(jpql, City.class).getResultList();
+        return entityManager.createQuery("select ci from City ci order by ci.id", City.class).getResultList();
     }
     public City getCityFromDatabase(City city) {
         try {
-            String jpql = "select c from City c where c.name = :cn";
-
-            TypedQuery<City> query = entityManager.createQuery(jpql, City.class);
-
-            return query.setParameter("cn", city.getName()).getSingleResult();
+            return entityManager.createQuery("select c from City c where c.name = :cn", City.class)
+                    .setParameter("cn", city.getName()).getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
     }
     public void addCity(City city) {
         entityManager.persist(city);
-
     }
 
     public List<Offer> getOffers() {
-        String jpql = "select o from City o order by o.id";
-
-        return entityManager.createQuery(jpql, Offer.class).getResultList();
+        return entityManager.createQuery("select o from City o order by o.id", Offer.class).getResultList();
     }
 
     public List<User> getUsers() {
-        String jpql = "select u from User u order by u.id";
-
-        return entityManager.createQuery(jpql, User.class).getResultList();
+        return entityManager.createQuery("select u from User u order by u.id", User.class).getResultList();
     }
 
     public Address addAddressIfNotExist(Address address) {
-        System.out.println(address.getId() + address.getStreet().getName() + address.getCity().getName() + address.getCountry().getName());
 //        if such address already exists return address form database
         if ( getAddressFromDatabase(address) != null ){
             return getAddressFromDatabase(address);
@@ -174,16 +141,14 @@ public class DatabaseService {
     public UserOffers getUserOffersById(Integer id) {
         return entityManager.find(UserOffers.class, id);
     }
-    public UserOffers getUserOffer(Integer user_id, Integer offer_id) {
-        String jpql = "select uo from UserOffers uo where uo.user.id = :ui and uo.offer.id = :oi";
-
-        TypedQuery<UserOffers>query = entityManager.createQuery(jpql, UserOffers.class);
-
-        return query.setParameter("ui", user_id).setParameter("oi", offer_id).getSingleResult();
-    }
     public void removeUserOffer(Integer user_id, Integer offer_id){
-        entityManager.createQuery("delete from UserOffers uo where uo.user.id = :ui and uo.offer.id = :oi").
-                setParameter("ui", user_id).setParameter("oi", offer_id).executeUpdate();
+        entityManager.createQuery("delete from UserOffers uo where uo.user.id = :ui and uo.offer.id = :oi")
+                .setParameter("ui", user_id).setParameter("oi", offer_id).executeUpdate();
+    }
+
+    public String getUserEmail(Integer id) {
+        return entityManager.createQuery("select u.email from User u where u.id = (select uo.user.id from UserOffers uo where uo.offer.id = :id)")
+                .setParameter("id", id).getSingleResult().toString();
     }
 
 }

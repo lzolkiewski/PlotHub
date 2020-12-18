@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -213,9 +212,6 @@ public class OffersService {
         }
         if ( planer.checkTheNeedToCalculateSurface() ) {
             query.setParameter("sur", (int)(planer.calculateSurface() * 0.9));
-
-            System.out.println(planer.calculateSurface());
-            System.out.println(planer.calculateSurface()*0.9);
         }
 
         return query.getResultList();

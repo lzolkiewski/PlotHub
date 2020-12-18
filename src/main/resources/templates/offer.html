@@ -11,6 +11,25 @@ layout:decorator="layout">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/offer.css">
+
+    <script>
+      function myFunction() {
+        /* Get the text field */
+        var copyText = document.getElementById("myInput");
+        /* change type to text to make it possible to copy */
+        copyText.type = 'text';
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+        /* change type to hidden to make it invisible */
+        copyText.type = 'hidden';
+        /* Alert the copied text */
+        alert("Skopiowany e-mail: " + copyText.value);
+      }
+    </script>
+
   </head>
   <body>
       <section layout:fragment="content">
@@ -59,18 +78,8 @@ layout:decorator="layout">
             </div>
             <div class="d-flex justify-content-center form-group">
               <a href="/offers" class="btn btn-secondary" style="margin-right: 5px;">Powrót</a>
-              <button class="btn btn-success" type="button" data-toggle="modal" data-target="#my-modal" style="margin-left: 5px;">Napisz do sprzedającego</button>
-            </div>
-          </div>
-        </div>
-
-<!-- e-mail modal -->
-        <div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <p>Content</p>
-              </div>
+              <input type="hidden" id="myInput" th:value="${email}">
+              <a th:href="|mailto:${email}|" class="btn btn-success" onclick="myFunction()">Mail sprzedającego</a>
             </div>
           </div>
         </div>

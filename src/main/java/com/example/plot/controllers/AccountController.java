@@ -1,7 +1,6 @@
 package com.example.plot.controllers;
 
 import com.example.plot.jpa.User;
-import com.example.plot.jpa.UserOffers;
 import com.example.plot.management.ChangePassword;
 import com.example.plot.services.OffersService;
 import com.example.plot.services.UserService;
@@ -45,6 +44,7 @@ public class AccountController {
         return "account";
     }
 
+    // TODO: 17.12.2020 add saving pictures and add pictures to database
     @GetMapping("/new_offer")
     public String newOfferMapping(Model model, Offer offer, HttpServletRequest request){
         if ( request.getSession().getAttribute("user") == null ){

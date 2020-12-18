@@ -23,9 +23,7 @@ public class UserService {
 
     public User getUserByEmail(LoginRegister user){
         try {
-            String jpql = "select u from User u where u.email = :em";
-
-            TypedQuery<User> query = entityManager.createQuery(jpql, User.class);
+            TypedQuery<User> query = entityManager.createQuery("select u from User u where u.email = :em", User.class);
 
             if ( user.getEmail() != null ){
                 query.setParameter("em", user.getEmail());
