@@ -19,10 +19,10 @@ public class Offer {
     @Column(name = "id")
     private Integer id;
 
-    @Size(max = 255, min = 5)
+    @Size(max = 255, min = 4)
     @Column(name = "title")
     @NotNull
-    @NotBlank
+    // @NotBlank
     private String title;
 
     @Min(8)

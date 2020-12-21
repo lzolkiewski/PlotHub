@@ -52,7 +52,6 @@ public class OffersController {
         model.addAttribute("email", databaseService.getUserEmail(id));
         
         model.addAttribute("date", databaseService.getUserOffersById(id));
-        // TODO: 14.12.2020 model offer user to get his e-mail add e-mail option in offer.html
         return "offer";
     }
 

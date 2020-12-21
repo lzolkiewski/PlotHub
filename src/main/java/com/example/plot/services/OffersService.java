@@ -211,7 +211,7 @@ public class OffersService {
             query.setParameter("con", planer.getCountry());
         }
         if ( planer.checkTheNeedToCalculateSurface() ) {
-            query.setParameter("sur", (int)(planer.calculateSurface() * 0.9));
+                query.setParameter("sur", (int)(planer.calculateSurface() * 0.9));
         }
 
         return query.getResultList();

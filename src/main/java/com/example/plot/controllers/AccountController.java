@@ -68,8 +68,10 @@ public class AccountController {
         if ( request.getSession().getAttribute("user") == null ){
             return "redirect:/login";
         }
+        System.out.println(offer.getTitle().length());
 //        if some errors remain on the same page
-        if ( bindingResult.hasErrors() && offersService.addressHasErrors(offer) ) {
+        if ( bindingResult.hasErrors() || offersService.addressHasErrors(offer) 
+             || offer.getTitle().length() < 4 ) {
             model.addAttribute("offer", offer);
             model.addAttribute("plotTypes", databaseService.getPlotTypes());
             model.addAttribute("driveTypes", databaseService.getDriveTypes());
