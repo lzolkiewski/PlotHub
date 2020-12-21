@@ -20,6 +20,9 @@ layout:decorator="layout">
       <!-- login / rejestracja -->
       <div class="login-content">
         <div class="card">
+            <div class="card-header d-flex justify-content-center">
+              <h4>Nowa oferta</h4>
+            </div>
           <div class="card-body">
             <form method="POST" th:action="@{/new_offer}" th:object="${offer}" style="padding-left: 10%;">
 <!-- tytuł -->

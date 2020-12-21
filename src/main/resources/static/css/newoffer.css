@@ -17,9 +17,7 @@ input::-webkit-inner-spin-button {
     background-color: rgb(37, 35, 35);
     border: 2px solid rgb(131, 131, 131);
 }
-form{
-    padding-top: 50px;
-}
+
 .err{
     color: red; 
     font-size: smaller;
