@@ -1,7 +1,9 @@
 package com.example.plot.management;
 
 
-public class OffersFilter {
+import java.io.Serializable;
+
+public class OffersFilter implements Serializable {
     private Integer areaFrom;
     private Integer areaTo;
     private Integer priceFrom;

@@ -194,10 +194,12 @@ public class OffersService {
                 }
 
                 jpql += " o.area >= :sur";
+
+                jpql += " and o.width >= :wid";
             }
         }
 
-        jpql+=" order by o.id";
+        jpql+=" order by o.area";
 
         TypedQuery<Offer> query = entityManager.createQuery(jpql, Offer.class);
 
@@ -211,7 +213,8 @@ public class OffersService {
             query.setParameter("con", planer.getCountry());
         }
         if ( planer.checkTheNeedToCalculateSurface() ) {
-                query.setParameter("sur", (int)(planer.calculateSurface() * 0.9));
+                query.setParameter("sur", (int)(planer.calculateSurface() * 0.9))
+                        .setParameter("wid", planer.getHighestWidth());
         }
 
         return query.getResultList();

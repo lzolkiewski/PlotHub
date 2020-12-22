@@ -39,6 +39,7 @@ public class LoginController {
             User user;
             if ( ( user = userService.getUser(loginUser) ) != null ){
 //login successful
+
                 request.getSession().setAttribute("user", user);
 
                 return "redirect:/account";

@@ -153,7 +153,16 @@ public class AccountController {
     }
 
     @GetMapping("/userOffers/{id}")
-    public String userOffers(Model model, @PathVariable("id")Integer id) {
+    public String userOffers(Model model, @PathVariable("id")Integer id, HttpServletRequest request) {
+        if ( request.getSession().getAttribute("user") == null){
+            return "redirect:/login";
+        } else {
+//            if wrong someone is trying to get others offers
+            if ( !((User) request.getSession().getAttribute("user")).getId().equals(id) ) {
+                return "redirect:/account";
+            }
+        }
+
         List<Offer> offers;
 
         if (offersService.getUserOffers(id) == null){

@@ -2,8 +2,10 @@ package com.example.plot.management;
 
 import com.example.plot.PlotHub;
 
+import java.io.Serializable;
 
-public class Planer {
+
+public class Planer implements Serializable {
 //    home section
     private Integer homeLength;
     private Integer homeWidth;
