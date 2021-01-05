@@ -1,8 +1,8 @@
 package com.example.plot.management;
 
-import com.example.plot.jpa.User;
-
 import java.io.Serializable;
+
+import com.example.plot.database.User;
 
 public class LoginRegister extends User implements Serializable{
 

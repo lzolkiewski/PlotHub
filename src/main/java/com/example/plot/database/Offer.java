@@ -1,15 +1,16 @@
-package com.example.plot.jpa;
-
-import com.example.plot.jpa.offer.Address;
-import com.example.plot.jpa.offer.DriveType;
-import com.example.plot.jpa.offer.PlotType;
-import com.example.plot.jpa.offer.Surrounding;
+package com.example.plot.database;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.example.plot.database.offer.Address;
+import com.example.plot.database.offer.DriveType;
+import com.example.plot.database.offer.PlotType;
+import com.example.plot.database.offer.Surrounding;
+
 import java.io.Serializable;
 
 @Entity

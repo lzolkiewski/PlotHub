@@ -1,9 +1,9 @@
 package com.example.plot.controllers;
 
-import com.example.plot.jpa.User;
+import com.example.plot.database.User;
 import com.example.plot.management.LoginRegister;
-
 import com.example.plot.services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,9 +37,9 @@ public class LoginController {
         if ( userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") == 0 ) {
 //login
             User user;
+            
             if ( ( user = userService.getUser(loginUser) ) != null ){
 //login successful
-
                 request.getSession().setAttribute("user", user);
 
                 return "redirect:/account";
@@ -50,7 +50,7 @@ public class LoginController {
                 return "redirect:/login";
             }
         } else if ( userService.userExists(loginUser) && loginUser.getRePassword().compareTo("") != 0 ) {
-//            user tried to register but the same user already exists
+//user tried to register but the same user already exists
             warning = new String("Użytkownik już istnieje.");
 
             return "redirect:/login";
@@ -74,6 +74,7 @@ public class LoginController {
         } else {
 //user tried to login but incorrect credentials
             warning = new String("Niewłaściwy e-mail lub hasło.");
+
             return "redirect:/login";
         }
     }

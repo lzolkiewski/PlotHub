@@ -1,4 +1,4 @@
-package com.example.plot.jpa;
+package com.example.plot.database;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

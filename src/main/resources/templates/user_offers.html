@@ -26,12 +26,12 @@
                     <tbody>
                     <tr>
                         <td class="offer-img text-center" rowspan="2" style="color: aliceblue;">
-                            <a th:href="|/offer/${offer.id}|"> <!-- tu należy dodać th:href -->
+                            <a th:href="|/userOffer/${offer.id}|"> <!-- tu należy dodać th:href -->
                                 <!-- <img src="/images/offers_images/background.jpg" height="150px" width="250px" alt="offer's image" style="border-radius: 25px;"> -->
                             </a>
                         </td>
                         <td class="text-left offer-title" colspan="2" style="padding-left: 20px;">
-                            <a th:href="|/offer/${offer.id}|" th:text = "${offer.title}" style="max-width: 520;"></a>
+                            <a th:href="|/userOffer/${offer.id}|" th:text = "${offer.title}" style="max-width: 520;"></a>
                         </td>
                         <td class="text-right" colspan="2" style="padding-right: 20px;">
                             <a th:href="|/account/delete/${offer.id}|" class="btn btn-danger">Usuń ofertę</a>

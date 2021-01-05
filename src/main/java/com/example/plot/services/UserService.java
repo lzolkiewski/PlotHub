@@ -5,7 +5,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import com.example.plot.jpa.User;
+import com.example.plot.database.User;
 import com.example.plot.management.LoginRegister;
 
 import org.springframework.stereotype.Service;

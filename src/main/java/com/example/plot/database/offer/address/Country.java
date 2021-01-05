@@ -1,4 +1,4 @@
-package com.example.plot.jpa.offer;
+package com.example.plot.database.offer.address;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -6,20 +6,20 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "plot_type")
-public class PlotType {
+@Table(name = "country")
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Size(max = 45, min = 4)
+    @Size(max = 60, min=5)
     @Column(name = "name")
     @NotNull
     @NotBlank
     private String name;
 
-    public PlotType() {
+    public Country() {
     }
 
     public Integer getId() {

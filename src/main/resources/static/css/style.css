@@ -71,6 +71,11 @@ footer{
 
 body{
   background-image: url("/images/application_images/background.jpg");
+  background-color: rgb(80, 80, 80);
+  height: 100%;
+  background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
   background-attachment: fixed;
 }

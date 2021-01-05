@@ -1,4 +1,4 @@
-package com.example.plot.jpa.offer.address;
+package com.example.plot.database.offer.address;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

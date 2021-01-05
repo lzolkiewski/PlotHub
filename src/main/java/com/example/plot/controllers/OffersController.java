@@ -1,10 +1,11 @@
 package com.example.plot.controllers;
 
-import com.example.plot.jpa.Offer;
+import com.example.plot.database.Offer;
 import com.example.plot.management.OffersFilter;
 import com.example.plot.management.Planer;
 import com.example.plot.services.DatabaseService;
 import com.example.plot.services.OffersService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ public class OffersController {
             }
         }
 
-        //        differentiate between offersFilter and planer
+// differentiate between offersFilter and planer
         if (offersFilter.checkTheNeedToFindBuilding() || offersFilter.checkTheNeedToFindFence()
                 || offersFilter.getPlotTypeId() != null || offersFilter.getSurroundingId() != null
                 || offersFilter.getAreaFrom() != null || offersFilter.getAreaTo() != null
@@ -53,7 +54,7 @@ public class OffersController {
             request.getSession().setAttribute("pl", planer);
         }
 
-//        model all necessary attributes
+// model all necessary attributes
         model.addAttribute("expected", planer.getSurface());
         model.addAttribute("offers", offers);
         model.addAttribute("plotTypes", databaseService.getPlotTypes());
@@ -72,6 +73,7 @@ public class OffersController {
         model.addAttribute("date", databaseService.getUserOffersById(id));
         return "offer";
     }
+    
     @RequestMapping("/offer/back")
     public String back(HttpServletRequest request){
 //        add some attribute telling whether we are back or not

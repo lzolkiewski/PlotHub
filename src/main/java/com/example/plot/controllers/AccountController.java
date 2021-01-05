@@ -1,9 +1,12 @@
 package com.example.plot.controllers;
 
-import com.example.plot.jpa.User;
+import com.example.plot.database.Offer;
+import com.example.plot.database.User;
 import com.example.plot.management.ChangePassword;
+import com.example.plot.services.DatabaseService;
 import com.example.plot.services.OffersService;
 import com.example.plot.services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
-import com.example.plot.jpa.Offer;
-import com.example.plot.services.DatabaseService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +68,7 @@ public class AccountController {
         if ( request.getSession().getAttribute("user") == null ){
             return "redirect:/login";
         }
-        System.out.println(offer.getTitle().length());
+
 //        if some errors remain on the same page
         if ( bindingResult.hasErrors() || offersService.addressHasErrors(offer) 
              || offer.getTitle().length() < 4 ) {
@@ -184,4 +184,14 @@ public class AccountController {
         return "redirect:/userOffers/" + ((User)request.getSession().getAttribute("user")).getId();
     }
 
+    @GetMapping("/userOffer/{id}")
+    public String userOffer(Model model, @PathVariable("id")Integer id, HttpServletRequest request) {
+        model.addAttribute("offer", offersService.getOfferById(id));
+        model.addAttribute("email", databaseService.getUserEmail(id));
+        // model.addAttribute("id", (User) request.getSession().getAttribute("user").getId());
+        model.addAttribute("id", ((User)request.getSession().getAttribute("user")).getId());
+
+        model.addAttribute("date", databaseService.getUserOffersById(id));
+        return "user_offer";
+    }
 }

@@ -288,38 +288,42 @@ layout:decorator="layout">
 <!-- tabela ofert -->
           <table class="table">
             <tbody>
-              <!-- do tr należy dodać th:each i w odpowiednich miejscahc th:text i th:href-->
-              <tr class="row-offer warning" th:each = "offer : ${offers}"><!-- tu należy dodać th:each -->
-                <!--  th:classappend="${expected > offer.area } ? 'warning' :'' " -->
-                <table class="offer" th:classappend="${expected != null && expected > offer.area} ? 'warning' :'' " >
-                  <tbody>
-                    <tr>
-                      <td class="offer-img text-center" rowspan="2" style="color: aliceblue;">
-                        <a th:href="|/offer/${offer.id}|"> <!-- tu należy dodać th:href -->
-                          <!-- <img src="/images/offers_images/background.jpg" height="150px" width="250px" alt="offer's image" style="border-radius: 25px;"> -->
-                        </a>
-                      </td>
-                      <td class="text-left offer-title" colspan="2" style="padding-left: 20px;">
-                        <a th:href="|/offer/${offer.id}|" th:text = "${offer.title}" style="max-width: 520;"></a>
-                      </td>
-                      <td class="text-right" colspan="2" style="padding-right: 20px;">
-                        <div th:if = "${expected != null}">
-                          <span th:text = "${offer.area*100/expected &lt 100} ? |${offer.area*100/expected}%| : ''"></span>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class = "text-left" style="padding-left: 20px; width: 200px;">
-                        <span th:text = "|${#numbers.formatDecimal(offer.area, 0, 'WHITESPACE', 0,'COMMA')} m2|" ></span>
-                      </td>
-                      <td class = "text-center" rowspan="2" th:text = "|${offer.address.city.name}, ${offer.address.country.name}|"></td> 
-                      <td class = "text-right" style="padding-right: 20px; width: 200px;">
-                        <span th:text = "|${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 0,'COMMA')} zł|"></span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </tr>
+<!-- do tr należy dodać th:each i w odpowiednich miejscahc th:text i th:href-->
+                <tr class="row-offer warning" th:each = "offer : ${offers}"><!-- tu należy dodać th:each -->
+                  <!--  th:classappend="${expected > offer.area } ? 'warning' :'' " -->
+                  
+                  <table class="offer" th:classappend="${expected != null && expected > offer.area} ? 'warning' :'' " >
+                    <tbody>
+
+                      <tr>
+                        <td class="offer-img text-center" rowspan="2" style="color: aliceblue;">
+                          <a th:href="|/offer/${offer.id}|"> <!-- tu należy dodać th:href -->
+                            <!-- <img src="/images/offers_images/background.jpg" height="150px" width="250px" alt="offer's image" style="border-radius: 25px;"> -->
+                          </a>
+                        </td>
+                        <td class="text-left offer-title" colspan="2" style="padding-left: 20px;">
+                          <a th:href="|/offer/${offer.id}|" th:text = "${offer.title}" style="max-width: 520;"></a>
+                        </td>
+                        <td class="text-right" colspan="2" style="padding-right: 20px;">
+                          <div th:if = "${expected != null}">
+                            <span th:text = "${offer.area*100/expected &lt 100} ? |${offer.area*100/expected}%| : ''"></span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class = "text-left" style="padding-left: 20px; width: 200px;">
+                          <span th:text = "|${#numbers.formatDecimal(offer.area, 0, 'WHITESPACE', 0,'COMMA')} m2|" ></span>
+                        </td>
+                        <td class = "text-center" rowspan="2" th:text = "|${offer.address.city.name}, ${offer.address.country.name}|"></td> 
+                        <td class = "text-right" style="padding-right: 20px; width: 200px;">
+                          <span th:text = "|${#numbers.formatDecimal(offer.price, 0, 'WHITESPACE', 0,'COMMA')} zł|"></span>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                
+                </tr>
 
             </tbody>
           </table>

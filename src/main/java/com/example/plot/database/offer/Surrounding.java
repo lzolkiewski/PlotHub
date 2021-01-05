@@ -1,4 +1,4 @@
-package com.example.plot.jpa.offer;
+package com.example.plot.database.offer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -6,8 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "drive_type")
-public class DriveType {
+@Table(name = "surrounding")
+public class Surrounding {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,7 +19,7 @@ public class DriveType {
     @NotBlank
     private String name;
 
-    public DriveType() {
+    public Surrounding() {
     }
 
     public Integer getId() {

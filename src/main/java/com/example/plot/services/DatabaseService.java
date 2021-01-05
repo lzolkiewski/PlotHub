@@ -1,15 +1,5 @@
 package com.example.plot.services;
 
-import com.example.plot.jpa.Offer;
-import com.example.plot.jpa.offer.Address;
-import com.example.plot.jpa.offer.Surrounding;
-import com.example.plot.jpa.User;
-import com.example.plot.jpa.UserOffers;
-import com.example.plot.jpa.offer.DriveType;
-import com.example.plot.jpa.offer.PlotType;
-import com.example.plot.jpa.offer.address.City;
-import com.example.plot.jpa.offer.address.Country;
-import com.example.plot.jpa.offer.address.Street;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +7,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import com.example.plot.database.Offer;
+import com.example.plot.database.User;
+import com.example.plot.database.UserOffers;
+import com.example.plot.database.offer.Address;
+import com.example.plot.database.offer.DriveType;
+import com.example.plot.database.offer.PlotType;
+import com.example.plot.database.offer.Surrounding;
+import com.example.plot.database.offer.address.City;
+import com.example.plot.database.offer.address.Country;
+import com.example.plot.database.offer.address.Street;
+
 import java.util.List;
 
 

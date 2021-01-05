@@ -83,9 +83,7 @@ layout:decorator="layout">
               <span class="col-md-2 d-flex justify-content-center form-group el" th:text = "${#dates.format(date.date, 'dd-MM-yyyy')}"></span>
             </div>
             <div class="d-flex justify-content-center form-group">
-              <a href="/offer/back" class="btn btn-secondary" style="margin-right: 5px;">Powrót</a>
-              <input type="hidden" id="myInput" th:value="${email}">
-              <a th:href="|mailto:${email}|" class="btn btn-success" onclick="myFunction()">Mail sprzedającego</a>
+              <a th:href="|/userOffers/${id}|" class="btn btn-secondary" style="margin-right: 5px;">Powrót</a>
             </div>
           </div>
         </div>
