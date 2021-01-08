@@ -83,7 +83,8 @@ layout:decorator="layout">
               <span class="col-md-2 d-flex justify-content-center form-group el" th:text = "${#dates.format(date.date, 'dd-MM-yyyy')}"></span>
             </div>
             <div class="d-flex justify-content-center form-group">
-              <a th:href="|/userOffers/${id}|" class="btn btn-secondary" style="margin-right: 5px;">Powrót</a>
+              <a th:href="|/userOffers/${id}|" class="btn btn-secondary" style="margin-right: 5px;">Oferty użytkownika</a>
+              <a href="/account" class="btn btn-secondary" style="margin-left: 5px;">Konto</a>
             </div>
           </div>
         </div>

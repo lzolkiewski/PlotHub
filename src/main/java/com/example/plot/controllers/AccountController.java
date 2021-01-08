@@ -85,12 +85,18 @@ public class AccountController {
         }
 //        get address with id or add the address to database
         offer.setAddress(databaseService.addAddressIfNotExist(offer.getAddress()));
+//        in case width is larger than length
+        if (offer.getWidth() > offer.getLength()){
+            Integer tmp = offer.getLength();
+            offer.setLength(offer.getWidth());
+            offer.setWidth(tmp);
+        }
 //        add offer
         offer = offersService.addOffer(offer);
 //        pass logged user and newly created offer
         offersService.linkUserWithOffer(offer, (User) request.getSession().getAttribute("user"));
-//        view the offer
-        return "redirect:/offer/" + offer.getId();
+//        view the offers
+        return "redirect:/userOffer/"+offer.getId();
     }
 
     @RequestMapping("/change_passwd")
