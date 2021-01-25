@@ -1,4 +1,4 @@
-package com.example.plot.management;
+package com.example.plot.controllers.management;
 
 import com.example.plot.PlotHub;
 
@@ -29,6 +29,15 @@ public class Planer implements Serializable {
     private String country;
 
     private Integer surface;
+    private Integer totalLength;
+
+    public Integer getTotalLength() {
+        return totalLength;
+    }
+
+    public void setTotalLength(Integer totalLength) {
+        this.totalLength = totalLength;
+    }
 
     public Integer getHomeLength() {
         return homeLength;
@@ -171,9 +180,8 @@ public class Planer implements Serializable {
         return getParkingLength()!=null && getParkingWidth()!=null;
     }
     public Boolean isGarden() { return getGardenLength()!=null && getGardenWidth()!=null; }
-
-//    calculating the needed surface
-    //    swap values if length < width
+    
+//    swap values if length < width
     public void swapLengthsWidths() {
         Integer tmpLen=0;
 //        home
@@ -195,7 +203,7 @@ public class Planer implements Serializable {
             setGardenLength(tmpLen);
         }
     }
-    //    get highest width
+//    get highest width
     public Integer getHighestWidth() {
         int maxWidth = 0;
         if ( isHome() ) {
@@ -221,8 +229,8 @@ public class Planer implements Serializable {
         return Math.max( PlotHub.requirements.getGarbageLength() + ( 2 * PlotHub.requirements.getGarbageBorderDist() ), maxWidth );
 
     }
-    //    total calculation
-    public Integer calculateSurface() {
+//    total calculation
+    public Integer calculateTotalLength() {
         Integer totalLen = 0;
         Integer garbageHomeDistance = PlotHub.requirements.getGarbageHomeDist(),
                 sewageHomeDistance = PlotHub.requirements.getSewageHomeDist();
@@ -310,12 +318,11 @@ public class Planer implements Serializable {
                 totalLen += PlotHub.requirements.getSewageBorderDist() + sewageHomeDistance;
             }
         }
+        setTotalLength(totalLen);
 
-        setSurface(totalLen*getHighestWidth());
-
-        return getSurface();
+        return getTotalLength();
     }
-    //    single plot object's surface calculations
+//    single plot object's surface calculations
     public Integer calculateHomeSurfaceWithGarbage() {
         if ( getHomeWidth()<= 10 ){
 //                exceptional distance of ~ 2 m on narrow plot where width is 16 at most

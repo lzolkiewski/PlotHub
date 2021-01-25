@@ -14,7 +14,6 @@ layout:decorator="layout">
   </head>
   <body>
       <section layout:fragment="content">
-        
         <div class="offers-content">
 
 <!-- ofert search -->
@@ -84,7 +83,7 @@ layout:decorator="layout">
                         Miasto
                       </div>
                       <div class="input-group col-md-4">
-                        <input class = "form-control" list="city-browsers" th:field = "*{city}">
+                        <input class = "form-control" list="city-browsers" placeholder="Miasto" th:field = "*{city}">
                         <datalist id="city-browsers">
                           <option th:each = "city : ${cities}" th:value = "${city.name}">
                         </datalist>
@@ -93,7 +92,7 @@ layout:decorator="layout">
                         Państwo
                       </div>
                       <div class="input-group col-md-4">
-                        <input class = "form-control" list="country-browsers" th:field = "*{country}">
+                        <input class = "form-control" list="country-browsers" placeholder="Państwo" th:field = "*{country}">
                         <datalist id="country-browsers">
                           <option th:each = "country : ${countries}" th:value = "${country.name}">
                         </datalist>
@@ -137,7 +136,7 @@ layout:decorator="layout">
                         Długość budynku
                       </div>
                       <div class="input-group col-md-3">
-                        <input type="number" class = "form-control" th:field = "*{homeLength}" min="0">
+                        <input type="number" class = "form-control" placeholder="Długość" th:field = "*{homeLength}" min="0">
                         <div class="input-group-append">
                           <span class="input-group-text">m</span>
                         </div>
@@ -146,7 +145,7 @@ layout:decorator="layout">
                         Szerokość budynku
                       </div>
                       <div class="input-group col-md-3">
-                        <input type="number" class = "form-control" th:field = "*{homeWidth}" min="0">
+                        <input type="number" class = "form-control" placeholder="Szerokość" th:field = "*{homeWidth}" min="0">
                         <div class="input-group-append">
                           <span class="input-group-text">m</span>
                         </div>
@@ -158,7 +157,7 @@ layout:decorator="layout">
                         Długość garażu
                       </div>
                       <div class="input-group col-md-3">
-                        <input type="number" class = "form-control" th:field = "*{parkingLength}" min="0">
+                        <input type="number" class = "form-control" placeholder="Długość" th:field = "*{parkingLength}" min="0">
                         <div class="input-group-append">
                           <span class="input-group-text">m</span>
                         </div>
@@ -167,7 +166,7 @@ layout:decorator="layout">
                         Szerokość garażu
                       </div>
                       <div class="input-group col-md-3">
-                        <input type="number" class = "form-control" th:field = "*{parkingWidth}" min="0">
+                        <input type="number" class = "form-control" placeholder="Szerokość" th:field = "*{parkingWidth}" min="0">
                         <div class="input-group-append">
                           <span class="input-group-text">m</span>
                         </div>
@@ -179,7 +178,7 @@ layout:decorator="layout">
                         Długość ogrodu
                       </div>
                       <div class="input-group col-md-3">
-                        <input type="number" class = "form-control" th:field = "*{gardenLength}" min="0">
+                        <input type="number" class = "form-control" placeholder="Długość" th:field = "*{gardenLength}" min="0">
                         <div class="input-group-append">
                           <span class="input-group-text">m</span>
                         </div>
@@ -188,7 +187,7 @@ layout:decorator="layout">
                         Szerokość ogrodu
                       </div>
                       <div class="input-group col-md-3">
-                        <input type="number" class = "form-control" th:field = "*{gardenWidth}" min="0">
+                        <input type="number" class = "form-control" placeholder="Szerokość" th:field = "*{gardenWidth}" min="0">
                         <div class="input-group-append">
                           <span class="input-group-text">m</span>
                         </div>
@@ -224,7 +223,7 @@ layout:decorator="layout">
                         Miasto
                       </div>
                       <div class="input-group col-md-3">
-                        <input class = "form-control" list="city-browsers" th:field = "*{city}">
+                        <input class = "form-control" list="city-browsers" placeholder="Miasto" th:field = "*{city}">
                         <datalist id="city-browsers">
                           <option th:each = "city : ${cities}" th:value = "${city.name}">
                         </datalist>
@@ -233,7 +232,7 @@ layout:decorator="layout">
                         Państwo
                       </div>
                       <div class="input-group col-md-3">
-                        <input class = "form-control" list="country-browsers" th:field = "*{country}">
+                        <input class = "form-control" list="country-browsers" placeholder="Państwo" th:field = "*{country}">
                         <datalist id="country-browsers">
                           <option th:each = "country : ${countries}" th:value = "${country.name}">
                         </datalist>
@@ -292,7 +291,7 @@ layout:decorator="layout">
                 <tr class="row-offer warning" th:each = "offer : ${offers}"><!-- tu należy dodać th:each -->
                   <!--  th:classappend="${expected > offer.area } ? 'warning' :'' " -->
                   
-                  <table class="offer" th:classappend="${expected != null && expected > offer.area} ? 'warning' :'' " >
+                  <table class="offer" th:classappend="${expected != null && expected > offer.length} ? 'warning' :'' " >
                     <tbody>
 
                       <tr>
@@ -306,7 +305,7 @@ layout:decorator="layout">
                         </td>
                         <td class="text-right" colspan="2" style="padding-right: 20px;">
                           <div th:if = "${expected != null}">
-                            <span th:text = "${offer.area*100/expected &lt 100} ? |${offer.area*100/expected}%| : ''"></span>
+                            <span th:text = "${offer.length*100/expected &lt 100} ? |${offer.length*100/expected}%| : ''"></span>
                           </div>
                         </td>
                       </tr>
@@ -329,7 +328,6 @@ layout:decorator="layout">
           </table>
         
         </div>
-
       </section>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

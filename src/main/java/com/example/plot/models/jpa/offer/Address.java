@@ -1,12 +1,11 @@
-package com.example.plot.database.offer;
+package com.example.plot.models.jpa.offer;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import com.example.plot.database.offer.address.City;
-import com.example.plot.database.offer.address.Country;
-import com.example.plot.database.offer.address.Street;
+import com.example.plot.models.jpa.offer.address.City;
+import com.example.plot.models.jpa.offer.address.Country;
+import com.example.plot.models.jpa.offer.address.Street;
 
 @Entity
 @Table(name = "address")

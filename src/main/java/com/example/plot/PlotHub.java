@@ -1,6 +1,6 @@
 package com.example.plot;
 
-import com.example.plot.management.Requirements;
+import com.example.plot.controllers.management.Requirements;
 import com.google.gson.Gson;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

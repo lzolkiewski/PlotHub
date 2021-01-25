@@ -1,10 +1,10 @@
-package com.example.plot.services;
+package com.example.plot.models.services;
 
-import com.example.plot.database.Offer;
-import com.example.plot.database.User;
-import com.example.plot.database.UserOffers;
-import com.example.plot.management.OffersFilter;
-import com.example.plot.management.Planer;
+import com.example.plot.models.jpa.Offer;
+import com.example.plot.models.jpa.User;
+import com.example.plot.models.jpa.UserOffers;
+import com.example.plot.controllers.management.OffersFilter;
+import com.example.plot.controllers.management.Planer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -193,7 +193,8 @@ public class OffersService {
                     jpql+=" and";
                 }
 
-                jpql += " o.area >= :sur";
+//                jpql += " o.area >= :sur";
+                jpql += " o.length >= :totlen";
 
                 jpql += " and o.width >= :wid";
             }
@@ -213,10 +214,11 @@ public class OffersService {
             query.setParameter("con", planer.getCountry());
         }
         if ( planer.checkTheNeedToCalculateSurface() ) {
-                query.setParameter("sur", (int)(planer.calculateSurface() * 0.9))
-                        .setParameter("wid", planer.getHighestWidth());
-        }
+            planer.swapLengthsWidths();
 
+            query.setParameter("totlen", (int)(planer.calculateTotalLength()*0.9))
+                .setParameter("wid", planer.getHighestWidth());
+        }
         return query.getResultList();
     }
 

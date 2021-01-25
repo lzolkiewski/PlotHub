@@ -1,8 +1,8 @@
 package com.example.plot.controllers;
 
-import com.example.plot.database.User;
-import com.example.plot.management.LoginRegister;
-import com.example.plot.services.UserService;
+import com.example.plot.models.jpa.User;
+import com.example.plot.controllers.management.LoginRegister;
+import com.example.plot.models.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

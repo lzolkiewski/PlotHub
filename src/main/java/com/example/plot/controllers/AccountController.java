@@ -1,11 +1,11 @@
 package com.example.plot.controllers;
 
-import com.example.plot.database.Offer;
-import com.example.plot.database.User;
-import com.example.plot.management.ChangePassword;
-import com.example.plot.services.DatabaseService;
-import com.example.plot.services.OffersService;
-import com.example.plot.services.UserService;
+import com.example.plot.models.jpa.Offer;
+import com.example.plot.models.jpa.User;
+import com.example.plot.controllers.management.ChangePassword;
+import com.example.plot.models.services.DatabaseService;
+import com.example.plot.models.services.OffersService;
+import com.example.plot.models.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

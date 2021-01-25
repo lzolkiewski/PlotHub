@@ -1,4 +1,4 @@
-package com.example.plot.database;
+package com.example.plot.models.jpa;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -6,12 +6,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.example.plot.database.offer.Address;
-import com.example.plot.database.offer.DriveType;
-import com.example.plot.database.offer.PlotType;
-import com.example.plot.database.offer.Surrounding;
-
-import java.io.Serializable;
+import com.example.plot.models.jpa.offer.Address;
+import com.example.plot.models.jpa.offer.DriveType;
+import com.example.plot.models.jpa.offer.PlotType;
+import com.example.plot.models.jpa.offer.Surrounding;
 
 @Entity
 @Table(name = "offer")

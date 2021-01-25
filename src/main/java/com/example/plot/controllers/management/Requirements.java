@@ -1,4 +1,4 @@
-package com.example.plot.management;
+package com.example.plot.controllers.management;
 
 public class Requirements {
 //    home part

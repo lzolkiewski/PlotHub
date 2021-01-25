@@ -1,12 +1,12 @@
-package com.example.plot.services;
+package com.example.plot.models.services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import com.example.plot.database.User;
-import com.example.plot.management.LoginRegister;
+import com.example.plot.models.jpa.User;
+import com.example.plot.controllers.management.LoginRegister;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

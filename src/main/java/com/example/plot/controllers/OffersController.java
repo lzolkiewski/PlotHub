@@ -1,10 +1,10 @@
 package com.example.plot.controllers;
 
-import com.example.plot.database.Offer;
-import com.example.plot.management.OffersFilter;
-import com.example.plot.management.Planer;
-import com.example.plot.services.DatabaseService;
-import com.example.plot.services.OffersService;
+import com.example.plot.models.jpa.Offer;
+import com.example.plot.controllers.management.OffersFilter;
+import com.example.plot.controllers.management.Planer;
+import com.example.plot.models.services.DatabaseService;
+import com.example.plot.models.services.OffersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -55,7 +54,8 @@ public class OffersController {
         }
 
 // model all necessary attributes
-        model.addAttribute("expected", planer.getSurface());
+//        model.addAttribute("expected", planer.getSurface());
+        model.addAttribute("expected", planer.getTotalLength());
         model.addAttribute("offers", offers);
         model.addAttribute("plotTypes", databaseService.getPlotTypes());
         model.addAttribute("surroundings", databaseService.getSurroundings());

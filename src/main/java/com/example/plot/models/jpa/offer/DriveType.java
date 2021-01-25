@@ -1,4 +1,4 @@
-package com.example.plot.database.offer.address;
+package com.example.plot.models.jpa.offer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -6,8 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "street")
-public class Street {
+@Table(name = "drive_type")
+public class DriveType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,7 +19,7 @@ public class Street {
     @NotBlank
     private String name;
 
-    public Street() {
+    public DriveType() {
     }
 
     public Integer getId() {
